@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Flatpickr Material Blue Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+    <link rel="stylesheet" href="Style.css">
+    <script src="Script.js"></script>
+    <title>OneTour.Planner</title>
+</head>
+<body class="min-h-screen bg">
+    <!-- Navigation Bar -->
+    <nav class="py-6">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <!-- Logo -->
+            <a class="text-[#FF0303] font-semibold text-2xl font-[Montserrat] ml-5" href="#">
+                OneTour.<span class="text-[#3CF0FD]">Planner</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex font-[DM Sans] font-medium space-x-14">
+                <a href="#" class="hover:text-[#FF0303]">Home</a>
+                <a href="#" class="hover:text-[#FF0303]">Services</a>
+                <a href="#" class="hover:text-[#FF0303]">Explore....</a>
+                <a href="#" class="hover:text-[#FF0303]">Packages</a>
+                <a href="#" class="hover:text-[#FF0303]">Tourist Places</a>
+
+                <!-- More Dropdown -->
+                <div class="relative group">
+                    <button class="hover:text-[#FF0303]">More ▾</button>
+                    <div class="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg hidden group-hover:block">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">About</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">FAQ</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Blog</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Trip Ideas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <div class="hidden md:flex items-center">
+                <!-- Background Image (Design.png) -->
+                <img src="/Assets/Design.png" alt="" class="absolute right-0 top-[332px] -translate-y-1/2">
+                <!-- Button in Front -->
+                <a href="login.html">
+                    <button class="relative z-10 bg-[#ff0303] text-white cursor-pointer font-medium w-[150px] h-[65px] rounded-full font-[Montserrat] text-[16px]">
+                        Log in or <br> Create Account
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Boy Image -->
+    <div class="boy">
+        <img src="/Assets/boy.png" alt="Boy Image">
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h6 class="bold">BIHAR</h6>
+        <p class="para">
+            A sanctuary for the soul. In the heart of India, <br> the state of Bihar beckons Travellers with its <br>history,
+            spirituality, and natural beauty. This <br>ancient land is the birthplace of two of the <br>world's major
+            religions, Buddhism and Jainism, <br>offering pilgrims and history enthusiasts an <br>unparalleled journey through
+            time.
+        </p>
+    </div>
+
+    <!-- Card Section -->
+    <div class="card">
+        <!-- Location -->
+        <div class="card-item">
+            <span class="icon">
+                <svg width="19" height="26" viewBox="0 0 19 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.1667 10.8334C17.1667 16.2424 11.8585 21.8758 10.076 23.6156C9.90991 23.7568 9.70778 23.8331 9.50001 23.8331C9.29225 23.8331 9.09011 23.7568 8.92405 23.6156C7.14155 21.8758 1.83334 16.2424 1.83334 10.8334C1.83334 8.53481 2.64108 6.33041 4.07886 4.7051C5.51664 3.07978 7.46668 2.16669 9.50001 2.16669C11.5333 2.16669 13.4834 3.07978 14.9212 4.7051C16.3589 6.33041 17.1667 8.53481 17.1667 10.8334Z" stroke="#FFF30F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9.50001 14.0834C11.0878 14.0834 12.375 12.6283 12.375 10.8334C12.375 9.03843 11.0878 7.58335 9.50001 7.58335C7.91219 7.58335 6.62501 9.03843 6.62501 10.8334C6.62501 12.6283 7.91219 14.0834 9.50001 14.0834Z" stroke="#FFF30F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div>
+                <p class="label">Location <span class="dropdown">▼</span></p>
+                <input type="text" id="destinationInput" placeholder="Destination">
+                <ul id="destinationDropdown" class="dropdown-menu"></ul>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider">
+            <svg width="1" height="30" viewBox="0 0 1 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0.5" y1="30" x2="0.5" stroke="#747979" />
+            </svg>
+        </div>
+
+        <!-- Date -->
+        <div class="card-item">
+            <span class="icon">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.66667 1.66669V5.00002M12.3333 1.66669V5.00002M1.5 8.33335H16.5M5.66667 11.6667H5.675M9 11.6667H9.00833M12.3333 11.6667H12.3417M5.66667 15H5.675M9 15H9.00833M12.3333 15H12.3417M3.16667 3.33335H14.8333C15.7538 3.33335 16.5 4.07955 16.5 5.00002V16.6667C16.5 17.5872 15.7538 18.3334 14.8333 18.3334H3.16667C2.24619 18.3334 1.5 17.5872 1.5 16.6667V5.00002C1.5 4.07955 2.24619 3.33335 3.16667 3.33335Z" stroke="#FFF30F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div>
+                <p class="label">Date <span class="dropdown">▼</span></p>
+                <input type="text" id="dateInput" placeholder="Select date">
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div>
+            <svg width="1" height="30" viewBox="0 0 1 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0.5" y1="30" x2="0.5" stroke="#747979" />
+            </svg>
+        </div>
+
+        <!-- Return -->
+        <div class="card-item">
+            <span class="icon">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.66667 1.66669V5.00002M12.3333 1.66669V5.00002M1.5 8.33335H16.5M5.66667 11.6667H5.675M9 11.6667H9.00833M12.3333 11.6667H12.3417M5.66667 15H5.675M9 15H9.00833M12.3333 15H12.3417M3.16667 3.33335H14.8333C15.7538 3.33335 16.5 4.07955 16.5 5.00002V16.6667C16.5 17.5872 15.7538 18.3334 14.8333 18.3334H3.16667C2.24619 18.3334 1.5 17.5872 1.5 16.6667V5.00002C1.5 4.07955 2.24619 3.33335 3.16667 3.33335Z" stroke="#FFF30F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div>
+                <p class="label">Return <span class="dropdown">▼</span></p>
+                <input type="text" id="returnInput" placeholder="Select return">
+            </div>
+        </div>
+
+        <!-- Refresh Button -->
+        <div class="refresh-btn">
+            <button type="button" onclick="saveData()">
+                <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 28.5L21.7889 22.2889M25.1111 14.0556C25.1111 20.4375 19.9375 25.6111 13.5556 25.6111C7.1736 25.6111 2 20.4375 2 14.0556C2 7.6736 7.1736 2.5 13.5556 2.5C19.9375 2.5 25.1111 7.6736 25.1111 14.0556Z" stroke="#747979" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 8 12 16" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Frame 11 Image -->
+    <div class="frame11">
+        <img src="/Assets/Frame 11.png" alt="Frame1">
+    </div>
+</body>
+</html>

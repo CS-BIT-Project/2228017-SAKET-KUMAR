@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Flatpickr Material Blue Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+
+     <script src="filter_patna.js"></script>
+    <link rel="stylesheet" href="filter_patna.css">
+    <title>OneTour.Planner</title>
+</head>
+
+<body class="min-h-screen bg">
+    <!-- Navigation Bar -->
+    <nav class="py-6">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <!-- Logo -->
+            <a class="text-[#FF0303] font-semibold text-2xl font-[Montserrat] ml-5" href="#">
+                OneTour.<span class="text-[#3CF0FD]">Planner</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex font-[DM Sans] font-medium space-x-14">
+                <a href="#" class="hover:text-[#FF0303]">Home</a>
+                <a href="#" class="hover:text-[#FF0303]">Services</a>
+                <a href="#" class="hover:text-[#FF0303]">Explore....</a>
+                <a href="#" class="hover:text-[#FF0303]">Packages</a>
+                <a href="#" class="hover:text-[#FF0303]">Tourist Places</a>
+
+                <!-- More Dropdown -->
+                <div class="relative group">
+                    <button class="hover:text-[#FF0303]">More ▾</button>
+                    <div class="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg hidden group-hover:block">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">About</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">FAQ</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Blog</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Trip Ideas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <div class="hidden md:flex items-center">
+                <!-- Button in Front -->
+                <a href="login.html">
+                    <button class="relative z-10 bg-[#ff0303] text-white cursor-pointer font-medium w-[150px] h-[65px] rounded-full font-[Montserrat] text-[16px]">
+                        Log in or <br> Create Account
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+    </nav>
+    <div class="filter-container">
+        <div class="filter-header">
+            <span>Packages Filters</span>
+            <a href="#">Remove all</a>
+        </div>
+        <div class="filter-section1">
+            <input type="text" id="destinationInput" placeholder="Destination">
+            <input type="text" id="dateInput" placeholder="Select date">
+            <input type="text" id="returnInput" placeholder="Select return">
+        </div>
+        <div class="filter-section">
+           <lable>Price Range</lable>
+            <input type="range" id="minSlider" min="3000" max="20000" step="1000" value="5000" oninput="updateValues()" title="Minimum price range">
+            <input type="range" id="maxSlider" min="3000" max="20000" step="1000" value="15000" oninput="updateValues()" title="Maximum price range">
+            <input type="number" id="minPrice" min="3000" max="20000" step="1000" value="5000" title="Enter minimum price" placeholder="Min price"> to
+            <input type="number" id="maxPrice" min="3000" max="20000" step="1000" value="15000" title="Enter maximum price" placeholder="Max price">
+        </div>
+        
+        <div class="text">
+            <span>TOURIST PLACES</span>
+
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+        </div>
+        <div class="filter-section">
+            <label><input type="checkbox"> Remove all</label>
+            <label><input type="checkbox"> Golghar</label>
+            <label><input type="checkbox"> Hanuman Mandir</label>
+            <label><input type="checkbox"> Iskon Temple</label>
+            <label><input type="checkbox"> Bihar Museum</label>
+        </div>
+        <div class="text">
+            <span>HOTELS</span>
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+        </div>
+        <div class="filter-section">
+            <label><input type="checkbox"> Remove all</label>
+            <label><input type="checkbox"> Lemon Tree</label>
+            <label><input type="checkbox"> Hotel Sidhvedantha</label>
+            <label><input type="checkbox"> The Royal Bihar</label>
+            <label><input type="checkbox"> The Cloves Inn</label>
+        </div>
+        <div class="text">
+            <span>REACH</span>
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+        </div>
+        <div class="filter-section">
+            <label><input type="checkbox"> Remove all</label>
+            <label><input type="checkbox"> Flight</label>
+            <label><input type="checkbox"> Train</label>
+            <label><input type="checkbox"> Bus</label>
+            <label><input type="checkbox"> Cab/Taxi</label>
+        </div>
+        <div class="text">
+            <span>Food</span>
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+        </div>
+        <div class="filter-section">
+            <label><input type="checkbox"> Remove all</label>
+            <label><input type="checkbox"> Lunch</label>
+            <label><input type="checkbox"> Breakfast</label>
+            <label><input type="checkbox"> Dinner</label>
+        </div>
+        <div class="text">
+            <span>Guide</span>
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+        </div>
+        <div class="filter-section">
+            <label><input type="checkbox"> Remove all</label>
+            <label><input type="checkbox"> Tour Guide</label>
+        </div>
+    </div>
+
+    <div class="image-section-container">
+        <div class="image-section">
+            <h3>TOURIST PLACES</h3>
+            <div class="image-row">
+                <img src="/Assets/Rajgir, Bihar.jpg" alt="Tourist Place 1">
+                <img src="/Assets/Visit Rajgir, Bihar_ Top 10 Sight Seeing Places in Rajgir for a Great Vacation (2024).jpg" alt="Tourist Place 2">
+                <img src="/Assets/Glass skywalk, Bihar.jpg" alt="Tourist Place 3">
+            </div>
+        </div>
+    
+         <div class="image-section">
+            <h3>HOTELS</h3>
+            <div class="image-row">
+                <img src="Assets/Gargee Green Hotel.jpg" alt="Hotels 1">
+                <img src="Assets/Lemon Tree Hotel.jpg" alt="Hotels 2">
+                <img src="Assets/Taj Hotels Patna.jpg" alt="Hotels 3">
+            </div>
+        </div>
+    
+        <div class="image-section">
+            <h3>FESTIVAL & CULTURE</h3>
+            <div class="image-row">
+                <img src="Assets/Makar Sankranti.jpg" alt="Festival 1">
+                <img src="Assets/Chhath Puja.jpg" alt="Festival 2">
+                <img src="Assets/Sonpur mela.webp" alt="Festival 3">
+            </div>
+        </div>
+
+        <div class="image-section">
+            <h3>FAMOUS FOOD</h3>
+            <div class="image-row">
+                <img src="Assets/Litti Chokha.jpeg" alt="Food 1">
+                <img src="Assets/Malepua.jpg" alt="Food 2">
+                <img src="Assets/Longelata.jpg" alt="Food 3">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

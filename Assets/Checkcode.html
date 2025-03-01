@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Example with Images</title>
+    <style>
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .filter-container {
+            width: 25%;
+        }
+
+        .results-container {
+            width: 75%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .result-item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .result-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="filter-container">
+            <div class="filter-section">
+                <label><input type="checkbox" value="Golghar"> Golghar</label>
+                <label><input type="checkbox" value="Hanuman Mandir"> Hanuman Mandir</label>
+                <label><input type="checkbox" value="Bihar Museum"> Bihar Museum</label>
+            </div>
+            <button id="removeAll">Remove All</button>
+        </div>
+        <div class="results-container">
+            <div class="result-item" data-place="Golghar">
+                <img src="/Assets/Chhath Puja.jpg" alt="Golghar">
+                <p>Golghar</p>
+            </div>
+            <div class="result-item" data-place="Hanuman Mandir">
+                <img src="/Assets/boy.png" alt="Hanuman Mandir">
+                <p>Hanuman Mandir</p>
+            </div>
+            <div class="result-item" data-place="Bihar Museum">
+                <img src="Assets/Patna Museum.jpg" alt="Bihar Museum">
+                <p>Bihar Museum</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const checkboxes = document.querySelectorAll('.filter-section input[type="checkbox"]');
+            const resultItems = document.querySelectorAll('.result-item');
+
+            checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener("change", () => {
+                    const selectedValues = Array.from(checkboxes)
+                        .filter((cb) => cb.checked)
+                        .map((cb) => cb.value);
+
+                    resultItems.forEach((item) => {
+                        const place = item.getAttribute("data-place");
+                        if (selectedValues.length === 0 || selectedValues.includes(place)) {
+                            item.style.display = "block";
+                        } else {
+                            item.style.display = "none";
+                        }
+                    });
+                });
+            });
+
+            document.querySelector("#removeAll").addEventListener("click", () => {
+                checkboxes.forEach((cb) => (cb.checked = false));
+                resultItems.forEach((item) => (item.style.display = "block"));
+            });
+        });
+    </script>
+</body>
+
+</html>
