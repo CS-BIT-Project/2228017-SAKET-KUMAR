@@ -1,12 +1,11 @@
-
 .bg {
   background: #DFFAFC;
 }
 
 .boy {
   position: absolute;
-  top: 215px;
-  left: 150px;
+  top: 230px;
+  left: 95px;
 }
 
 .bold {
@@ -15,17 +14,17 @@
   font-weight: bold;
   position: absolute;
   top: 150px;
-  left: 385px;
+  left: 334px;
 }
 
 .para {
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 500;
   color: #747979;
   position: absolute;
   top: 230px;
-  left: 450px;
-  letter-spacing: 2px;
+  left: 402px;
+  letter-spacing: 1px;
 }
 
 .card {
@@ -40,8 +39,8 @@
   width: 674px;
   height: 94px;
   position: absolute;
-  top: 590px;
-  left: 52%;
+  top: 605px;
+  left: 53%;
   transform: translateX(-50%);
 }
 
