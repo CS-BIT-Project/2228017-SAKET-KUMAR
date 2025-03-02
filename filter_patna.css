@@ -154,7 +154,7 @@ input[type="checkbox"] {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    right: 140px;
+    right: 110px;
     
 }
 .image-section img:hover {

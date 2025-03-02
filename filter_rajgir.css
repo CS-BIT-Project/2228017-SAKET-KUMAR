@@ -1,3 +1,4 @@
+
 .bg{
     background: #DFFAFC;
 }
@@ -62,6 +63,10 @@ input[id="returnInput"]{
     border-bottom: 1px solid #ddd;
     padding-bottom: 12px;
 }
+.filter-header button{
+    color: #007BFF;
+    font-size: 16px;
+}
 .filter-header a {
     text-decoration: none;
     color: #007BFF;
@@ -121,8 +126,9 @@ input[type="checkbox"] {
     gap: 20px;
     width: 50%; /* Adjust width as per requirement */
     margin: auto; /* Center align */
-    position: relative;
-    top: -1135px;
+    position: absolute;
+    top: 110px;
+    left: 385px;
     
 }
 
@@ -148,7 +154,7 @@ input[type="checkbox"] {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    right: 140px;
+    right: 110px;
     
 }
 .image-section img:hover {
