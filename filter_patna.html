@@ -22,13 +22,13 @@
     <nav class="py-6">
         <div class="container mx-auto flex justify-between items-center px-6">
             <!-- Logo -->
-            <a class="text-[#FF0303] font-semibold text-2xl font-[Montserrat] ml-5" href="#">
+            <a class="text-[#FF0303] font-semibold text-2xl font-[Montserrat] ml-5" href="index.html">
                 OneTour.<span class="text-[#3CF0FD]">Planner</span>
             </a>
 
             <!-- Navigation Links -->
             <div class="hidden md:flex font-[DM Sans] font-medium space-x-12 absolute left-97">
-                <a href="#" class="hover:text-[#FF0303]">Home</a>
+                <a href="index.html" class="hover:text-[#FF0303]">Home</a>
                 <a href="#" class="hover:text-[#FF0303]">Services</a>
                 <a href="#" class="hover:text-[#FF0303]">Explore....</a>
                 <a href="#" class="hover:text-[#FF0303]">Packages</a>
@@ -96,6 +96,15 @@
             <label><input type="checkbox" class="filter-checkbox" value="Iskon-Temple"> IskonTemple</label>
             <label><input type="checkbox" class="filter-checkbox" value="Bihar-Museum"> Bihar Museum</label>
         </div>
+        <div class="text">
+            <span>HOTELS</span>
+
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+        </div>
 
         <div class="filter-section">
             <label><input type="checkbox"> Remove all</label>
@@ -103,6 +112,15 @@
             <label><input type="checkbox" class="filter-checkbox" value="Hotel-Sidhvedantha"> Hotel Sidhvedantha</label>
             <label><input type="checkbox" class="filter-checkbox" value="Royal-Bihar"> The Royal Bihar</label>
             <label><input type="checkbox" class="filter-checkbox" value="Cloves-Inn"> The Cloves Inn</label>
+        </div>
+        <div class="text">
+            <span>REACH</span>
+
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
         </div>
 
         <div class="filter-section">
@@ -112,12 +130,30 @@
             <label><input type="checkbox" class="filter-checkbox" value="Bus"> Bus</label>
             <label><input type="checkbox" class="filter-checkbox" value="Cab/Taxi"> Cab/Taxi</label>
         </div>
+        <div class="text">
+            <span>FOOD</span>
+
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+        </div>
 
         <div class="filter-section">
             <label><input type="checkbox"> Remove all</label>
             <label><input type="checkbox" class="filter-checkbox" value="Lunch"> Lunch</label>
             <label><input type="checkbox" class="filter-checkbox" value="Breakfast"> Breakfast</label>
             <label><input type="checkbox" class="filter-checkbox" value="Dinner"> Dinner</label>
+        </div>
+        <div class="text">
+            <span>GUIDE</span>
+
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0509 6.39575L6.44812 1.00049L1.05286 6.60327" stroke="#797979" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
         </div>
 
         <div class="filter-section">
@@ -152,15 +188,15 @@
             <h1 class="text-container">Lemon Tree</h1>
         </div>
         <div id="Hotel-Sidhvedantha">
-            <img src="/Assets/Hotel Sidhvedantha.jpg" class="image-container" alt="hotel-sidhvedantha">
+            <img src="/Assets/Lemon Tree Hotel.jpg" class="image-container" alt="hotel-sidhvedantha">
             <h1 class="text-container">Hotel Sidhvedantha</h1>
         </div>
         <div id="Royal-Bihar">
-            <img src="/Assets/Royal Bihar.jpg" class="image-container" alt="royal-bihar">
+            <img src="/Assets/Taj Hotels Patna.jpg" class="image-container" alt="royal-bihar">
             <h1 class="text-container">Royal Bihar</h1>
         </div>
     </div>
-    
+
 
     <div class="bill-container">
         <h3>Bill</h3>
@@ -168,121 +204,163 @@
             <p><strong>Destination:</strong> <span id="billDestination">Not selected</span></p>
             <p><strong>Date:</strong> <span id="billDate">Not selected</span></p>
             <p><strong>Return Date:</strong> <span id="billReturnDate">Not selected</span></p>
+            <p><strong>Price Range:</strong> <span id="priceRangeDisplay">5000 - 15000</span></p>
             <p><strong>Selected Items:</strong></p>
             <ul id="selectedItems"></ul>
         </div>
+        <button id="sendButton">Send Bill</button>
     </div>
 
 
 
     <script>
-    
+
+
+
         // Function to update the bill details
-function updateBill() {
-    // Get values from the input fields
-    let destination = document.getElementById("destinationInput").value;
-    let date = document.getElementById("dateInput").value;
-    let returnDate = document.getElementById("returnInput").value;
-    let selectedItems = document.querySelectorAll('.filter-checkbox:checked');
+        function updateBill() {
+            // Get values from the input fields
+            let destination = document.getElementById("destinationInput").value;
+            let date = document.getElementById("dateInput").value;
+            let returnDate = document.getElementById("returnInput").value;
+            let selectedItems = document.querySelectorAll('.filter-checkbox:checked');
 
-    // Update the destination in the bill
-    let billDestination = document.getElementById("billDestination");
-    billDestination.textContent = destination ? destination : "Not selected";
+            // Update the destination in the bill
+            let billDestination = document.getElementById("billDestination");
+            billDestination.textContent = destination ? destination : "Not selected";
 
-    // Update the date in the bill
-    let billDate = document.getElementById("billDate");
-    billDate.textContent = date ? date : "Not selected";
+            // Update the date in the bill
+            let billDate = document.getElementById("billDate");
+            billDate.textContent = date ? date : "Not selected";
 
-    // Update the return date in the bill
-    let billReturnDate = document.getElementById("billReturnDate");
-    billReturnDate.textContent = returnDate ? returnDate : "Not selected";
+            // Update the return date in the bill
+            let billReturnDate = document.getElementById("billReturnDate");
+            billReturnDate.textContent = returnDate ? returnDate : "Not selected";
 
-    // Update the selected items in the bill
-    let selectedItemsList = document.getElementById("selectedItems");
-    selectedItemsList.innerHTML = ""; // Clear the previous list
+            // Update the selected items in the bill
+            let selectedItemsList = document.getElementById("selectedItems");
+            selectedItemsList.innerHTML = ""; // Clear the previous list
 
-    selectedItems.forEach(item => {
-        let listItem = document.createElement("li");
-        listItem.textContent = item.value; // Get the value of the checkbox
-        selectedItemsList.appendChild(listItem); // Append to the list
-    });
-}
+            selectedItems.forEach(item => {
+                let listItem = document.createElement("li");
+                listItem.textContent = item.value; // Get the value of the checkbox
+                selectedItemsList.appendChild(listItem); // Append to the list
+            });
 
-// Function to handle checkbox changes and update image visibility
-function handleCheckboxChange() {
-    // Show all images and text in both grids by default
-    document.querySelectorAll('#imageContainer1 .image-container, #imageContainer1 .text-container, #imageContainer2 .image-container, #imageContainer2 .text-container').forEach(element => {
-        element.style.display = 'block';
-    });
+            // Update the price range display
+            updatePriceRange();
+        }
 
-    // If any checkbox is checked, hide all images and show only the selected ones
-    if (document.querySelectorAll('.filter-checkbox:checked').length > 0) {
-        // Hide all images and text in both grids
-        document.querySelectorAll('#imageContainer1 .image-container, #imageContainer1 .text-container, #imageContainer2 .image-container, #imageContainer2 .text-container').forEach(element => {
-            element.style.display = 'none';
-        });
+        // Function to update the price range display
+        function updatePriceRange() {
+            const minPrice = document.getElementById("minSlider").value;
+            const maxPrice = document.getElementById("maxSlider").value;
+            const priceRangeDisplay = document.getElementById("priceRangeDisplay");
 
-        // Show the heading
-        document.querySelectorAll('.heading-container').forEach(heading => {
-            heading.style.display = 'block';
-        });
+            // Update the display with the selected price range
+            priceRangeDisplay.textContent = `${minPrice} - ${maxPrice}`;
+        }
 
-        // Show selected images and text in both grids based on checked checkboxes
-        document.querySelectorAll('.filter-checkbox:checked').forEach(checkedBox => {
-            let selectedElement1 = document.querySelector(`#imageContainer1 #${checkedBox.value}`);
-            let selectedElement2 = document.querySelector(`#imageContainer2 #${checkedBox.value}`);
+        // Function to handle checkbox changes and update image visibility
+        function handleCheckboxChange() {
+            // Show all images and text in both grids by default
+            document.querySelectorAll('#imageContainer1 .image-container, #imageContainer1 .text-container, #imageContainer2 .image-container, #imageContainer2 .text-container').forEach(element => {
+                element.style.display = 'block';
+            });
 
-            if (selectedElement1) {
-                selectedElement1.querySelectorAll('.image-container, .text-container').forEach(element => {
-                    element.style.display = 'block';
+            // If any checkbox is checked, hide all images and show only the selected ones
+            if (document.querySelectorAll('.filter-checkbox:checked').length > 0) {
+                // Hide all images and text in both grids
+                document.querySelectorAll('#imageContainer1 .image-container, #imageContainer1 .text-container, #imageContainer2 .image-container, #imageContainer2 .text-container').forEach(element => {
+                    element.style.display = 'none';
+                });
+
+                // Show the heading
+                document.querySelectorAll('.heading-container').forEach(heading => {
+                    heading.style.display = 'block';
+                });
+
+                // Show selected images and text in both grids based on checked checkboxes
+                document.querySelectorAll('.filter-checkbox:checked').forEach(checkedBox => {
+                    let selectedElement1 = document.querySelector(`#imageContainer1 #${checkedBox.value}`);
+                    let selectedElement2 = document.querySelector(`#imageContainer2 #${checkedBox.value}`);
+
+                    if (selectedElement1) {
+                        selectedElement1.querySelectorAll('.image-container, .text-container').forEach(element => {
+                            element.style.display = 'block';
+                        });
+                    }
+
+                    if (selectedElement2) {
+                        selectedElement2.querySelectorAll('.image-container, .text-container').forEach(element => {
+                            element.style.display = 'block';
+                        });
+                    }
+                });
+            } else {
+                // If no checkbox is checked, show all images and text
+                document.querySelectorAll('.heading-container').forEach(heading => {
+                    heading.style.display = 'block';
                 });
             }
+        }
 
-            if (selectedElement2) {
-                selectedElement2.querySelectorAll('.image-container, .text-container').forEach(element => {
-                    element.style.display = 'block';
+        // Add event listeners to the checkboxes and destination input
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                updateBill(); // Update the bill when checkbox state changes
+                handleCheckboxChange(); // Update image visibility
+            });
+        });
+
+        // Event listener for destination input
+        document.getElementById("destinationInput").addEventListener('input', function () {
+            localStorage.setItem("destination", this.value); // Save destination to localStorage
+            updateBill(); // Update the bill
+        });
+
+        // Event listeners for price range sliders
+        document.getElementById("minSlider").addEventListener('input', updatePriceRange);
+        document.getElementById("maxSlider").addEventListener('input', updatePriceRange);
+
+        // Add event listener to "Remove all" checkboxes
+        document.querySelectorAll('.filter-section input[type="checkbox"]:not(.filter-checkbox)').forEach(removeAllCheckbox => {
+            removeAllCheckbox.addEventListener('change', function () {
+                // Uncheck all checkboxes in the same filter section
+                this.closest('.filter-section').querySelectorAll('.filter-checkbox').forEach(checkbox => {
+                    checkbox.checked = false;
                 });
-            }
+                // Trigger the checkbox change event to update the display
+                handleCheckboxChange();
+            });
         });
-    } else {
-        // If no checkbox is checked, show all images and text
-        document.querySelectorAll('.heading-container').forEach(heading => {
-            heading.style.display = 'block';
-        });
-    }
-}
 
-// Add event listeners to the checkboxes and destination input
-document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', function () {
-        updateBill(); // Update the bill when checkbox state changes
-        handleCheckboxChange(); // Update image visibility
-    });
-});
-
-// Event listener for destination input
-document.getElementById("destinationInput").addEventListener('input', function () {
-    localStorage.setItem("destination", this.value); // Save destination to localStorage
-    updateBill(); // Update the bill
-});
-
-// Add event listener to "Remove all" checkboxes
-document.querySelectorAll('.filter-section input[type="checkbox"]:not(.filter-checkbox)').forEach(removeAllCheckbox => {
-    removeAllCheckbox.addEventListener('change', function () {
-        // Uncheck all checkboxes in the same filter section
-        this.closest('.filter-section').querySelectorAll('.filter-checkbox').forEach(checkbox => {
-            checkbox.checked = false;
-        });
-        // Trigger the checkbox change event to update the display
+        // Initial call to update the bill and show all images and text when the page loads
+        updateBill();
         handleCheckboxChange();
-    });
-});
 
-// Initial call to update the bill and show all images and text when the page loads
-updateBill();
-handleCheckboxChange();
+        // Function to send the bill via WhatsApp
+        function sendBill() {
+            // Get bill details
+            const destination = document.getElementById("billDestination").textContent;
+            const date = document.getElementById("billDate").textContent;
+            const returnDate = document.getElementById("billReturnDate").textContent;
+            const selectedItemsList = Array.from(document.querySelectorAll('#selectedItems li')).map(item => item.textContent).join(', ');
+            const priceRange = document.getElementById("priceRangeDisplay").textContent; // Get the price range
 
+            // Format the message
+            const message = `Bill Details:\nDestination: ${destination}\nDate: ${date}\nReturn Date: ${returnDate}\nSelected Items: ${selectedItemsList}\nPrice Range: ${priceRange}`;
 
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Open WhatsApp with the message to the specific number with country code
+            const phoneNumber = '+918936016877'; // The phone number with country code
+            window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`, '_blank');
+        }
+
+        // Add event listener to the Send button
+        document.getElementById("sendButton").addEventListener('click', sendBill);
 
     </script>
 </body>

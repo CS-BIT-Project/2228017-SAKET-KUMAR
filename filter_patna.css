@@ -84,7 +84,10 @@ input[id="returnInput"]{
     padding-bottom: 8px;
     color: #000000;
    display: flex;
+   
 }
+
+
 
 .filter-section label {
     display: flex;
@@ -99,7 +102,6 @@ input[id="returnInput"]{
 .filter-section select, .filter-section input[type="number"] {
     width: 45%;
     padding: 5px;
-    /* margin: 5px 2%; */
     border: 1px solid #797979;
     border-radius: 5px;
 }
@@ -249,3 +251,24 @@ input[type="checkbox"] {
     font-size: 14px;
     color: #333;
 }
+
+#sendButton{
+  background-color: #A0D2F4;
+  color: #ffffff;
+  width: 170px;
+  height: 60px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 500;
+  margin-left: 58px;
+  margin-top: 20px;
+}
+
+#sendButton:hover{
+    background-color: #5FA6C5;
+}
+
+
+
