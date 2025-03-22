@@ -161,14 +161,14 @@ input::placeholder {
 
 }
 
-h1 {
+.offer-content h1 {
   font-size: 60px;
   font-weight: bold;
   margin-bottom: 18px;
   line-height: 1.20;
 }
 
-p {
+.offer-content p {
   font-size: 20px;
   font-weight: 400;
   color: #747979;
@@ -240,3 +240,104 @@ p {
   
 } 
  
+.holiday-packages {
+  font-family: Arial, sans-serif;
+  margin-left: 155px;
+}
+
+.package-container {
+  display: grid;
+  grid-template-columns: 380px 380px 380px; /* Three fixed-width columns */
+  /* Space between cards */
+  gap: 48px;
+}
+
+.package-card {
+  background-color: #a1e2d6; /* Light Green */
+  border-radius: 30px;
+  padding: 15px;
+  height: 550px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.package-card img {
+  width: 100%; /* Responsive image */
+}
+
+.price-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.package-details {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.paragraph{
+  color: gray;
+  margin-top: 14px;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 12px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.oneline {
+  display: flex;
+  justify-content: flex-start;
+  gap: 230px;
+  margin-top: 10px;
+}
+
+.oneline h2{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.price-details{
+  margin-top: 28px;
+}
+
+.price-details button {
+  width: 98px;
+  height: 38px;
+  background-color: #DFFAFC;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+}
+
+.price-details p{
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.holiday-packages h1{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight:500;
+  color: #797979;
+}
+
+.show-more {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
