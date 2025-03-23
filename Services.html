@@ -10,10 +10,16 @@
     <style>
         .container1 {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
+            /* Two columns */
             gap: 20px;
+            /* Space between cards */
             position: absolute;
-            left: 170px;
+            left: 145px;
+            width: calc(100% - 170px);
+            /* Adjust width to fit the layout */
+            padding: 20px;
+            /* Add padding for better spacing */
         }
 
         .card {
@@ -21,6 +27,9 @@
             border: 2px solid #b0d4f1;
             border-radius: 8px;
             padding: 20px;
+            width: 540px;
+            /* Full width of the grid cell */
+            height: 150px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -33,6 +42,13 @@
             color: #555;
             font-size: 14px;
             line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .container1 {
+                grid-template-columns: 1fr;
+                /* One column on smaller screens */
+            }
         }
     </style>
 
@@ -97,7 +113,7 @@
             <h2>Customized Tour Package</h2>
             <p>Create unforgettable memories with our customized tour packages. We tailor each itinerary to your
                 preferences, offering personalized experiences.</p>
-        </div><br>
+        </div>
         <div class="card">
             <h2>Rail and Air Ticketing</h2>
             <p>Simplify your travel plans with our efficient rail and air ticketing service. We offer a hassle-free

@@ -4,6 +4,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase
 import {
   getAuth,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
@@ -22,26 +23,44 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app); // Initialize Auth
 
-// Submit button
-const submit = document.getElementById("submit");
-submit.addEventListener("click", function (event) {
+// Sign Up Form
+const signUpForm = document.getElementById("signUpForm");
+signUpForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  // Inputs
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("signUpEmail").value;
+  const password = document.getElementById("signUpPassword").value;
 
-  // Create user with email and password
-  createUserWithEmailAndPassword(auth, email, password) // Use 'auth' here
+  createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed up
       const user = userCredential.user;
       alert("Account created successfully!");
       // Redirect or perform other actions
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message; // Corrected to 'message'
+      const errorMessage = error.message;
       alert(errorMessage);
+    });
+});
+
+// Sign In Form
+const signInForm = document.getElementById("signInForm");
+signInForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const email = document.getElementById("signInEmail").value;
+  const password = document.getElementById("signInPassword").value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert("Signed in successfully!");
+      // Redirect to index.html
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage); // Display error message to the user
     });
 });
