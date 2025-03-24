@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>About - OneTour.Planner</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -20,6 +21,7 @@
             margin: 0 auto;
             padding: 0 40px;
             position: relative;
+
         }
 
         .bg-decoration {
@@ -316,6 +318,46 @@
     </style>
 </head>
 <body>
+    <nav class="py-6">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <!-- Logo -->
+            <a class="text-[#FF0303] font-semibold text-2xl font-[Montserrat] ml-5" href="#">
+                OneTour.<span class="text-[#3CF0FD]">Planner</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex font-[DM Sans] font-medium space-x-12 absolute left-97">
+                <a href="#" class="hover:text-[#FF0303]">Home</a>
+                <a href="#" class="hover:text-[#FF0303]">Services</a>
+                <a href="#" class="hover:text-[#FF0303]">Explore....</a>
+                <a href="#" class="hover:text-[#FF0303]">Packages</a>
+                <a href="#" class="hover:text-[#FF0303]">Tourist Places</a>
+
+                <!-- More Dropdown -->
+                <div class="relative group">
+                    <button class="hover:text-[#FF0303]">More ▾</button>
+                    <div class="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg hidden group-hover:block">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">About</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">FAQ</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Blog</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Trip Ideas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <div class="hidden md:flex items-center">
+                <!-- Button in Front -->
+                <a href="login.html">
+                    <button
+                        class="relative z-10 bg-[#ff0303] text-white cursor-pointer font-medium w-[150px] h-[65px] rounded-full font-[Montserrat] text-[16px]">
+                        Log in or <br> Create Account
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Background Decorations -->
     <div class="bg-decoration circle1"></div>
     <div class="bg-decoration circle2"></div>
