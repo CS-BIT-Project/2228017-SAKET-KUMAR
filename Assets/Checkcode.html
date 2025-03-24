@@ -3,77 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Popup Sign In & Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-.container1 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 20px; /* Space between cards */
-    position: absolute;
-    left: 170px;
-    width: calc(100% - 170px); /* Adjust width to fit the layout */
-    padding: 20px; /* Add padding for better spacing */
-}
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        }
 
-.card {
-    background-color: white;
-    border: 2px solid #b0d4f1;
-    border-radius: 8px;
-    padding: 20px;
-    width: 540px; /* Full width of the grid cell */
-    height: 120px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
 
-.card h2 {
-    color: #007BFF;
-    margin: 0 0 15px;
-}
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            width: 400px;
+            max-width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-.card p {
-    color: #555;
-    font-size: 14px;
-    line-height: 1.5;
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        /* Form Container Styles */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-container h2 {
+            margin: 0 0 20px;
+            font-size: 28px;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-container input:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 8px rgba(106, 17, 203, 0.3);
+        }
+
+        .form-container button {
+            padding: 12px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .form-container button:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-2px);
+        }
+
+        /* Toggle Form Styles */
+        .toggle-form {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .toggle-form a {
+            color: #6a11cb;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-form a:hover {
+            color: #2575fc;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="container1">
-    <div class="card">
-        <h2>Cab Bookings</h2>
-        <p>Enjoy seamless travel with our reliable cab booking service. Whether you need a ride to the airport, a
-            day tour around the city, or a comfortable transfer between destinations, we ensure punctuality and
-            comfort every step of the way.</p>
+
+    <!-- Open Modal Button -->
+    <button id="openModal" style="padding: 12px 24px; background: #6a11cb; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background 0.3s ease;">
+        Sign In / Sign Up
+    </button>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div id="signInForm" class="form-container">
+                <h2>Sign In</h2>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+                <div class="toggle-form">
+                    <p>Don't have an account? <a id="showSignUp">Sign Up</a></p>
+                </div>
+            </div>
+            <div id="signUpForm" class="form-container" style="display: none;">
+                <h2>Sign Up</h2>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+                <div class="toggle-form">
+                    <p>Already have an account? <a id="showSignIn">Sign In</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card">
-        <h2>Travel Guides</h2>
-        <p>Enhance your journey with our expert travel guides. From local insights and must-see attractions to
-            insider tips and cultural recommendations, our guides help you explore destinations like a true insider.
-        </p>
-    </div>
-    <div class="card">
-        <h2>Customized Tour Package</h2>
-        <p>Create unforgettable memories with our customized tour packages. We tailor each itinerary to your
-            preferences, offering personalized experiences.</p>
-    </div>
-    <div class="card">
-        <h2>Rail and Air Ticketing</h2>
-        <p>Simplify your travel plans with our efficient rail and air ticketing service. We offer a hassle-free
-            booking experience for both train and flight tickets, providing you with the best options to suit your
-            schedule and budget.</p>
-    </div>
-    <div class="card">
-        <h2>Hotel Reservation</h2>
-        <p>Find your perfect stay with our comprehensive hotel reservation service. From luxurious hotels to cozy
-            accommodations, we help you book the ideal room that meets your needs and enhances your travel
-            experience.</p>
-    </div>
-    <div class="card">
-        <h2>Pick up and Drop</h2>
-        <p>Our pick-up and drop-off service ensures that you travel conveniently and stress-free. Whether it’s from
-            the airport, train station, or your hotel, we provide reliable and punctual transfers to and from your
-            desired locations.</p>
-    </div>
-</div>
+
+    <script>
+        // JavaScript to handle modal and form toggling
+        const modal = document.getElementById("modal");
+        const openModalBtn = document.getElementById("openModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const showSignUp = document.getElementById("showSignUp");
+        const showSignIn = document.getElementById("showSignIn");
+        const signInForm = document.getElementById("signInForm");
+        const signUpForm = document.getElementById("signUpForm");
+
+        // Open modal
+        openModalBtn.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+
+        // Close modal
+        closeModalBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // Toggle to Sign Up form
+        showSignUp.addEventListener("click", () => {
+            signInForm.style.display = "none";
+            signUpForm.style.display = "block";
+        });
+
+        // Toggle to Sign In form
+        showSignIn.addEventListener("click", () => {
+            signUpForm.style.display = "none";
+            signInForm.style.display = "block";
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
