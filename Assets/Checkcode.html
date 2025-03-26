@@ -1,238 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>Bihar Tourism Blog</title>
+    <title>Plan Your Trip - Bihar Tourism</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background: #f4f7fa;
-            color: #333;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ff9933 0%, #ffffff 100%);
             line-height: 1.6;
         }
 
-        /* Header */
+        /* Header Section */
         .header {
-            background: url('https://images.unsplash.com/photo-1631984876480-f821262c2609?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center/cover;
-            height: 700px;
-            color: white;
-            text-align: center;
+            height: 250px;
+            background: url('Assets/budh.jpg') center/cover no-repeat;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 60px;
+            overflow: hidden;
         }
 
-        .header h1 {
-            font-size: 3rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .header-text {
+            color: #fff;
+            font-size: 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
         }
 
         /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
+        .plan-section {
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin: 20px;
+            text-align: center;
         }
 
-        .blog-post {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        .plan-section h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            color: #333;
             margin-bottom: 20px;
-            transition: transform 0.3s;
         }
 
-        .blog-post:hover {
+        .itinerary {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .day-card {
+            width: 90%;
+            max-width: 700px;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .day-card:hover {
             transform: translateY(-5px);
         }
 
-        .blog-post img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        .blog-post h2 {
-            color: #2c3e50;
+        .day-card h2 {
+            font-size: 20px;
+            color: #ff9933;
             margin-bottom: 10px;
         }
 
-        .blog-post p {
-            color: #666;
+        .day-card p {
+            font-size: 15px;
+            color: #555;
         }
 
-        /* Sidebar */
-        .sidebar {
-            background: white;
+        /* Booking Section */
+        .booking {
+            background: #fff;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            margin: 0 auto;
         }
 
-        .sidebar h3 {
-            color: #2c3e50;
+        .booking h3 {
+            font-size: 18px;
+            color: #333;
             margin-bottom: 15px;
         }
 
-        .sidebar ul {
-            list-style: none;
+        .booking p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
         }
 
-        .sidebar ul li {
-            margin-bottom: 10px;
+        .book-now-btn {
+            background: #ff9933;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: background 0.3s ease;
         }
 
-        .sidebar ul li a {
-            color: #3498db;
-            text-decoration: none;
+        .book-now-btn:hover {
+            background: #e68a00;
         }
 
-        .sidebar ul li a:hover {
-            text-decoration: underline;
+        /* Footer */
+        footer {
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            background: rgba(255, 255, 255, 0.8);
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-            .navbar .container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .navbar a {
-                margin: 0.5rem 0;
-            }
+        .header, .plan-section {
+            animation: fadeIn 1.5s ease-in-out;
         }
     </style>
 </head>
-
 <body>
-
-    <nav class="py-6">
-        <div class="container mx-auto flex justify-between items-center px-6">
-            <!-- Logo -->
-            <a class="text-[#FF0303] font-semibold text-2xl font-[Montserrat] ml-5" href="index.html">
-                OneTour.<span class="text-[#3CF0FD]">Planner</span>
-            </a>
-
-            <!-- Navigation Links -->
-            <div class="hidden md:flex font-[DM Sans] font-medium space-x-12 absolute left-97">
-                <a href="#" class="hover:text-[#FF0303]">Home</a>
-                <a href="#" class="hover:text-[#FF0303]">Services</a>
-                <a href="#" class="hover:text-[#FF0303]">Explore....</a>
-                <a href="#" class="hover:text-[#FF0303]">Packages</a>
-                <a href="#" class="hover:text-[#FF0303]">Tourist Places</a>
-
-                <!-- More Dropdown -->
-                <div class="relative group">
-                    <button class="hover:text-[#FF0303]">More ▾</button>
-                    <div class="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg hidden group-hover:block">
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">About</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">FAQ</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Blog</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Trip Ideas</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Login Button -->
-            <div class="hidden md:flex items-center">
-                <!-- Button in Front -->
-                <a href="login.html">
-                    <button
-                        class="relative z-10 bg-[#ff0303] text-white cursor-pointer font-medium w-[150px] h-[65px] rounded-full font-[Montserrat] text-[16px]">
-                        Log in or <br> Create Account
-                    </button>
-                </a>
-            </div>
-        </div>
-    </nav>
-    <!-- Header -->
+    <!-- Header Section -->
     <div class="header">
-        <h1>Welcome to Bihar Tourism Blog</h1>
+        <div class="header-text">Plan Your 2-Day Spiritual Retreat</div>
     </div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="main-content">
-            <div class="blog-post">
-                <img src="https://source.unsplash.com/800x400/?bodhgaya" alt="Bodh Gaya">
-                <h2>Exploring Bodh Gaya: The Spiritual Heart of Bihar</h2>
-                <p>Bodh Gaya, where Lord Buddha attained enlightenment, is a must-visit for spiritual seekers. The
-                    Mahabodhi Temple, a UNESCO World Heritage Site, stands as a testament to Bihar's rich history.</p>
+    <!-- Plan Section -->
+    <section class="plan-section">
+        <h1>Your Trip Itinerary</h1>
+
+        <!-- Itinerary -->
+        <div class="itinerary">
+            <div class="day-card">
+                <h2>Day 1: Bodh Gaya</h2>
+                <p>Arrive in Bodh Gaya, visit the Mahabodhi Temple, meditate under the Bodhi Tree, and explore local monasteries.</p>
             </div>
-            <div class="blog-post">
-                <img src="https://source.unsplash.com/800x400/?nalanda" alt="Nalanda">
-                <h2>Nalanda: The Ancient Seat of Learning</h2>
-                <p>Discover the ruins of Nalanda University, one of the world's oldest universities. This historical
-                    site offers a glimpse into Bihar's intellectual past.</p>
-            </div>
-            <div class="blog-post">
-                <img src="https://source.unsplash.com/800x400/?rajgir" alt="Rajgir">
-                <h2>Rajgir: A Blend of Nature and History</h2>
-                <p>Rajgir’s hot springs, Vishwa Shanti Stupa, and ancient ruins make it a unique destination for
-                    tourists and history enthusiasts alike.</p>
+            <div class="day-card">
+                <h2>Day 2: Rajgir</h2>
+                <p>Travel to Rajgir, visit the Vishwa Shanti Stupa, relax at the hot springs, and explore the ancient Gridhakuta Hill.</p>
             </div>
         </div>
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3>Recent Posts</h3>
-            <ul>
-                <li><a href="#">Bodh Gaya Travel Guide</a></li>
-                <li><a href="#">Top 5 Places in Nalanda</a></li>
-                <li><a href="#">Rajgir’s Hidden Gems</a></li>
-                <li><a href="#">Patna’s Cultural Heritage</a></li>
-            </ul>
-            <h3>Categories</h3>
-            <ul>
-                <li><a href="#">Spirituality</a></li>
-                <li><a href="#">History</a></li>
-                <li><a href="#">Nature</a></li>
-                <li><a href="#">Culture</a></li>
-            </ul>
+        <!-- Booking Info -->
+        <div class="booking">
+            <h3>Estimated Cost: ₹5,000</h3>
+            <p>Includes travel, accommodation, and guided tours. Book now to secure your spot!</p>
+            <button class="book-now-btn">Book Now</button>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // Add subtle scroll animation
-        const blogPosts = document.querySelectorAll('.blog-post');
-        window.addEventListener('scroll', () => {
-            blogPosts.forEach(post => {
-                const postPosition = post.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight;
-                if (postPosition < screenPosition - 100) {
-                    post.style.opacity = '1';
-                    post.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        blogPosts.forEach(post => {
-            post.style.opacity = '0';
-            post.style.transform = 'translateY(20px)';
-            post.style.transition = 'all 0.5s ease';
-        });
-    </script>
+    <!-- Footer -->
+    <footer>
+        <p>Powered by Bihar Tourism</p>
+    </footer>
 </body>
-
 </html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bihar Tourism - Trip Ideas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ff9933 0%, #ffffff 100%);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 350px;
+            background: url('https://via.placeholder.com/1500x350') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Overlay for better text readability */
+            z-index: 1;
+        }
+
+        .hero-text {
+            color: #fff;
+            font-size: 32px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Trips Section */
+        .trips {
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin: 20px;
+        }
+
+        .trips h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            position: sticky;
+            top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            z-index: 10;
+        }
+
+        .filter {
+            padding: 10px 20px;
+            background: #fff;
+            border: 2px solid #ff9933;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .filter:hover, .filter.active {
+            background: #ff9933;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* Trip Cards */
+        .trip-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .trip-card {
+            display: flex;
+            width: 90%;
+            max-width: 700px;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 0.5s ease-in-out;
+        }
+
+        .trip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .trip-card img {
+            width: 120px;
+            height: 220px;
+            object-fit: cover;
+            border-right: 3px solid #ff9933;
+        }
+
+        .trip-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .trip-info h2 {
+            font-size: 20px;
+            margin: 0 0 10px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .trip-info p {
+            font-size: 15px;
+            margin: 0 0 15px;
+            color: #555;
+        }
+
+        .tags {
+            font-style: italic;
+            font-size: 13px;
+            color: #ff9933;
+            margin-bottom: 10px;
+        }
+
+        .cta {
+            background: #ff9933;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s ease;
+            align-self: flex-end;
+        }
+
+        .cta:hover {
+            background: #e68a00;
+        }
+
+        /* Footer */
+        footer {
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            background: rgba(255, 255, 255, 0.8);
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-text">Explore Bihar - Land of Heritage</div>
+    </div>
+
+    <!-- Trip Ideas Section -->
+    <section class="trips">
+        <h1>Discover Bihar</h1>
+        <p class="subtitle">Curated trips for every traveler</p>
+        
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <span class="filter" onclick="filterTrips('Spiritual')">Spiritual</span>
+            <span class="filter" onclick="filterTrips('Historical')">Historical</span>
+            <span class="filter" onclick="filterTrips('Nature')">Nature</span>
+        </div>
+
+        <!-- Trip Cards -->
+        <div class="trip-container">
+            <div class="trip-card" data-category="Spiritual">
+                <img src="Assets/budh.jpg" alt="Bodh Gaya">
+                <div class="trip-info">
+                    <div>
+                        <h2>2-Day Spiritual Retreat</h2>
+                        <p>Visit Bodh Gaya and Rajgir for a peaceful escape.</p>
+                        <span class="tags">Spiritual | Budget</span>
+                    </div>
+                    <button class="cta">Plan Now</button>
+                </div>
+            </div>
+            <div class="trip-card" data-category="Historical">
+                <img src="https://via.placeholder.com/120x220" alt="Nalanda">
+                <div class="trip-info">
+                    <div>
+                        <h2>3-Day History Tour</h2>
+                        <p>Explore Nalanda and Patna’s ancient wonders.</p>
+                        <span class="tags">Historical | Educational</span>
+                    </div>
+                    <button class="cta">Plan Now</button>
+                </div>
+            </div>
+            <div class="trip-card" data-category="Nature">
+                <img src="https://via.placeholder.com/120x220" alt="Rajgir">
+                <div class="trip-info">
+                    <div>
+                        <h2>1-Day Nature Escape</h2>
+                        <p>Relax at Rajgir’s hot springs and hills.</p>
+                        <span class="tags">Nature | Weekend</span>
+                    </div>
+                    <button class="cta">Plan Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by Bihar Tourism</p>
+    </footer>
+
+    <script>
+        function filterTrips(category) {
+            const cards = document.querySelectorAll('.trip-card');
+            const filters = document.querySelectorAll('.filter');
+
+            filters.forEach(filter => {
+                filter.classList.remove('active');
+                if (filter.textContent === category) {
+                    filter.classList.add('active');
+                }
+            });
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                card.style.display = (cardCategory === category || category === 'All') ? 'flex' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
