@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+    <style>
+        .imageContainer1 {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow items to wrap to the next line */
+            gap: 35px;
+            /* Space between items */
+            padding: 20px;
+            /* Padding around the container */
+            justify-content: center;
+            /* Center items horizontally */
+            margin-left: 15px;
+        }
+
+        .image-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center items horizontally */
+            text-align: center;
+            /* Center text */
+        }
+
+        .image-container {
+            width: 216px;
+            height: 334px;
+            border-radius: 65px;
+            object-fit: cover;
+            /* Ensure the image covers the container without distortion */
+        }
+
+        .text-container {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .heading-container {
+            width: 100%;
+            /* Span the entire width */
+            margin-left: 130px;
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            color: #797979;
+        }
+
+        .Nature-Places {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow items to wrap to the next line */
+            gap: 35px;
+            /* Space between items */
+            padding: 20px;
+            /* Padding around the container */
+            justify-content: center;
+            /* Center items horizontally */
+            margin-left: 15px;
+        }
+
+        .image {
+            width: 216px;
+            height: 334px;
+            border-radius: 65px;
+            object-fit: cover;
+            /* Ensure the image covers the container without distortion */
+        }
+
+        .text {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .heading {
+            width: 100%;
+            /* Span the entire width */
+            margin-left: 130px;
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: bold;
+            color: #797979;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .Nature-Places {
+                gap: 20px;
+                /* Reduce gap on smaller screens */
+                padding: 10px;
+                /* Reduce padding on smaller screens */
+            }
+
+            .image {
+                width: 150px;
+                /* Smaller images on smaller screens */
+                height: 250px;
+            }
+
+            .text {
+                font-size: 1em;
+                /* Smaller text on smaller screens */
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .imageContainer1 {
+                gap: 20px;
+                /* Reduce gap on smaller screens */
+                padding: 10px;
+                /* Reduce padding on smaller screens */
+            }
+
+            .image-container {
+                width: 150px;
+                /* Smaller images on smaller screens */
+                height: 250px;
+            }
+
+            .text-container {
+                font-size: 1em;
+                /* Smaller text on smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="py-6">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <!-- Logo -->
+            <a class="text-[#FF0303] font-semibold text-2xl font-[Montserrat] ml-5" href="#">
+                OneTour.<span class="text-[#3CF0FD]">Planner</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex font-[DM Sans] font-medium space-x-12 absolute left-97">
+                <a href="#" class="hover:text-[#FF0303]">Home</a>
+                <a href="#" class="hover:text-[#FF0303]">Services</a>
+                <a href="#" class="hover:text-[#FF0303]">Explore....</a>
+                <a href="#" class="hover:text-[#FF0303]">Packages</a>
+                <a href="#" class="hover:text-[#FF0303]">Tourist Places</a>
+
+                <!-- More Dropdown -->
+                <div class="relative group">
+                    <button class="hover:text-[#FF0303]">More ▾</button>
+                    <div class="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg hidden group-hover:block">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">About</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">FAQ</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Blog</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Trip Ideas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <div class="hidden md:flex items-center">
+                <!-- Button in Front -->
+                <a href="login.html">
+                    <button
+                        class="relative z-10 bg-[#ff0303] text-white cursor-pointer font-medium w-[150px] h-[65px] rounded-full font-[Montserrat] text-[16px]">
+                        Log in or <br> Create Account
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="imageContainer1">
+        <h3 class="heading-container">SPIRITUAL</h3>
+        <div class="image-wrapper">
+            <img src="/Assets/Chhinmastika Devi.jpeg" class="image-container" alt="Chhinmastika Devi">
+            <h1 class="text-container">Chhinmastika Devi</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Hanuman Mandir.jpg" class="image-container" alt="Hanuman Mandir">
+            <h1 class="text-container">Hanuman Mandir</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Vishnupad image (1).jpg" class="image-container" alt="Vishnupad Temple">
+            <h1 class="text-container">Vishnupad Temple</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Gaya.jpg" class="image-container" alt="Mahabodhi Temple">
+            <h1 class="text-container">Mahabodhi Temple</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Harmandir_Patna.jpg" class="image-container" alt="Gurudwara">
+            <h1 class="text-container">Gurudwara</h1>
+        </div>
+    </div>
+
+
+    <div class="Nature-Places">
+        <h3 class="heading">NATURE</h3>
+        <div class="image-wrapper">
+            <img src="/Assets/kaimur hills.jpg" class="image" alt="Chhinmastika Devi">
+            <h1 class="text">Kaimur Hills</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/kakolat waterfall.jpg" class="image" alt="Hanuman Mandir">
+            <h1 class="text">Kakolat waterfall</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Kashish water.jpeg" class="image" alt="Vishnupad Temple">
+            <h1 class="text">Kashish waterfall</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Gurpa hill img.png" class="image" alt="Mahabodhi Temple">
+            <h1 class="text">Gurpa Hill</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Nature img1.jpg" class="image" alt="Gurudwara">
+            <h1 class="text">Waterfall</h1>
+        </div>
+    </div>
+    <div class="Nature-Places">
+        <h3 class="heading">ADVANTURE</h3>
+        <div class="image-wrapper">
+            <img src="/Assets/Rope.jpg" class="image" alt="Chhinmastika Devi">
+            <h1 class="text">Rope</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Paraglading.jpg" class="image" alt="Hanuman Mandir">
+            <h1 class="text">Paraglading</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/boating.jpg" class="image" alt="Vishnupad Temple">
+            <h1 class="text">boating</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/waterpark.jpg" class="image" alt="Mahabodhi Temple">
+            <h1 class="text">Waterpark</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Luxary Resort Advanture.jpeg" class="image" alt="Gurudwara">
+            <h1 class="text">Resort</h1>
+        </div>
+    </div>
+
+    <div class="Nature-Places">
+        <h3 class="heading">HISTORIC PLACES</h3>
+        <div class="image-wrapper">
+            <img src="/Assets/Fort_of_Darbhanga.jpg" class="image" alt="Chhinmastika Devi">
+            <h1 class="text">Fort Of Darbhanga</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/rajgir.jpg" class="image" alt="Hanuman Mandir">
+            <h1 class="text">Rajgir</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Rohtas.jpeg" class="image" alt="Vishnupad Temple">
+            <h1 class="text">Rohtas</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Golghar.jpg" class="image" alt="Mahabodhi Temple">
+            <h1 class="text">Golghar</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Nalanda.jpg" class="image" alt="Gurudwara">
+            <h1 class="text">Nalanda</h1>
+        </div>
+    </div>
+
+    <div class="Nature-Places">
+        <h3 class="heading">WILDLIFE SANCTUARIES</h3>
+        <div class="image-wrapper">
+            <img src="/Assets/Kaimur Wildlife Sanctury.jpg" class="image" alt="Chhinmastika Devi">
+            <h1 class="text">Kaimur Wildlife</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Bhimbandh Wildlife.jpg" class="image" alt="Hanuman Mandir">
+            <h1 class="text">Bhimbandh Wildlife</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Valmiki Tiger Reserve.jpg" class="image" alt="Vishnupad Temple">
+            <h1 class="text">Valmiki Tiger Reserve</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Ghora Katora.jpg" class="image" alt="Mahabodhi Temple">
+            <h1 class="text">Ghora Katora</h1>
+        </div>
+        <div class="image-wrapper">
+            <img src="/Assets/Lake Bird Sanctuary.jpg" class="image" alt="Gurudwara">
+            <h1 class="text">Bird Sanctuary</h1>
+        </div>
+    </div>
+</body>
+
+</html>

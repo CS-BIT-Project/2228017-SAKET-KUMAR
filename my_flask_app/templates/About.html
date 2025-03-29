@@ -1,315 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>About - OneTour.Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(120deg, #DFFAFC 0%, #E6F0FA 40%, #FBFFFF 100%);
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             position: relative;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        .nav-main {
-            padding: 24px 0;
-            position: relative;
-            z-index: 100;
-        }
-
-        .nav-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Logo Styles */
-        .nav-brand {
-            color: #FF0303;
-            font-weight: 600;
-            font-size: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-            text-decoration: none;
-            margin-left: -28px;
-        }
-
-        .nav-brand-accent {
-            color: #3CF0FD;
-        }
-
-        /* Navigation Links */
-        .nav-menu {
-            display: flex;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            position: absolute;
-            left: 48%;
-            gap: 30px;
-            transform: translateX(-50%);
-        }
-
-        .nav-menu a {
-            margin: 0 12px;
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .nav-menu a:hover {
-            color: #FF0303;
-        }
-
-        /* Dropdown Styles */
-        .nav-dropdown {
-            position: relative;
-            display: inline-block;
-            z-index: 110;
-        }
-
-        .nav-dropdown-toggle {
-            background: none;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            padding: 0;
-            margin: 0 12px;
-            position: relative;
-            z-index: 111;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-        }
-
-        .nav-dropdown-toggle:hover {
-            color: #FF0303;
-        }
-
-        .nav-dropdown-content {
-            position: absolute;
-            left: 0;
-            top: 100%;
-            margin-top: 8px;
-            width: 160px;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease;
-            z-index: 110;
-        }
-
-        .nav-dropdown-content.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .nav-dropdown-content a {
-            display: block;
-            padding: 8px 16px;
-            color: #333;
-            text-decoration: none;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .nav-dropdown-content a:hover {
-            background-color: #f0f0f0;
-        }
-
-        /* Login Button */
-        .nav-auth {
-            display: none;
-            align-items: center;
-        }
-
-        .nav-auth-btn {
-            position: relative;
-            z-index: 10;
-            background: #ff0303;
-            color: white;
-            cursor: pointer;
-            font-weight: 500;
-            width: 150px;
-            height: 65px;
-            border-radius: 32px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            border: none;
-            transition: all 0.3s ease;
-            margin-right: -35px;
-            line-height: 1.5;
-        }
-
-        .nav-auth-btn:hover {
-            background: #e60000;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            width: 30px;
-            height: 20px;
-            position: relative;
-            z-index: 101;
-        }
-
-        .hamburger span {
-            display: block;
-            position: absolute;
-            height: 3px;
-            width: 100%;
-            background: #FF0303;
-            border-radius: 3px;
-            opacity: 1;
-            left: 0;
-            transform: rotate(0deg);
-            transition: .25s ease-in-out;
-        }
-
-        .hamburger span:nth-child(1) {
-            top: 0px;
-        }
-
-        .hamburger span:nth-child(2),
-        .hamburger span:nth-child(3) {
-            top: 10px;
-        }
-
-        .hamburger span:nth-child(4) {
-            top: 20px;
-        }
-
-        .hamburger.open span:nth-child(1) {
-            top: 10px;
-            width: 0%;
-            left: 50%;
-        }
-
-        .hamburger.open span:nth-child(2) {
-            transform: rotate(45deg);
-        }
-
-        .hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg);
-        }
-
-        .hamburger.open span:nth-child(4) {
-            top: 10px;
-            width: 0%;
-            left: 50%;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            z-index: 100;
-            padding: 80px 20px 20px;
-            overflow-y: auto;
-            display: none;
-        }
-
-        .mobile-menu.open {
-            right: 0;
-        }
-
-        .mobile-menu a {
-            display: block;
-            padding: 12px 0;
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #eee;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .mobile-menu a:hover {
-            color: #FF0303;
-        }
-
-        .mobile-dropdown-content {
-            padding-left: 20px;
-            display: none;
-        }
-
-        .mobile-dropdown-content.show {
-            display: block;
-        }
-
-        .mobile-dropdown-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 12px 0;
-            color: #333;
-            text-align: left;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .mobile-dropdown-toggle:hover {
-            color: #FF0303;
-        }
-
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .nav-menu {
-                display: flex;
-            }
-
-            .nav-auth {
-                display: flex;
-            }
-
-            .hamburger {
-                display: none !important;
-            }
-
-            .mobile-menu {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .nav-auth {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .nav-wrapper {
-                gap: 0;
-            }
         }
 
         .main-container {
@@ -317,7 +21,7 @@
             margin: 0 auto;
             padding: 0 40px;
             position: relative;
-            z-index: 1;
+
         }
 
         .bg-decoration {
@@ -343,6 +47,10 @@
             right: -120px;
         }
 
+        .about-section {
+            padding: 120px 0;
+            position: relative;
+        }
 
         .about-container {
             display: flex;
@@ -354,8 +62,6 @@
             padding: 50px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             transition: transform 0.5s ease;
-            position: relative;
-            z-index: 1;
         }
 
         .about-content {
@@ -578,15 +284,8 @@
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -618,78 +317,50 @@
         }
     </style>
 </head>
-
 <body>
-    <nav class="nav-main">
-        <div class="nav-wrapper">
+    <nav class="py-6">
+        <div class="container mx-auto flex justify-between items-center px-6">
             <!-- Logo -->
-            <a class="nav-brand" href="#">
-                OneTour.<span class="nav-brand-accent">Planner</span>
+            <a class="text-[#FF0303] font-semibold text-2xl font-[Montserrat] ml-5" href="#">
+                OneTour.<span class="text-[#3CF0FD]">Planner</span>
             </a>
 
-            <!-- Hamburger Menu -->
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
             <!-- Navigation Links -->
-            <div class="nav-menu">
-                <a href="#">Home</a>
-                <a href="#">Services</a>
-                <a href="#">Explore....</a>
-                <a href="#">Packages</a>
-                <a href="#">Tourist Places</a>
+            <div class="hidden md:flex font-[DM Sans] font-medium space-x-12 absolute left-97">
+                <a href="#" class="hover:text-[#FF0303]">Home</a>
+                <a href="#" class="hover:text-[#FF0303]">Services</a>
+                <a href="#" class="hover:text-[#FF0303]">Explore....</a>
+                <a href="#" class="hover:text-[#FF0303]">Packages</a>
+                <a href="#" class="hover:text-[#FF0303]">Tourist Places</a>
 
                 <!-- More Dropdown -->
-                <div class="nav-dropdown">
-                    <button id="moreBtn" class="nav-dropdown-toggle">More ▾</button>
-                    <div id="dropdownMenu" class="nav-dropdown-content">
-                        <a href="#">About</a>
-                        <a href="#">FAQ</a>
-                        <a href="blog.html">Blog</a>
-                        <a href="#">Trip Ideas</a>
+                <div class="relative group">
+                    <button class="hover:text-[#FF0303]">More ▾</button>
+                    <div class="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg hidden group-hover:block">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">About</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">FAQ</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Blog</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200">Trip Ideas</a>
                     </div>
                 </div>
             </div>
 
             <!-- Login Button -->
-            <div class="nav-auth">
+            <div class="hidden md:flex items-center">
+                <!-- Button in Front -->
                 <a href="login.html">
-                    <button class="nav-auth-btn">
+                    <button
+                        class="relative z-10 bg-[#ff0303] text-white cursor-pointer font-medium w-[150px] h-[65px] rounded-full font-[Montserrat] text-[16px]">
                         Log in or <br> Create Account
                     </button>
                 </a>
             </div>
         </div>
-
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#">Home</a>
-            <a href="#">Services</a>
-            <a href="#">Explore....</a>
-            <a href="#">Packages</a>
-            <a href="#">Tourist Places</a>
-
-            <button class="mobile-dropdown-toggle" id="mobileMoreBtn">
-                More <span>▾</span>
-            </button>
-            <div class="mobile-dropdown-content" id="mobileDropdown">
-                <a href="#">About</a>
-                <a href="#">FAQ</a>
-                <a href="blog.html">Blog</a>
-                <a href="#">Trip Ideas</a>
-            </div>
-
-            <a href="login.html"
-                style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
-                Log in or Create Account
-            </a>
-        </div>
     </nav>
-    <!-- Background Decorations  -->
+
+    <!-- Background Decorations -->
+    <div class="bg-decoration circle1"></div>
+    <div class="bg-decoration circle2"></div>
 
     <!-- Main Container -->
     <div class="main-container">
@@ -699,10 +370,8 @@
                 <div class="about-content">
                     <h1 class="about-title">About OneTour.Planner</h1>
                     <p class="about-description">
-                        Discover the magic of travel with OneTour.Planner, your gateway to Bihar's enchanting
-                        landscapes.
-                        We blend history, spirituality, and natural beauty into bespoke adventures that captivate your
-                        soul.
+                        Discover the magic of travel with OneTour.Planner, your gateway to Bihar’s enchanting landscapes. 
+                        We blend history, spirituality, and natural beauty into bespoke adventures that captivate your soul. 
                         With expert guidance and personalized care, we turn every trip into a masterpiece of memories.
                     </p>
                     <div class="about-features">
@@ -753,7 +422,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         // Initialize EmailJS with your Public Key
-        (function () {
+        (function(){
             emailjs.init("wLPtAmIINjZJ-f2-R"); // Replace with your actual EmailJS Public Key
         })();
 
@@ -764,15 +433,9 @@
             const contactForm = document.querySelector('#contactForm');
             const featureItems = document.querySelectorAll('.feature-item');
             const aboutImage = document.querySelector('.about-image img');
-            const hamburger = document.querySelector('#hamburger');
-            const mobileMenu = document.querySelector('#mobileMenu');
-            const mobileMoreBtn = document.querySelector('#mobileMoreBtn');
-            const mobileDropdown = document.querySelector('#mobileDropdown');
-            const moreBtn = document.querySelector('#moreBtn');
-            const dropdownMenu = document.querySelector('#dropdownMenu');
 
             // Open contact form
-            exploreBtn.addEventListener('click', function (e) {
+            exploreBtn.addEventListener('click', function(e) {
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
@@ -802,16 +465,17 @@
             });
 
             // Form submission with EmailJS
-            contactForm.addEventListener('submit', function (e) {
+            contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
 
                 const params = {
-                    from_name: document.querySelector('#name').value,
-                    reply_to: document.querySelector('#email').value,
+                    from_name: document.querySelector('#name').value, // Changed to from_name for clarity
+                    reply_to: document.querySelector('#email').value, // Changed to reply_to for EmailJS
                     message: document.querySelector('#message').value,
-                    to_email: "saketbranwal@gmail.com"
+                    to_email: "saketbranwal@gmail.com" // Your email
                 };
 
+                // Debug: Log params to console to ensure values are captured
                 console.log("Form Data:", params);
 
                 emailjs.send("service_q5amq9c", "template_76k4vpi", params)
@@ -837,65 +501,17 @@
                     item.style.boxShadow = 'none';
                 });
             });
-
-            // Hamburger menu toggle
-            hamburger.addEventListener('click', function () {
-                this.classList.toggle('open');
-                mobileMenu.classList.toggle('open');
-            });
-
-            // Desktop dropdown toggle
-            moreBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                dropdownMenu.classList.toggle('show');
-            });
-
-            // Mobile dropdown toggle
-            mobileMoreBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                mobileDropdown.classList.toggle('show');
-                const span = this.querySelector('span');
-                span.textContent = mobileDropdown.classList.contains('show') ? '▴' : '▾';
-            });
-
-            // Close dropdowns when clicking anywhere else
-            document.addEventListener('click', function () {
-                dropdownMenu.classList.remove('show');
-                mobileDropdown.classList.remove('show');
-                const span = mobileMoreBtn.querySelector('span');
-                span.textContent = '▾';
-            });
-
-            // Prevent dropdown from closing when clicking inside it
-            dropdownMenu.addEventListener('click', function (e) {
-                e.stopPropagation();
-            });
-
-            mobileDropdown.addEventListener('click', function (e) {
-                e.stopPropagation();
-            });
-
-            // Close mobile menu when clicking on a link
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('open');
-                    mobileMenu.classList.remove('open');
-                    mobileDropdown.classList.remove('show');
-                    mobileMoreBtn.querySelector('span').textContent = '▾';
-                });
-            });
         });
 
         // Ripple animation keyframes
         const styleSheet = document.createElement('style');
         styleSheet.textContent = `
-    @keyframes ripple {
-        0% { width: 0; height: 0; opacity: 1; }
-        100% { width: 250px; height: 250px; opacity: 0; }
-    }
-`;
+            @keyframes ripple {
+                0% { width: 0; height: 0; opacity: 1; }
+                100% { width: 250px; height: 250px; opacity: 0; }
+            }
+        `;
         document.head.appendChild(styleSheet);
     </script>
 </body>
-
 </html>
