@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Places</title>
+    <title>Navigation Bar</title>
     <style>
-             * {
+        * {
             box-sizing: border-box;
         }
 
@@ -13,6 +13,8 @@
             padding: 24px 0;
             position: relative;
             z-index: 100;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .nav-wrapper {
@@ -32,7 +34,6 @@
             font-size: 1.5rem;
             font-family: 'Montserrat', sans-serif;
             text-decoration: none;
-            margin-left: -28px;
         }
 
         .nav-brand-accent {
@@ -46,7 +47,7 @@
             font-weight: 500;
             position: absolute;
             left: 48%;
-            gap: 30px;
+            gap: 10px;
             transform: translateX(-50%);
         }
 
@@ -136,8 +137,6 @@
             font-size: 16px;
             border: none;
             transition: all 0.3s ease;
-            margin-right: -35px;
-            line-height: 1.5;
         }
 
         .nav-auth-btn:hover {
@@ -302,113 +301,13 @@
                 gap: 0;
             }
         }
-        /* Base styles */
-        .imageContainer {
-            display: flex;
-            flex-direction: column;
-            margin-left: 5%; /* Changed to percentage for responsiveness */
-            margin-top: 25px;
-            width: 90%; /* Ensures it fits within the viewport */
-            max-width: 1200px; /* Limits width on large screens */
-            margin-left: 165px;
-        }
-
-        
-        .tour-places {
-            display: flex;
-            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
-            gap: 50px; /* Reduced gap for better spacing on smaller screens */
-            justify-content: center; /* Centers items horizontally */
-        }
-
-        .image-container1 {
-            width: 200px; /* Default width */
-            height: 200px;
-            border-radius: 35px;
-            margin-top: 10px;
-            object-fit: cover; /* Ensures images scale nicely */
-        }
-
-        .text-container {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 1.2em;
-            color: #333;
-        }
-
-        .imageContainer h3 {
-            font-size: 40px;
-            font-weight: bold;
-            color: #797979;
-            margin-bottom: 20px;
-        }
-
-        .line {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-left: 12px;
-        }
-
-        /* Responsive adjustments using media queries */
-        @media (max-width: 768px) { /* Tablets and smaller */
-            .imageContainer {
-                margin-left: 2%;
-                width: 96%;
-            }
-
-            .image-container1 {
-                width: 150px; /* Smaller images on tablets */
-                height: 150px;
-            }
-
-            .text-container {
-                font-size: 1em; /* Slightly smaller text */
-            }
-
-            .imageContainer h3 {
-                font-size: 30px; /* Smaller heading */
-            }
-
-            .tour-places {
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 480px) { /* Mobile phones */
-            .imageContainer {
-                margin-left: 0;
-                width: 100%;
-                padding: 0 10px; /* Adds some padding */
-            }
-
-            .image-container1 {
-                width: 120px; /* Even smaller images */
-                height: 120px;
-            }
-
-            .text-container {
-                font-size: 0.9em; /* Smaller text */
-            }
-
-            .imageContainer h3 {
-                font-size: 24px; /* Smaller heading */
-            }
-
-            .tour-places {
-                gap: 10px;
-                justify-content: space-around; /* Better spacing on small screens */
-            }
-        }
-
     </style>
 </head>
 <body>
-
     <nav class="nav-main">
         <div class="nav-wrapper">
             <!-- Logo -->
-            <a class="nav-brand" href="index.html">
+            <a class="nav-brand" href="#">
                 OneTour.<span class="nav-brand-accent">Planner</span>
             </a>
 
@@ -422,20 +321,20 @@
 
             <!-- Navigation Links -->
             <div class="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="Services.html">Services</a>
-                <a href="Explore.html">Explore....</a>
-                <a href="Pakages.html">Packages</a>
-                <a href="Tourist-Places.html">Tourist Places</a>
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Explore</a>
+                <a href="#">Packages</a>
+                <a href="#">Tourist Places</a>
 
                 <!-- More Dropdown -->
                 <div class="nav-dropdown">
                     <button id="moreBtn" class="nav-dropdown-toggle">More ▾</button>
                     <div id="dropdownMenu" class="nav-dropdown-content">
-                        <a href="About.html">About</a>
-                        <a href="F&Q.html">FAQ</a>
+                        <a href="#">About</a>
+                        <a href="#">FAQ</a>
                         <a href="blog.html">Blog</a>
-                        <a href="Trip-ideas.html">Trip Ideas</a>
+                        <a href="#">Trip Ideas</a>
                     </div>
                 </div>
             </div>
@@ -452,20 +351,20 @@
 
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html">Home</a>
-            <a href="Services.html">Services</a>
-            <a href="Explore.html">Explore....</a>
-            <a href="Pakages.html">Packages</a>
-            <a href="Tourist-Places.html">Tourist Places</a>
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Explore</a>
+            <a href="#">Packages</a>
+            <a href="#">Tourist Places</a>
             
             <button class="mobile-dropdown-toggle" id="mobileMoreBtn">
                 More <span>▾</span>
             </button>
             <div class="mobile-dropdown-content" id="mobileDropdown">
-                <a href="About.html">About</a>
-                <a href="F&Q.html">FAQ</a>
+                <a href="#">About</a>
+                <a href="#">FAQ</a>
                 <a href="blog.html">Blog</a>
-                <a href="Trip-ideas.html">Trip Ideas</a>
+                <a href="#">Trip Ideas</a>
             </div>
             
             <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
@@ -474,59 +373,6 @@
         </div>
     </nav>
 
-
-    <div class="imageContainer">
-        <div class="line">
-            <h3>Tour Places</h3>
-        </div>
-        <div class="tour-places">
-            <div class="tour-place">
-                <img src="/Assets/image 8.png" class="image-container1" alt="Golghar">
-                <h1 class="text-container">Patna</h1>
-            </div>
-            <div class="tour-place">
-                <img src="/Assets/Gaya.jpg" class="image-container1" alt="Hanuman Mandir">
-                <h1 class="text-container">Gaya</h1>
-            </div>
-            <div class="tour-place">
-                <img src="/Assets/Fort_of_Darbhanga.jpg" class="image-container1" alt="Chhath Puja">
-                <h1 class="text-container">Darbhanga</h1>
-            </div>
-            <div class="tour-place">
-                <img src="/Assets/Rohtas.jpeg" class="image-container1" alt="Chhath Puja">
-                <h1 class="text-container">Rohtas</h1>
-            </div>
-            <div class="tour-place">
-                <img src="/Assets/rajgir.jpg" class="image-container1" alt="Chhath Puja">
-                <h1 class="text-container">Rajgir</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="imageContainer">
-        <div class="tour-places">
-            <div class="tour-place">
-                <img src="/Assets/image 8.png" class="image-container1" alt="Golghar">
-                <h1 class="text-container">Patna</h1>
-            </div>
-            <div class="tour-place">
-                <img src="/Assets/Gaya.jpg" class="image-container1" alt="Hanuman Mandir">
-                <h1 class="text-container">Gaya</h1>
-            </div>
-            <div class="tour-place">
-                <img src="/Assets/Fort_of_Darbhanga.jpg" class="image-container1" alt="Chhath Puja">
-                <h1 class="text-container">Darbhanga</h1>
-            </div>
-            <div class="tour-place">
-                <img src="/Assets/Rohtas.jpeg" class="image-container1" alt="Chhath Puja">
-                <h1 class="text-container">Rohtas</h1>
-            </div>
-            <div class="tour-place">
-                <img src="/Assets/rajgir.jpg" class="image-container1" alt="Chhath Puja">
-                <h1 class="text-container">Rajgir</h1>
-            </div>
-        </div>
-    </div>
     <script>
         // Hamburger menu toggle
         const hamburger = document.querySelector('#hamburger');

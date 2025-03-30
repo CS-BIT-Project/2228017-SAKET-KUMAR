@@ -3,432 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Bar</title>
+    <title>Holiday Packages</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      .holiday-packages {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1400px;
+}
 
-        .nav-main {
-            padding: 24px 0;
-            position: relative;
-            z-index: 100;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+.holiday-packages h1 {
+  margin: 20px 0 40px;
+  font-size: 40px;
+  font-weight: 600;
+  color: #2a2a2a;
+  text-align: center;
+  position: relative;
+}
 
-        .nav-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
 
-        /* Logo Styles */
-        .nav-brand {
-            color: #FF0303;
-            font-weight: 600;
-            font-size: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-            text-decoration: none;
-        }
 
-        .nav-brand-accent {
-            color: #3CF0FD;
-        }
+.package-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  padding: 0 20px;
+}
 
-        /* Navigation Links */
-        .nav-menu {
-            display: flex;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            position: absolute;
-            left: 48%;
-            gap: 10px;
-            transform: translateX(-50%);
-        }
+.package-card {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  height: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  background-color: #A9EBC4;
+}
 
-        .nav-menu a {
-            margin: 0 12px;
-            color: inherit;
-            text-decoration: none;
-        }
+.package-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
 
-        .nav-menu a:hover {
-            color: #FF0303;
-        }
+.package-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+}
 
-        /* Dropdown Styles */
-        .nav-dropdown {
-            position: relative;
-            display: inline-block;
-            z-index: 110;
-        }
+.package-card:hover img {
+  transform: scale(1.02);
+}
 
-        .nav-dropdown-toggle {
-            background: none;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            padding: 0;
-            margin: 0 12px;
-            position: relative;
-            z-index: 111;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-        }
+.oneline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
 
-        .nav-dropdown-toggle:hover {
-            color: #FF0303;
-        }
+.oneline h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
 
-        .nav-dropdown-content {
-            position: absolute;
-            left: 0;
-            top: 100%;
-            margin-top: 8px;
-            width: 160px;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease;
-            z-index: 110;
-        }
+.oneline p {
+  font-size: 16px;
+  color: #ffb700;
+  font-weight: 600;
+  margin: 0;
+}
 
-        .nav-dropdown-content.show {
-            opacity: 1;
-            visibility: visible;
-        }
+.package-card h3 {
+  font-size: 16px;
+  color: #666;
+  margin: 5px 0 15px;
+  font-weight: 500;
+}
 
-        .nav-dropdown-content a {
-            display: block;
-            padding: 8px 16px;
-            color: #333;
-            text-decoration: none;
-            font-family: 'DM Sans', sans-serif;
-        }
+.icons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px 10px;
+}
 
-        .nav-dropdown-content a:hover {
-            background-color: #f0f0f0;
-        }
+.icons span {
+  font-size: 24px;
+}
 
-        /* Login Button */
-        .nav-auth {
-            display: none;
-            align-items: center;
-        }
+.package-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px 15px;
+}
 
-        .nav-auth-btn {
-            position: relative;
-            z-index: 10;
-            background: #ff0303;
-            color: white;
-            cursor: pointer;
-            font-weight: 500;
-            width: 150px;
-            height: 65px;
-            border-radius: 32px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            border: none;
-            transition: all 0.3s ease;
-        }
+.package-details span {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
 
-        .nav-auth-btn:hover {
-            background: #e60000;
-        }
+.paragraph {
+  color: #666;
+  margin: 10px 10px 20px;
+  line-height: 1.5;
+  font-size: 15px;
+  flex-grow: 1;
+}
 
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            width: 30px;
-            height: 20px;
-            position: relative;
-            z-index: 101;
-        }
+.paragraph p {
+  margin: 8px 0;
+}
 
-        .hamburger span {
-            display: block;
-            position: absolute;
-            height: 3px;
-            width: 100%;
-            background: #FF0303;
-            border-radius: 3px;
-            opacity: 1;
-            left: 0;
-            transform: rotate(0deg);
-            transition: .25s ease-in-out;
-        }
+.price-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding: 0 10px;
+}
 
-        .hamburger span:nth-child(1) {
-            top: 0px;
-        }
+.price-details p {
+  font-size: 22px;
+  margin: 0;
+  color: #2a2a2a;
+  font-weight: 700;
+}
 
-        .hamburger span:nth-child(2),
-        .hamburger span:nth-child(3) {
-            top: 10px;
-        }
+.price-details button {
+  width: 110px;
+  height: 40px;
+  background-color: #a1e2d6;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a2a2a;
+  cursor: pointer;
+  transition: all 0.3s;
+}
 
-        .hamburger span:nth-child(4) {
-            top: 20px;
-        }
+.price-details button:hover {
+  background-color: #7fd1c2;
+  transform: translateY(-2px);
+}
 
-        .hamburger.open span:nth-child(1) {
-            top: 10px;
-            width: 0%;
-            left: 50%;
-        }
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 30px;
+}
 
-        .hamburger.open span:nth-child(2) {
-            transform: rotate(45deg);
-        }
+.show-more {
+  padding: 14px 40px;
+  background-color: #a1e2d6;
+  color: #2a2a2a;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(161, 226, 214, 0.4);
+}
 
-        .hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg);
-        }
+.show-more:hover {
+  background-color: #7fd1c2;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(161, 226, 214, 0.6);
+}
 
-        .hamburger.open span:nth-child(4) {
-            top: 10px;
-            width: 0%;
-            left: 50%;
-        }
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+  .package-container {
+    gap: 30px;
+  }
+  
+  .holiday-packages h1 {
+    font-size: 36px;
+  }
+  
+  .package-card {
+    padding: 18px;
+  }
+}
 
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            z-index: 100;
-            padding: 80px 20px 20px;
-            overflow-y: auto;
-            display: none;
-        }
+/* Small screens (large phones) */
+@media (max-width: 768px) {
+  .holiday-packages h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  
+  .package-card img {
+    height: 200px;
+  }
+  
+  .oneline h2 {
+    font-size: 20px;
+  }
+  
+  .price-details p {
+    font-size: 20px;
+  }
+  
+  .show-more {
+    padding: 12px 35px;
+    font-size: 16px;
+  }
+  .holiday-packages h1::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #a1e2d6;
+  margin: 15px auto 0;
+}
+}
 
-        .mobile-menu.open {
-            right: 0;
-        }
-
-        .mobile-menu a {
-            display: block;
-            padding: 12px 0;
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #eee;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .mobile-menu a:hover {
-            color: #FF0303;
-        }
-
-        .mobile-dropdown-content {
-            padding-left: 20px;
-            display: none;
-        }
-
-        .mobile-dropdown-content.show {
-            display: block;
-        }
-
-        .mobile-dropdown-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 12px 0;
-            color: #333;
-            text-align: left;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .mobile-dropdown-toggle:hover {
-            color: #FF0303;
-        }
-
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .nav-menu {
-                display: flex;
-            }
-
-            .nav-auth {
-                display: flex;
-            }
-            
-            .hamburger {
-                display: none !important;
-            }
-            
-            .mobile-menu {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .nav-auth {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-
-            .nav-wrapper {
-                gap: 0;
-            }
-        }
+/* Extra small screens (phones) */
+@media (max-width: 480px) {
+  .holiday-packages {
+    padding: 15px;
+  }
+  
+  .holiday-packages h1 {
+    font-size: 28px;
+  }
+  
+  .package-container {
+    grid-template-columns: 1fr;
+    padding: 0;
+    gap: 25px;
+  }
+  
+  .package-card {
+    padding: 15px;
+  }
+  
+  .package-card img {
+    height: 180px;
+  }
+  
+  .price-details button {
+    width: 100px;
+    height: 36px;
+    font-size: 15px;
+  }
+  
+}
     </style>
 </head>
 <body>
-    <nav class="nav-main">
-        <div class="nav-wrapper">
-            <!-- Logo -->
-            <a class="nav-brand" href="#">
-                OneTour.<span class="nav-brand-accent">Planner</span>
-            </a>
-
-            <!-- Hamburger Menu -->
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <!-- Navigation Links -->
-            <div class="nav-menu">
-                <a href="#">Home</a>
-                <a href="#">Services</a>
-                <a href="#">Explore</a>
-                <a href="#">Packages</a>
-                <a href="#">Tourist Places</a>
-
-                <!-- More Dropdown -->
-                <div class="nav-dropdown">
-                    <button id="moreBtn" class="nav-dropdown-toggle">More ▾</button>
-                    <div id="dropdownMenu" class="nav-dropdown-content">
-                        <a href="#">About</a>
-                        <a href="#">FAQ</a>
-                        <a href="blog.html">Blog</a>
-                        <a href="#">Trip Ideas</a>
-                    </div>
+    <div class="holiday-packages">
+        <h1>Holiday Packages</h1>
+        <div class="package-container">
+            <div class="package-card">
+                <img src="https://via.placeholder.com/400x300/a1e2d6/ffffff?text=Patna" alt="Patna">
+                <div class="oneline">
+                    <h2>Patna</h2>
+                    <p>★ 4.5</p>
+                </div>
+                <h3>4 Days, 3 Nights</h3>
+                <div class="icons">
+                    <span>✈️</span>
+                    <span>🏨</span>
+                    <span>🚗</span>
+                    <span>🗺️</span>
+                </div>
+                <div class="package-details">
+                    <span>Flights</span>
+                    <span>Hotels</span>
+                    <span>Cabs</span>
+                    <span>Guide</span>
+                </div>
+                <div class="paragraph">
+                    <p>Tour Combo Air and Cab Transport.</p>
+                    <p>Provide in best Tour Guide.</p>
+                    <p>Provide in accommodation, food.</p>
+                </div>
+                <div class="price-details">
+                    <p>₹4000</p>
+                    <button>Details</button>
                 </div>
             </div>
+            <!-- Repeat package-card for more packages -->
+            <div class="package-card">
+                <img src="/Assets/image 8.png" alt="Bodh Gaya">
+                <div class="oneline">
+                    <h2>Bodh Gaya</h2>
+                    <p>★ 4.8</p>
+                </div>
+                <h3>3 Days, 2 Nights</h3>
+                <div class="icons">
+                    <span>✈️</span>
+                    <span>🏨</span>
+                    <span>🚗</span>
+                    <span>🗺️</span>
+                </div>
+                <div class="package-details">
+                    <span>Flights</span>
+                    <span>Hotels</span>
+                    <span>Cabs</span>
+                    <span>Guide</span>
+                </div>
+                <div class="paragraph">
+                    <p>Visit the Mahabodhi Temple complex.</p>
+                    <p>Experience Buddhist culture.</p>
+                    <p>Comfortable stay with meals.</p>
+                </div>
+                <div class="price-details">
+                    <p>₹3500</p>
+                    <button>Details</button>
+                </div>
+            </div>
+            <div class="package-card">
+                <img src="https://via.placeholder.com/400x300/a1e2d6/ffffff?text=Nalanda" alt="Nalanda">
+                <div class="oneline">
+                    <h2>Nalanda</h2>
+                    <p>★ 4.3</p>
+                </div>
+                <h3>2 Days, 1 Night</h3>
+                <div class="icons">
+                    <span>✈️</span>
+                    <span>🏨</span>
+                    <span>🚗</span>
+                    <span>🗺️</span>
+                </div>
+                <div class="package-details">
+                    <span>Flights</span>
+                    <span>Hotels</span>
+                    <span>Cabs</span>
+                    <span>Guide</span>
+                </div>
 
-            <!-- Login Button -->
-            <div class="nav-auth">
-                <a href="login.html">
-                    <button class="nav-auth-btn">
-                        Log in or <br> Create Account
-                    </button>
-                </a>
+                <div class="paragraph">
+                    <p>Explore ancient Nalanda University.</p>
+                    <p>Visit archaeological museum.</p>
+                    <p>Includes travel and meals.</p>
+                </div>
+                <div class="price-details">
+                    <p>₹2500</p>
+                    <button>Details</button>
+                </div>
             </div>
         </div>
-
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#">Home</a>
-            <a href="#">Services</a>
-            <a href="#">Explore</a>
-            <a href="#">Packages</a>
-            <a href="#">Tourist Places</a>
-            
-            <button class="mobile-dropdown-toggle" id="mobileMoreBtn">
-                More <span>▾</span>
-            </button>
-            <div class="mobile-dropdown-content" id="mobileDropdown">
-                <a href="#">About</a>
-                <a href="#">FAQ</a>
-                <a href="blog.html">Blog</a>
-                <a href="#">Trip Ideas</a>
-            </div>
-            
-            <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
-                Log in or Create Account
-            </a>
+        <div class="button-container">
+            <button class="show-more">Show More</button>
         </div>
-    </nav>
-
-    <script>
-        // Hamburger menu toggle
-        const hamburger = document.querySelector('#hamburger');
-        const mobileMenu = document.querySelector('#mobileMenu');
-        
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('open');
-            mobileMenu.classList.toggle('open');
-        });
-
-        // Dropdown functionality
-        const moreBtn = document.querySelector('#moreBtn');
-        const dropdownMenu = document.querySelector('#dropdownMenu');
-        const mobileMoreBtn = document.querySelector('#mobileMoreBtn');
-        const mobileDropdown = document.querySelector('#mobileDropdown');
-
-        // Desktop dropdown toggle
-        moreBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdownMenu.classList.toggle('show');
-        });
-
-        // Mobile dropdown toggle
-        mobileMoreBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileDropdown.classList.toggle('show');
-            const span = this.querySelector('span');
-            span.textContent = mobileDropdown.classList.contains('show') ? '▴' : '▾';
-        });
-
-        // Close dropdowns when clicking anywhere else
-        document.addEventListener('click', function() {
-            dropdownMenu.classList.remove('show');
-            mobileDropdown.classList.remove('show');
-            const span = mobileMoreBtn.querySelector('span');
-            span.textContent = '▾';
-        });
-
-        // Prevent dropdown from closing when clicking inside it
-        dropdownMenu.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-
-        mobileDropdown.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-
-        // Close mobile menu when clicking on a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('open');
-                mobileMenu.classList.remove('open');
-                mobileDropdown.classList.remove('show');
-                mobileMoreBtn.querySelector('span').textContent = '▾';
-            });
-        });
-    </script>
+    </div>
 </body>
 </html>
