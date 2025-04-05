@@ -12,6 +12,177 @@
     <link rel="stylesheet" href="Style.css">
     <script src="Script.js"></script>
     <title>OneTour.Planner</title>
+    <style>
+        /* Profile Dropdown Styles */
+.profile-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 30px;
+    background: rgba(212, 25, 25, 0.1);
+    transition: all 0.3s ease;
+}
+
+.profile-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.profile-icon span:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #4361ee;
+    color: white;
+    font-weight: bold;
+}
+
+.profile-name {
+    color: white;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    min-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: none;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.profile-dropdown.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+    color: #4361ee;
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background: #f8f9fa;
+    color: #4361ee;
+}
+
+.dropdown-item.logout-btn i {
+    color: #f72585;
+}
+
+.dropdown-item.logout-btn:hover {
+    color: #f72585;
+}
+
+/* Mobile Profile Styles */
+.mobile-profile {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #4361ee;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.mobile-profile-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.mobile-profile-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.mobile-profile-link i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.mobile-profile-link.logout-btn {
+    color: #f72585;
+}
+
+.mobile-profile-link.logout-btn i {
+    color: #f72585;
+}
+
+.mobile-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    background: #4361ee;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.mobile-login-btn i {
+    font-size: 18px;
+}
+    </style>
 </head>
 
 <body>
@@ -50,10 +221,10 @@
                 </div>
             </div>
 
-            <!-- Login Button -->
-            <div class="nav-auth">
+            <!-- Login Button (Desktop) -->
+            <div class="nav-auth" id="auth-container">
                 <img src="/Assets/Design.png" alt="Design Background" class="nav-bg-decor">
-                <form action="http://127.0.0.1:5000" method="get">
+                <form action="login.html" method="get">
                     <button type="submit" class="nav-auth-btn">
                         Log in or <br> Create Account
                     </button>
@@ -79,12 +250,15 @@
                 <a href="Trip-ideas.html">Trip Ideas</a>
             </div>
 
-            <a href="login.html"
-                style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
-                Log in or Create Account
-            </a>
+            <!-- Mobile Auth Section -->
+            <div id="mobile-auth-container">
+                <a href="login.html" class="mobile-login-btn">
+                    Log in or Create Account
+                </a>
+            </div>
         </div>
     </nav>
+
 
     <!-- Boy Image -->
     <div class="boy">
@@ -381,7 +555,7 @@
             </div>
             <h1>Client Reviews</h1>
         </header>
-        
+
         <!-- Main Content -->
         <main class="review-container">
             <!-- Profile Section -->
@@ -389,13 +563,16 @@
                 <div class="current-reviewer" id="main-profile"></div>
                 <div class="previous-reviewers">
                     <button class="nav-arrow left" aria-label="Previous reviewers">←</button>
-                    <div class="previous-reviewer" id="reviewer1" tabindex="0" role="button" aria-label="Switch to reviewer 1"></div>
-                    <div class="previous-reviewer" id="reviewer2" tabindex="0" role="button" aria-label="Switch to reviewer 2"></div>
-                    <div class="previous-reviewer" id="reviewer3" tabindex="0" role="button" aria-label="Switch to reviewer 3"></div>
+                    <div class="previous-reviewer" id="reviewer1" tabindex="0" role="button"
+                        aria-label="Switch to reviewer 1"></div>
+                    <div class="previous-reviewer" id="reviewer2" tabindex="0" role="button"
+                        aria-label="Switch to reviewer 2"></div>
+                    <div class="previous-reviewer" id="reviewer3" tabindex="0" role="button"
+                        aria-label="Switch to reviewer 3"></div>
                     <button class="nav-arrow right" aria-label="Next reviewers">→</button>
                 </div>
             </section>
-            
+
             <!-- Review Card -->
             <article class="review-card">
                 <blockquote class="review-text" id="review-text">
@@ -412,7 +589,8 @@
         <div class="footer-container">
             <div class="footer-section">
                 <h3>About OneTour.Planner</h3>
-                <p>Your ultimate travel planning companion. We help you discover amazing destinations and create unforgettable travel experiences.</p>
+                <p>Your ultimate travel planning companion. We help you discover amazing destinations and create
+                    unforgettable travel experiences.</p>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -420,7 +598,7 @@
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            
+
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <a href="#">Home</a>
@@ -430,7 +608,7 @@
                 <a href="#">Tourist Places</a>
                 <a href="#">Trip Ideas</a>
             </div>
-            
+
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <div class="contact-info">
@@ -450,7 +628,7 @@
                     <p>Mon-Fri: 9AM - 6PM</p>
                 </div>
             </div>
-            
+
             <div class="footer-section">
                 <h3>Newsletter</h3>
                 <p>Subscribe to our newsletter for the latest travel deals and tips.</p>
@@ -461,33 +639,32 @@
             </div>
         </div>
     </footer>
-    
+
     <div class="footer-bottom">
         <p>&copy; 2025 OneTour.Planner. All Rights Reserved. | Designed with ❤️ for travelers</p>
     </div>
 
     <script>
-        // Hamburger menu toggle
+        // Hamburger menu and dropdown functionality
         const hamburger = document.querySelector('#hamburger');
         const mobileMenu = document.querySelector('#mobileMenu');
-
-        hamburger.addEventListener('click', function () {
-            this.classList.toggle('open');
-            mobileMenu.classList.toggle('open');
-        });
-
-        // Dropdown functionality
         const moreBtn = document.querySelector('#moreBtn');
         const dropdownMenu = document.querySelector('#dropdownMenu');
         const mobileMoreBtn = document.querySelector('#mobileMoreBtn');
         const mobileDropdown = document.querySelector('#mobileDropdown');
-
+    
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', function () {
+            this.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+    
         // Desktop dropdown toggle
         moreBtn.addEventListener('click', function (e) {
             e.stopPropagation();
             dropdownMenu.classList.toggle('show');
         });
-
+    
         // Mobile dropdown toggle
         mobileMoreBtn.addEventListener('click', function (e) {
             e.stopPropagation();
@@ -495,7 +672,7 @@
             const span = this.querySelector('span');
             span.textContent = mobileDropdown.classList.contains('show') ? '▴' : '▾';
         });
-
+    
         // Close dropdowns when clicking anywhere else
         document.addEventListener('click', function () {
             dropdownMenu.classList.remove('show');
@@ -503,16 +680,16 @@
             const span = mobileMoreBtn.querySelector('span');
             span.textContent = '▾';
         });
-
+    
         // Prevent dropdown from closing when clicking inside it
         dropdownMenu.addEventListener('click', function (e) {
             e.stopPropagation();
         });
-
+    
         mobileDropdown.addEventListener('click', function (e) {
             e.stopPropagation();
         });
-
+    
         // Close mobile menu when clicking on a link
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -522,8 +699,8 @@
                 mobileMoreBtn.querySelector('span').textContent = '▾';
             });
         });
-
-
+    
+        // Reviews functionality
         const reviews = [
             {
                 name: "Sarah Johnson",
@@ -562,8 +739,8 @@
                 image: "https://randomuser.me/api/portraits/men/45.jpg"
             }
         ];
-
-        // ===== DOM Elements =====
+    
+        // DOM Elements for reviews
         const mainProfile = document.getElementById('main-profile');
         const reviewer1 = document.getElementById('reviewer1');
         const reviewer2 = document.getElementById('reviewer2');
@@ -573,72 +750,46 @@
         const reviewerTitle = document.getElementById('reviewer-title');
         const leftArrow = document.querySelector('.nav-arrow.left');
         const rightArrow = document.querySelector('.nav-arrow.right');
-
-        // ===== State Variables =====
+    
+        // State Variables for reviews
         let currentIndex = 0;
         let currentSet = 0;
-
-        // ===== Functions =====
-        
-        /**
-         * Initializes the reviews display
-         */
+    
+        // Initialize reviews
         function initializeReviews() {
             updateDisplayedReviews(0);
             updateProfile(0);
             setupAccessibility();
         }
-        
-        /**
-         * Updates the main profile display
-         * @param {number} index - Index of the review to display
-         */
+    
+        // Update main profile display
         function updateProfile(index) {
             const review = reviews[index];
             mainProfile.style.backgroundImage = `url(${review.image})`;
             reviewText.textContent = review.review;
             reviewerName.textContent = review.name;
             reviewerTitle.textContent = review.title;
-            
-            // Animation effect
             animateProfile();
-            
-            // Update current index
             currentIndex = index;
         }
-        
-        /**
-         * Animates the profile picture
-         */
+    
+        // Animate profile picture
         function animateProfile() {
             mainProfile.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 mainProfile.style.transform = 'scale(1)';
             }, 300);
         }
-        
-        /**
-         * Updates the small circles with a set of reviews
-         * @param {number} setIndex - Index of the review set to display
-         */
+    
+        // Update small circles with review set
         function updateDisplayedReviews(setIndex) {
             currentSet = setIndex;
-            
-            // Calculate which reviews to show
             const reviewIndices = calculateReviewIndices(setIndex);
-            
-            // Update small circles
             updateReviewerCircles(reviewIndices);
-            
-            // Update navigation state
             updateNavigationState();
         }
-        
-        /**
-         * Calculates which reviews to show in small circles
-         * @param {number} setIndex - Current set index
-         * @returns {array} Array of review indices
-         */
+    
+        // Calculate which reviews to show
         function calculateReviewIndices(setIndex) {
             const startIndex = (setIndex * 3) % reviews.length;
             return [
@@ -647,35 +798,25 @@
                 (startIndex + 3) % reviews.length
             ];
         }
-        
-        /**
-         * Updates the reviewer circles with new images
-         * @param {array} indices - Array of review indices
-         */
+    
+        // Update reviewer circles
         function updateReviewerCircles(indices) {
             reviewer1.style.backgroundImage = `url(${reviews[indices[0]].image})`;
             reviewer2.style.backgroundImage = `url(${reviews[indices[1]].image})`;
             reviewer3.style.backgroundImage = `url(${reviews[indices[2]].image})`;
-            
-            // Update click handlers
             reviewer1.onclick = () => updateProfile(indices[0]);
             reviewer2.onclick = () => updateProfile(indices[1]);
             reviewer3.onclick = () => updateProfile(indices[2]);
         }
-        
-        /**
-         * Updates the navigation button states
-         */
+    
+        // Update navigation buttons
         function updateNavigationState() {
             leftArrow.disabled = currentSet === 0;
             rightArrow.disabled = (currentSet + 1) * 3 >= reviews.length - 1;
         }
-        
-        /**
-         * Sets up keyboard accessibility
-         */
+    
+        // Setup keyboard accessibility
         function setupAccessibility() {
-            // Add keyboard support for reviewer circles
             [reviewer1, reviewer2, reviewer3].forEach((reviewer, index) => {
                 reviewer.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -685,22 +826,144 @@
                 });
             });
         }
-
-        // ===== Event Listeners =====
+    
+        // Event listeners for reviews
         leftArrow.addEventListener('click', () => {
             if (currentSet > 0) {
                 updateDisplayedReviews(currentSet - 1);
             }
         });
-        
+    
         rightArrow.addEventListener('click', () => {
             if ((currentSet + 1) * 3 < reviews.length - 1) {
                 updateDisplayedReviews(currentSet + 1);
             }
         });
-
-        // ===== Initialization =====
+    
+        // Initialize reviews when DOM is loaded
         window.addEventListener('DOMContentLoaded', initializeReviews);
+    </script>
+    
+    <script type="module">
+        // Firebase Authentication
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyATXQVGhwcAX7gJLEqGbgFjwD11fA4wOVY",
+            authDomain: "bihartourism-7cbe4.firebaseapp.com",
+            projectId: "bihartourism-7cbe4",
+            storageBucket: "bihartourism-7cbe4.appspot.com",
+            messagingSenderId: "909615810483",
+            appId: "1:909615810483:web:2a8409199ba6be4e132dc6"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const authContainer = document.getElementById('auth-container');
+        const mobileAuthContainer = document.getElementById('mobile-auth-container');
+    
+        // Update auth UI
+        function updateAuthUI(user) {
+            // Always keep the design image
+            const designImage = `<img src="/Assets/Design.png" alt="Design Background" class="nav-bg-decor">`;
+            
+            if (user) {
+                // User is signed in
+                const userInitial = user.email ? user.email.charAt(0).toUpperCase() : 'U';
+                const userName = user.displayName || user.email.split('@')[0];
+    
+                // Desktop view - much improved UI
+                authContainer.innerHTML = `
+                    ${designImage}
+                    <div class="profile-container">
+                        <div class="profile-icon">
+                            <span>${userInitial}</span>
+                            <span class="profile-name">Hi, ${userName}</span>
+                        </div>
+                        <div class="profile-dropdown">
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                            <a href="#" class="dropdown-item logout-btn" id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                `;
+    
+                // Mobile view - improved UI
+                mobileAuthContainer.innerHTML = `
+                    <div class="mobile-profile">
+                        <div class="mobile-profile-header">
+                            <div class="mobile-profile-icon">${userInitial}</div>
+                            <div class="mobile-profile-name">${userName}</div>
+                        </div>
+                        <a href="profile.html" class="mobile-profile-link">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#" class="mobile-profile-link logout-btn" id="mobile-logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                `;
+    
+                // Add logout functionality
+                document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+    
+                document.getElementById('mobile-logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+    
+                // Toggle dropdown
+                const profileIcon = authContainer.querySelector('.profile-icon');
+                const dropdown = authContainer.querySelector('.profile-dropdown');
+                
+                profileIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('show');
+                });
+    
+                // Close dropdown when clicking outside
+                document.addEventListener('click', () => {
+                    dropdown.classList.remove('show');
+                });
+            } else {
+                // No user signed in
+                authContainer.innerHTML = `
+                    ${designImage}
+                    <form action="login.html" method="get">
+                        <button type="submit" class="nav-auth-btn">
+                            Log in or <br> Create Account
+                        </button>
+                    </form>
+                `;
+    
+                mobileAuthContainer.innerHTML = `
+                    <a href="login.html" class="mobile-login-btn">
+                        <i class="fas fa-user-circle"></i> Log in or Create Account
+                    </a>
+                `;
+            }
+        }
+    
+        // Handle logout
+        function handleLogout() {
+            signOut(auth).then(() => {
+                window.location.href = "index.html";
+            }).catch((error) => {
+                console.error("Logout error:", error);
+            });
+        }
+    
+        // Check auth state
+        onAuthStateChanged(auth, (user) => {
+            updateAuthUI(user);
+        });
     </script>
 </body>
 
