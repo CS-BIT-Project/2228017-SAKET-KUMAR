@@ -39,7 +39,7 @@ def login():
         if user and check_password_hash(user['password'], password):
             session['username'] = username
             flash('Login successful!', 'success')
-            return redirect(url_for('index'))
+            return redirect(url_for(''))
         else:
             flash('Invalid credentials!', 'error')
     return render_template('login.html')

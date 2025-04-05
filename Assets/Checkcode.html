@@ -1,364 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holiday Packages</title>
-    <style>
-      .holiday-packages {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0 auto;
-  padding: 20px;
-  max-width: 1400px;
-}
-
-.holiday-packages h1 {
-  margin: 20px 0 40px;
-  font-size: 40px;
-  font-weight: 600;
-  color: #2a2a2a;
-  text-align: center;
-  position: relative;
-}
-
-
-
-.package-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 40px;
-  padding: 0 20px;
-}
-
-.package-card {
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 20px;
-  height: auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  border: 1px solid #e0e0e0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .imageContainer {
   display: flex;
   flex-direction: column;
-  background-color: #A9EBC4;
+  margin-left: 158px;
+  padding: 20px;
 }
 
-.package-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-}
-
-.package-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 15px;
-  margin-bottom: 15px;
-  transition: transform 0.3s;
-}
-
-.package-card:hover img {
-  transform: scale(1.02);
-}
-
-.oneline {
+.tour-places {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
+  gap: 56px;
+  flex-wrap: wrap; /* Allows items to wrap to next line */
+  justify-content: flex-start; /* Align items to start */
 }
 
-.oneline h2 {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0;
+.tour-place {
+  flex: 1 1 200px; /* Flex-grow, flex-shrink, flex-basis */
+  min-width: 200px; /* Minimum width for each item */
+  max-width: 250px; /* Maximum width for each item */
+}
+
+.image-container1 {
+  width: 100%; /* Take full width of parent */
+  height: auto; /* Maintain aspect ratio */
+  aspect-ratio: 1/1; /* Keep images square */
+  border-radius: 35px;
+  margin-top: 10px;
+  object-fit: cover; /* Ensure images cover the space without distortion */
+}
+
+.text-container {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2em;
   color: #333;
 }
 
-.oneline p {
-  font-size: 16px;
-  color: #ffb700;
-  font-weight: 600;
-  margin: 0;
+.imageContainer h3 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #797979;
+  margin-bottom: 20px;
 }
 
-.package-card h3 {
-  font-size: 16px;
-  color: #666;
-  margin: 5px 0 15px;
-  font-weight: 500;
-}
-
-.icons {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 10px 10px;
-}
-
-.icons span {
-  font-size: 24px;
-}
-
-.package-details {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 10px 15px;
-}
-
-.package-details span {
-  font-size: 14px;
-  color: #555;
-  font-weight: 500;
-}
-
-.paragraph {
-  color: #666;
-  margin: 10px 10px 20px;
-  line-height: 1.5;
-  font-size: 15px;
-  flex-grow: 1;
-}
-
-.paragraph p {
-  margin: 8px 0;
-}
-
-.price-details {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-  padding: 0 10px;
-}
-
-.price-details p {
-  font-size: 22px;
-  margin: 0;
-  color: #2a2a2a;
-  font-weight: 700;
-}
-
-.price-details button {
-  width: 110px;
-  height: 40px;
-  background-color: #a1e2d6;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #2a2a2a;
+.view-all {
+  font-size: 1em;
+  color: #007BFF;
   cursor: pointer;
-  transition: all 0.3s;
+  margin-top: 26px;
+  margin-right: 135px;
 }
 
-.price-details button:hover {
-  background-color: #7fd1c2;
-  transform: translateY(-2px);
-}
-
-.button-container {
+.line {
   display: flex;
-  justify-content: center;
-  margin: 50px 0 30px;
+  justify-content: space-between;
+  align-items: center; /* Vertically align items */
+  flex-wrap: wrap; /* Allow items to wrap on small screens */
 }
 
-.show-more {
-  padding: 14px 40px;
-  background-color: #a1e2d6;
-  color: #2a2a2a;
-  border: none;
-  border-radius: 30px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(161, 226, 214, 0.4);
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .imageContainer {
+    margin-left: 80px;
+  }
 }
 
-.show-more:hover {
-  background-color: #7fd1c2;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(161, 226, 214, 0.6);
-}
-
-/* Medium screens (tablets) */
-@media (max-width: 1024px) {
-  .package-container {
-    gap: 30px;
+@media (max-width: 992px) {
+  .imageContainer {
+    margin-left: 40px;
   }
   
-  .holiday-packages h1 {
-    font-size: 36px;
-  }
-  
-  .package-card {
-    padding: 18px;
+  .tour-places {
+    gap: 40px;
   }
 }
 
-/* Small screens (large phones) */
 @media (max-width: 768px) {
-  .holiday-packages h1 {
+  .imageContainer {
+    margin-left: 20px;
+  }
+  
+  .imageContainer h3 {
     font-size: 32px;
-    margin-bottom: 30px;
   }
   
-  .package-card img {
-    height: 200px;
+  .view-all {
+    margin-right: 20px;
   }
   
-  .oneline h2 {
-    font-size: 20px;
+  .tour-places {
+    gap: 30px;
+    justify-content: center; /* Center items on smaller screens */
   }
-  
-  .price-details p {
-    font-size: 20px;
-  }
-  
-  .show-more {
-    padding: 12px 35px;
-    font-size: 16px;
-  }
-  .holiday-packages h1::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #a1e2d6;
-  margin: 15px auto 0;
-}
 }
 
-/* Extra small screens (phones) */
-@media (max-width: 480px) {
-  .holiday-packages {
-    padding: 15px;
+@media (max-width: 576px) {
+  .imageContainer {
+    margin-left: 10px;
+    padding: 10px;
   }
   
-  .holiday-packages h1 {
+  .imageContainer h3 {
     font-size: 28px;
   }
   
-  .package-container {
-    grid-template-columns: 1fr;
-    padding: 0;
-    gap: 25px;
+  .line {
+    flex-direction: column;
+    align-items: flex-start;
+    
   }
   
-  .package-card {
-    padding: 15px;
+  .view-all {
+    margin-top: 10px;
+    margin-right: 0;
+    align-self: flex-end;
   }
   
-  .package-card img {
-    height: 180px;
+  .tour-place {
+    flex: 1 1 150px;
+    min-width: 150px;
   }
-  
-  .price-details button {
-    width: 100px;
-    height: 36px;
-    font-size: 15px;
-  }
-  
 }
-    </style>
+  </style>
 </head>
 <body>
-    <div class="holiday-packages">
-        <h1>Holiday Packages</h1>
-        <div class="package-container">
-            <div class="package-card">
-                <img src="https://via.placeholder.com/400x300/a1e2d6/ffffff?text=Patna" alt="Patna">
-                <div class="oneline">
-                    <h2>Patna</h2>
-                    <p>★ 4.5</p>
-                </div>
-                <h3>4 Days, 3 Nights</h3>
-                <div class="icons">
-                    <span>✈️</span>
-                    <span>🏨</span>
-                    <span>🚗</span>
-                    <span>🗺️</span>
-                </div>
-                <div class="package-details">
-                    <span>Flights</span>
-                    <span>Hotels</span>
-                    <span>Cabs</span>
-                    <span>Guide</span>
-                </div>
-                <div class="paragraph">
-                    <p>Tour Combo Air and Cab Transport.</p>
-                    <p>Provide in best Tour Guide.</p>
-                    <p>Provide in accommodation, food.</p>
-                </div>
-                <div class="price-details">
-                    <p>₹4000</p>
-                    <button>Details</button>
-                </div>
-            </div>
-            <!-- Repeat package-card for more packages -->
-            <div class="package-card">
-                <img src="/Assets/image 8.png" alt="Bodh Gaya">
-                <div class="oneline">
-                    <h2>Bodh Gaya</h2>
-                    <p>★ 4.8</p>
-                </div>
-                <h3>3 Days, 2 Nights</h3>
-                <div class="icons">
-                    <span>✈️</span>
-                    <span>🏨</span>
-                    <span>🚗</span>
-                    <span>🗺️</span>
-                </div>
-                <div class="package-details">
-                    <span>Flights</span>
-                    <span>Hotels</span>
-                    <span>Cabs</span>
-                    <span>Guide</span>
-                </div>
-                <div class="paragraph">
-                    <p>Visit the Mahabodhi Temple complex.</p>
-                    <p>Experience Buddhist culture.</p>
-                    <p>Comfortable stay with meals.</p>
-                </div>
-                <div class="price-details">
-                    <p>₹3500</p>
-                    <button>Details</button>
-                </div>
-            </div>
-            <div class="package-card">
-                <img src="https://via.placeholder.com/400x300/a1e2d6/ffffff?text=Nalanda" alt="Nalanda">
-                <div class="oneline">
-                    <h2>Nalanda</h2>
-                    <p>★ 4.3</p>
-                </div>
-                <h3>2 Days, 1 Night</h3>
-                <div class="icons">
-                    <span>✈️</span>
-                    <span>🏨</span>
-                    <span>🚗</span>
-                    <span>🗺️</span>
-                </div>
-                <div class="package-details">
-                    <span>Flights</span>
-                    <span>Hotels</span>
-                    <span>Cabs</span>
-                    <span>Guide</span>
-                </div>
+  <div class="imageContainer">
+    <div class="line">
+        <h3>Tour Places</h3>
+        <p class="view-all">View all</p>
+    </div>
 
-                <div class="paragraph">
-                    <p>Explore ancient Nalanda University.</p>
-                    <p>Visit archaeological museum.</p>
-                    <p>Includes travel and meals.</p>
-                </div>
-                <div class="price-details">
-                    <p>₹2500</p>
-                    <button>Details</button>
-                </div>
-            </div>
+    <div class="tour-places">
+        <div class="tour-place">
+            <img src="/Assets/image 8.png" class="image-container1" alt="Golghar">
+            <h1 class="text-container">Patna</h1>
         </div>
-        <div class="button-container">
-            <button class="show-more">Show More</button>
+        <div class="tour-place">
+            <img src="/Assets/Gaya.jpg" class="image-container1" alt="Hanuman Mandir">
+            <h1 class="text-container">Gaya</h1>
+        </div>
+        <div class="tour-place">
+            <img src="/Assets/Fort_of_Darbhanga.jpg" class="image-container1" alt="Chhath Puja">
+            <h1 class="text-container">Darbhanga</h1>
+        </div>
+        <div class="tour-place">
+            <img src="/Assets/Rohtas.jpeg" class="image-container1" alt="Chhath Puja">
+            <h1 class="text-container">Rohtas</h1>
+        </div>
+        <div class="tour-place">
+            <img src="/Assets/rajgir.jpg" class="image-container1" alt="Chhath Puja">
+            <h1 class="text-container">Rajgir</h1>
         </div>
     </div>
+</div>
 </body>
 </html>
