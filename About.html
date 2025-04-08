@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - OneTour.Planner</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             background: linear-gradient(120deg, #DFFAFC 0%, #E6F0FA 40%, #FBFFFF 100%);
@@ -129,6 +131,7 @@
         .nav-auth {
             display: none;
             align-items: center;
+            position: relative;
         }
 
         .nav-auth-btn {
@@ -151,6 +154,156 @@
 
         .nav-auth-btn:hover {
             background: #e60000;
+        }
+
+        /* Profile Dropdown Styles (Copied from index.html) */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 15px;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 30px;
+            background: #797979;
+            transition: all 0.3s ease;
+        }
+
+    
+
+        .profile-icon span:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: yellow;
+            color: black;
+            font-weight: bold;
+        }
+
+        .profile-name {
+            color: white;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .profile-dropdown {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-item i {
+            margin-right: 10px;
+            color: #4361ee;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #4361ee;
+        }
+
+        .dropdown-item.logout-btn i {
+            color: #f72585;
+        }
+
+        .dropdown-item.logout-btn:hover {
+            color: #f72585;
+        }
+
+        /* Mobile Profile Styles */
+        .mobile-profile {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4361ee;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .mobile-profile-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .mobile-profile-link {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .mobile-profile-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .mobile-profile-link.logout-btn {
+            color: #f72585;
+        }
+
+        .mobile-profile-link.logout-btn i {
+            color: #f72585;
         }
 
         /* Hamburger Menu */
@@ -176,18 +329,10 @@
             transition: .25s ease-in-out;
         }
 
-        .hamburger span:nth-child(1) {
-            top: 0px;
-        }
-
+        .hamburger span:nth-child(1) { top: 0px; }
         .hamburger span:nth-child(2),
-        .hamburger span:nth-child(3) {
-            top: 10px;
-        }
-
-        .hamburger span:nth-child(4) {
-            top: 20px;
-        }
+        .hamburger span:nth-child(3) { top: 10px; }
+        .hamburger span:nth-child(4) { top: 20px; }
 
         .hamburger.open span:nth-child(1) {
             top: 10px;
@@ -195,14 +340,8 @@
             left: 50%;
         }
 
-        .hamburger.open span:nth-child(2) {
-            transform: rotate(45deg);
-        }
-
-        .hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg);
-        }
-
+        .hamburger.open span:nth-child(2) { transform: rotate(45deg); }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg); }
         .hamburger.open span:nth-child(4) {
             top: 10px;
             width: 0%;
@@ -226,9 +365,7 @@
             display: none;
         }
 
-        .mobile-menu.open {
-            right: 0;
-        }
+        .mobile-menu.open { right: 0; }
 
         .mobile-menu a {
             display: block;
@@ -239,18 +376,14 @@
             font-family: 'DM Sans', sans-serif;
         }
 
-        .mobile-menu a:hover {
-            color: #FF0303;
-        }
+        .mobile-menu a:hover { color: #FF0303; }
 
         .mobile-dropdown-content {
             padding-left: 20px;
             display: none;
         }
 
-        .mobile-dropdown-content.show {
-            display: block;
-        }
+        .mobile-dropdown-content.show { display: block; }
 
         .mobile-dropdown-toggle {
             display: flex;
@@ -267,49 +400,22 @@
             font-family: 'DM Sans', sans-serif;
         }
 
-        .mobile-dropdown-toggle:hover {
-            color: #FF0303;
-        }
+        .mobile-dropdown-toggle:hover { color: #FF0303; }
 
         /* Responsive Styles */
         @media (min-width: 768px) {
-            .nav-menu {
-                display: flex;
-            }
-
-            .nav-auth {
-                display: flex;
-            }
-
-            .hamburger {
-                display: none !important;
-            }
-
-            .mobile-menu {
-                display: none !important;
-            }
+            .nav-menu { display: flex; }
+            .nav-auth { display: flex; }
+            .hamburger { display: none !important; }
+            .mobile-menu { display: none !important; }
         }
 
         @media (max-width: 767px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .nav-auth {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .nav-wrapper {
-                gap: 0;
-            }
+            .nav-menu { display: none; }
+            .nav-auth { display: none; }
+            .hamburger { display: block; }
+            .mobile-menu { display: block; }
+            .nav-wrapper { gap: 0; }
         }
 
         .main-container {
@@ -342,7 +448,6 @@
             bottom: -150px;
             right: -120px;
         }
-
 
         .about-container {
             display: flex;
@@ -655,8 +760,8 @@
                 </div>
             </div>
 
-            <!-- Login Button -->
-            <div class="nav-auth">
+            <!-- Login Button/Auth Container -->
+            <div class="nav-auth" id="auth-container">
                 <a href="login.html">
                     <button class="nav-auth-btn">
                         Log in or <br> Create Account
@@ -683,13 +788,14 @@
                 <a href="Trip-ideas.html">Trip Ideas</a>
             </div>
 
-            <a href="login.html"
-                style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
-                Log in or Create Account
-            </a>
+            <!-- Mobile Auth Container -->
+            <div id="mobile-auth-container">
+                <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
+                    Log in or Create Account
+                </a>
+            </div>
         </div>
     </nav>
-    <!-- Background Decorations  -->
 
     <!-- Main Container -->
     <div class="main-container">
@@ -699,10 +805,8 @@
                 <div class="about-content">
                     <h1 class="about-title">About OneTour.Planner</h1>
                     <p class="about-description">
-                        Discover the magic of travel with OneTour.Planner, your gateway to Bihar's enchanting
-                        landscapes.
-                        We blend history, spirituality, and natural beauty into bespoke adventures that captivate your
-                        soul.
+                        Discover the magic of travel with OneTour.Planner, your gateway to Bihar's enchanting landscapes.
+                        We blend history, spirituality, and natural beauty into bespoke adventures that captivate your soul.
                         With expert guidance and personalized care, we turn every trip into a masterpiece of memories.
                     </p>
                     <div class="about-features">
@@ -749,6 +853,125 @@
         </form>
     </div>
 
+    <!-- Firebase Scripts -->
+    <script type="module">
+        // Firebase Authentication
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyATXQVGhwcAX7gJLEqGbgFjwD11fA4wOVY",
+            authDomain: "bihartourism-7cbe4.firebaseapp.com",
+            projectId: "bihartourism-7cbe4",
+            storageBucket: "bihartourism-7cbe4.appspot.com",
+            messagingSenderId: "909615810483",
+            appId: "1:909615810483:web:2a8409199ba6be4e132dc6"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const authContainer = document.getElementById('auth-container');
+        const mobileAuthContainer = document.getElementById('mobile-auth-container');
+
+        // Update auth UI
+        function updateAuthUI(user) {
+            if (user) {
+                // User is signed in
+                const userInitial = user.email ? user.email.charAt(0).toUpperCase() : 'U';
+                const userName = user.displayName || user.email.split('@')[0];
+
+                // Desktop view
+                authContainer.innerHTML = `
+                    <div class="profile-container">
+                        <div class="profile-icon">
+                            <span>${userInitial}</span>
+                            <span class="profile-name">Hi, ${userName}</span>
+                        </div>
+                        <div class="profile-dropdown">
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                            <a href="#" class="dropdown-item logout-btn" id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                // Mobile view
+                mobileAuthContainer.innerHTML = `
+                    <div class="mobile-profile">
+                        <div class="mobile-profile-header">
+                            <div class="mobile-profile-icon">${userInitial}</div>
+                            <div class="mobile-profile-name">${userName}</div>
+                        </div>
+                        <a href="profile.html" class="mobile-profile-link">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#" class="mobile-profile-link logout-btn" id="mobile-logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                `;
+
+                // Add logout functionality
+                document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+
+                document.getElementById('mobile-logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+
+                // Toggle dropdown
+                const profileIcon = authContainer.querySelector('.profile-icon');
+                const dropdown = authContainer.querySelector('.profile-dropdown');
+                
+                profileIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('show');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', () => {
+                    dropdown.classList.remove('show');
+                });
+            } else {
+                // No user signed in
+                authContainer.innerHTML = `
+                    <a href="login.html">
+                        <button class="nav-auth-btn">
+                            Log in or <br> Create Account
+                        </button>
+                    </a>
+                `;
+
+                mobileAuthContainer.innerHTML = `
+                    <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
+                        Log in or Create Account
+                    </a>
+                `;
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            signOut(auth).then(() => {
+                window.location.href = "index.html";
+            }).catch((error) => {
+                console.error("Logout error:", error);
+                alert("Failed to logout. Please try again.");
+            });
+        }
+
+        // Check auth state and update UI
+        onAuthStateChanged(auth, (user) => {
+            updateAuthUI(user);
+        });
+    </script>
+
     <!-- EmailJS Script -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
@@ -763,7 +986,6 @@
             const closeBtn = document.querySelector('#closeContact');
             const contactForm = document.querySelector('#contactForm');
             const featureItems = document.querySelectorAll('.feature-item');
-            const aboutImage = document.querySelector('.about-image img');
             const hamburger = document.querySelector('#hamburger');
             const mobileMenu = document.querySelector('#mobileMenu');
             const mobileMoreBtn = document.querySelector('#mobileMoreBtn');
@@ -889,11 +1111,11 @@
         // Ripple animation keyframes
         const styleSheet = document.createElement('style');
         styleSheet.textContent = `
-    @keyframes ripple {
-        0% { width: 0; height: 0; opacity: 1; }
-        100% { width: 250px; height: 250px; opacity: 0; }
-    }
-`;
+            @keyframes ripple {
+                0% { width: 0; height: 0; opacity: 1; }
+                100% { width: 250px; height: 250px; opacity: 0; }
+            }
+        `;
         document.head.appendChild(styleSheet);
     </script>
 </body>

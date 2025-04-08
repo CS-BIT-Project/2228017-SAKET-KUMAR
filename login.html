@@ -188,43 +188,45 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyATXQVGhwcAX7gJLEqGbgFjwD11fA4wOVY",
-            authDomain: "bihartourism-7cbe4.firebaseapp.com",
-            projectId: "bihartourism-7cbe4",
-            storageBucket: "bihartourism-7cbe4.appspot.com",
-            messagingSenderId: "909615810483",
-            appId: "1:909615810483:web:2a8409199ba6be4e132dc6"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const loginForm = document.getElementById('login-form');
-        const loginBtn = document.getElementById('login-btn');
-
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Show loading state
-            loginBtn.disabled = true;
-            loginBtn.textContent = 'Logging in...';
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            signInWithEmailAndPassword(auth, email, password)
-                .then(() => {
-                    window.location.href = "index.html";
-                })
-                .catch((error) => {
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = 'Log In';
-                    alert("Login failed: " + error.message);
-                });
-        });
-    </script>
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+  
+      const firebaseConfig = {
+          apiKey: "AIzaSyATXQVGhwcAX7gJLEqGbgFjwD11fA4wOVY",
+          authDomain: "bihartourism-7cbe4.firebaseapp.com",
+          projectId: "bihartourism-7cbe4",
+          storageBucket: "bihartourism-7cbe4.appspot.com",
+          messagingSenderId: "909615810483",
+          appId: "1:909615810483:web:2a8409199ba6be4e132dc6"
+      };
+  
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+  
+      document.getElementById('login-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          const loginBtn = document.getElementById('login-btn');
+  
+          // Show loading state
+          loginBtn.disabled = true;
+          loginBtn.textContent = 'Logging in...';
+  
+          signInWithEmailAndPassword(auth, email, password)
+              .then(() => {
+                  // Redirect to stored URL or homepage
+                  const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || 'index.html';
+                  sessionStorage.removeItem('redirectAfterLogin');
+                  window.location.href = redirectUrl;
+              })
+              .catch((error) => {
+                  loginBtn.disabled = false;
+                  loginBtn.textContent = 'Log In';
+                  alert("Login failed: " + error.message);
+              });
+      });
+  </script>
 </body>
 </html>

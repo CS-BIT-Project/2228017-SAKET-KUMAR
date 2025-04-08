@@ -27,13 +27,11 @@
     cursor: pointer;
     padding: 8px 12px;
     border-radius: 30px;
-    background: rgba(212, 25, 25, 0.1);
+    background: #797979;
     transition: all 0.3s ease;
 }
 
-.profile-icon:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
+
 
 .profile-icon span:first-child {
     display: flex;
@@ -42,8 +40,8 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: #4361ee;
-    color: white;
+    background: #FFF30F;
+    color: black;
     font-weight: bold;
 }
 
@@ -171,12 +169,13 @@
     justify-content: center;
     gap: 8px;
     margin-top: 20px;
-    background: #4361ee;
+    background: #ff0303;
     color: white;
     padding: 12px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: 500;
+    text-align: center;
 }
 
 .mobile-login-btn i {
@@ -252,7 +251,7 @@
 
             <!-- Mobile Auth Section -->
             <div id="mobile-auth-container">
-                <a href="login.html" class="mobile-login-btn">
+                <a href="login.html" class="mobile-login-btn" >
                     Log in or Create Account
                 </a>
             </div>
@@ -601,12 +600,12 @@
 
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <a href="#">Home</a>
-                <a href="#">Services</a>
-                <a href="#">Explore</a>
-                <a href="#">Packages</a>
-                <a href="#">Tourist Places</a>
-                <a href="#">Trip Ideas</a>
+                <a href="index.html">Home</a>
+                <a href="Services.html">Services</a>
+                <a href="Explore.html">Explore</a>
+                <a href="Pakages.html">Packages</a>
+                <a href="Tourist-Places.html">Tourist Places</a>
+                <a href="Trip-ideas.html">Trip Ideas</a>
             </div>
 
             <div class="footer-section">
@@ -617,11 +616,11 @@
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-phone-alt"></i>
-                    <p>+1 (123) 456-7890</p>
+                    <p>+91 8936016877</p>
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-envelope"></i>
-                    <p>contact@onetour.planner</p>
+                    <p>saketbranwal@gmail.com</p>
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-clock"></i>
@@ -960,9 +959,39 @@
             });
         }
     
-        // Check auth state
+        // Function to handle refresh action
+        function performRefreshAction() {
+            alert("Refresh action successful!"); // Replace with your actual refresh logic
+            console.log("Data refreshed successfully");
+        }
+    
+        // Modified saveData function with auth check
+        function saveData() {
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is logged in - perform the action
+                    performRefreshAction();
+                } else {
+                    // User not logged in - show prompt
+                    if (confirm("You need to login to use this feature. Redirect to login page?")) {
+                        // Store current URL to return after login
+                        sessionStorage.setItem('redirectAfterLogin', window.location.href);
+                        // Redirect to login page
+                        window.location.href = "login.html";
+                    }
+                }
+            });
+        }
+    
+        // Check auth state and update UI
         onAuthStateChanged(auth, (user) => {
             updateAuthUI(user);
+            
+            // Attach event listener to refresh button if it exists
+            const refreshBtn = document.querySelector('.refresh-btn button');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', saveData);
+            }
         });
     </script>
 </body>

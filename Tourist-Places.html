@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Places</title>
+    <title>Tour Places - OneTour.Planner</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-             * {
+        * {
             box-sizing: border-box;
         }
 
@@ -120,6 +122,7 @@
         .nav-auth {
             display: none;
             align-items: center;
+            position: relative;
         }
 
         .nav-auth-btn {
@@ -142,6 +145,154 @@
 
         .nav-auth-btn:hover {
             background: #e60000;
+        }
+
+        /* Profile Dropdown Styles */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 15px;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 30px;
+            background: #797979;
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon span:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: yellow;
+            color: black;
+            font-weight: bold;
+        }
+
+        .profile-name {
+            color: white;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .profile-dropdown {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-item i {
+            margin-right: 10px;
+            color: #4361ee;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #4361ee;
+        }
+
+        .dropdown-item.logout-btn i {
+            color: #f72585;
+        }
+
+        .dropdown-item.logout-btn:hover {
+            color: #f72585;
+        }
+
+        /* Mobile Profile Styles */
+        .mobile-profile {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4361ee;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .mobile-profile-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .mobile-profile-link {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .mobile-profile-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .mobile-profile-link.logout-btn {
+            color: #f72585;
+        }
+
+        .mobile-profile-link.logout-btn i {
+            color: #f72585;
         }
 
         /* Hamburger Menu */
@@ -440,8 +591,8 @@
                 </div>
             </div>
 
-            <!-- Login Button -->
-            <div class="nav-auth">
+            <!-- Login Button/Auth Container -->
+            <div class="nav-auth" id="auth-container">
                 <a href="login.html">
                     <button class="nav-auth-btn">
                         Log in or <br> Create Account
@@ -468,9 +619,12 @@
                 <a href="Trip-ideas.html">Trip Ideas</a>
             </div>
             
-            <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
-                Log in or Create Account
-            </a>
+            <!-- Mobile Auth Container -->
+            <div id="mobile-auth-container">
+                <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
+                    Log in or Create Account
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -527,12 +681,144 @@
             </div>
         </div>
     </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
     <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyATXQVGhwcAX7gJLEqGbgFjwD11fA4wOVY",
+            authDomain: "bihartourism-7cbe4.firebaseapp.com",
+            projectId: "bihartourism-7cbe4",
+            storageBucket: "bihartourism-7cbe4.appspot.com",
+            messagingSenderId: "909615810483",
+            appId: "1:909615810483:web:2a8409199ba6be4e132dc6"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // DOM elements
+        const authContainer = document.getElementById('auth-container');
+        const mobileAuthContainer = document.getElementById('mobile-auth-container');
+
+        // Update auth UI based on user state
+        function updateAuthUI(user) {
+            if (user) {
+                // User is signed in
+                const userInitial = user.email ? user.email.charAt(0).toUpperCase() : 'U';
+                const userName = user.displayName || user.email.split('@')[0];
+
+                // Desktop view
+                authContainer.innerHTML = `
+                    <div class="profile-container">
+                        <div class="profile-icon" id="profileIcon">
+                            <span>${userInitial}</span>
+                            <span class="profile-name">Hi, ${userName}</span>
+                        </div>
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                            <a href="#" class="dropdown-item logout-btn" id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                // Mobile view
+                mobileAuthContainer.innerHTML = `
+                    <div class="mobile-profile">
+                        <div class="mobile-profile-header">
+                            <div class="mobile-profile-icon">${userInitial}</div>
+                            <div class="mobile-profile-name">${userName}</div>
+                        </div>
+                        <a href="profile.html" class="mobile-profile-link">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#" class="mobile-profile-link logout-btn" id="mobile-logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                `;
+
+                // Add event listeners for desktop dropdown
+                const profileIcon = document.getElementById('profileIcon');
+                const profileDropdown = document.getElementById('profileDropdown');
+                
+                if (profileIcon && profileDropdown) {
+                    profileIcon.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        profileDropdown.classList.toggle('show');
+                    });
+                }
+
+                // Add logout functionality
+                document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+
+                document.getElementById('mobile-logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', () => {
+                    if (profileDropdown) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
+                
+            } else {
+                // No user signed in
+                authContainer.innerHTML = `
+                    <a href="login.html">
+                        <button class="nav-auth-btn">
+                            Log in or <br> Create Account
+                        </button>
+                    </a>
+                `;
+
+                mobileAuthContainer.innerHTML = `
+                    <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
+                        Log in or Create Account
+                    </a>
+                `;
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            auth.signOut().then(() => {
+                // Update UI after logout
+                updateAuthUI(null);
+                // Close mobile menu if open
+                const hamburger = document.getElementById('hamburger');
+                const mobileMenu = document.getElementById('mobileMenu');
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            }).catch((error) => {
+                console.error("Logout error:", error);
+                alert("Failed to logout. Please try again.");
+            });
+        }
+
+        // Check auth state on page load
+        auth.onAuthStateChanged((user) => {
+            updateAuthUI(user);
+        });
+
         // Hamburger menu toggle
         const hamburger = document.querySelector('#hamburger');
         const mobileMenu = document.querySelector('#mobileMenu');
-        
-        hamburger.addEventListener('click', function() {
+
+        hamburger.addEventListener('click', function () {
             this.classList.toggle('open');
             mobileMenu.classList.toggle('open');
         });
@@ -544,13 +830,13 @@
         const mobileDropdown = document.querySelector('#mobileDropdown');
 
         // Desktop dropdown toggle
-        moreBtn.addEventListener('click', function(e) {
+        moreBtn.addEventListener('click', function (e) {
             e.stopPropagation();
             dropdownMenu.classList.toggle('show');
         });
 
         // Mobile dropdown toggle
-        mobileMoreBtn.addEventListener('click', function(e) {
+        mobileMoreBtn.addEventListener('click', function (e) {
             e.stopPropagation();
             mobileDropdown.classList.toggle('show');
             const span = this.querySelector('span');
@@ -558,19 +844,21 @@
         });
 
         // Close dropdowns when clicking anywhere else
-        document.addEventListener('click', function() {
+        document.addEventListener('click', function () {
             dropdownMenu.classList.remove('show');
             mobileDropdown.classList.remove('show');
             const span = mobileMoreBtn.querySelector('span');
-            span.textContent = '▾';
+            if (span) {
+                span.textContent = '▾';
+            }
         });
 
         // Prevent dropdown from closing when clicking inside it
-        dropdownMenu.addEventListener('click', function(e) {
+        dropdownMenu.addEventListener('click', function (e) {
             e.stopPropagation();
         });
 
-        mobileDropdown.addEventListener('click', function(e) {
+        mobileDropdown.addEventListener('click', function (e) {
             e.stopPropagation();
         });
 
@@ -580,7 +868,10 @@
                 hamburger.classList.remove('open');
                 mobileMenu.classList.remove('open');
                 mobileDropdown.classList.remove('show');
-                mobileMoreBtn.querySelector('span').textContent = '▾';
+                const span = mobileMoreBtn.querySelector('span');
+                if (span) {
+                    span.textContent = '▾';
+                }
             });
         });
     </script>
