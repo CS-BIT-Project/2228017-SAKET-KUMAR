@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -203,8 +204,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .dropdown-item {
@@ -422,11 +430,11 @@
             .nav-auth {
                 display: flex;
             }
-            
+
             .hamburger {
                 display: none !important;
             }
-            
+
             .mobile-menu {
                 display: none !important;
             }
@@ -444,7 +452,7 @@
             .hamburger {
                 display: block;
             }
-            
+
             .mobile-menu {
                 display: block;
             }
@@ -453,264 +461,264 @@
                 gap: 0;
             }
         }
+
         .holiday-packages {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-    background-color: #f8f9fa;
-}
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-.header-section {
-    text-align: center;
-    margin-bottom: 40px;
-}
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-.header-section h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #3498db, #2ecc71);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+        .header-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.subtitle {
-    font-size: 1.1rem;
-    color: #7f8c8d;
-    margin-bottom: 20px;
-}
+        .subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
 
-.package-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 30px;
-    width: 100%;
-}
+        .package-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
 
-.package-card {
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
+        .package-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-.package-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-}
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
 
-.card-badge {
-    position: absolute;
-    top: 15px;
-    right: -30px;
-    background-color: #e74c3c;
-    color: white;
-    padding: 5px 30px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    transform: rotate(45deg);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    width: 120px;
-    text-align: center;
-}
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 120px;
+            text-align: center;
+        }
 
-.package-card img {
-    width: 100%;
-    border-radius: 10px;
-    height: 200px;
-    object-fit: cover;
-    margin-bottom: 15px;
-}
+        .package-card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
 
-.oneline {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
+        .oneline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-.oneline h2 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0;
-}
+        .oneline h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
 
-.rating {
-    display: flex;
-    align-items: center;
-    background-color: #f1f9fe;
-    padding: 5px 10px;
-    border-radius: 20px;
-}
+        .rating {
+            display: flex;
+            align-items: center;
+            background-color: #f1f9fe;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
 
-.stars {
-    color: #f39c12;
-    margin-right: 5px;
-    font-size: 0.9rem;
-}
+        .stars {
+            color: #f39c12;
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
 
-.package-card h3 {
-    font-size: 1rem;
-    color: #7f8c8d;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
+        .package-card h3 {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
 
-.features {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 15px;
-}
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
 
-.feature-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f8f9fa;
-    padding: 8px 5px;
-    border-radius: 8px;
-    font-size: 0.8rem;
-}
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 8px 5px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
 
-.feature-item .icon {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-}
+        .feature-item .icon {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
 
-.package-description {
-    margin: 15px 0;
-    flex-grow: 1;
-}
+        .package-description {
+            margin: 15px 0;
+            flex-grow: 1;
+        }
 
-.package-description p {
-    color: #555;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: flex-start;
-}
+        .package-description p {
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+        }
 
-.check-mark {
-    color: #2ecc71;
-    margin-right: 8px;
-    font-weight: bold;
-}
+        .check-mark {
+            color: #2ecc71;
+            margin-right: 8px;
+            font-weight: bold;
+        }
 
-.price-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-}
+        .price-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
 
-.price {
-    display: flex;
-    flex-direction: column;
-}
+        .price {
+            display: flex;
+            flex-direction: column;
+        }
 
-.original-price {
-    text-decoration: line-through;
-    color: #95a5a6;
-    font-size: 0.9rem;
-}
+        .original-price {
+            text-decoration: line-through;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
 
-.discounted-price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #e74c3c;
-}
+        .discounted-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e74c3c;
+        }
 
-.discount-badge {
-    background-color: #e74c3c;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    margin-left: 5px;
-    align-self: flex-start;
-}
+        .discount-badge {
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+            align-self: flex-start;
+        }
 
-.details-btn {
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #3498db, #2ecc71);
-    border: none;
-    border-radius: 25px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
-}
+        .details-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
 
-.details-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
-}
+        .details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+        }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .package-container {
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    }
-}
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .package-container {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
 
-@media (max-width: 768px) {
-    .package-container {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-    }
-    
-    .header-section h1 {
-        font-size: 2rem;
-    }
-    
-    .package-card {
-        padding: 15px;
-    }
-}
+        @media (max-width: 768px) {
+            .package-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+            }
 
-@media (max-width: 480px) {
-    .holiday-packages {
-        padding: 20px 15px;
-    }
-    
-    .package-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .header-section h1 {
-        font-size: 1.8rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-    }
-    
-    .features {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-    }
-    
-    .price-details {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .details-btn {
-        width: 100%;
-        margin-top: 10px;
-    }
-}
+            .header-section h1 {
+                font-size: 2rem;
+            }
+
+            .package-card {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .holiday-packages {
+                padding: 20px 15px;
+            }
+
+            .package-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .price-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .details-btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -767,7 +775,7 @@
             <a href="Explore.html">Explore....</a>
             <a href="Pakages.html">Packages</a>
             <a href="Tourist-Places.html">Tourist Places</a>
-            
+
             <button class="mobile-dropdown-toggle" id="mobileMoreBtn">
                 More <span>▾</span>
             </button>
@@ -777,10 +785,11 @@
                 <a href="blog.html">Blog</a>
                 <a href="Trip-ideas.html">Trip Ideas</a>
             </div>
-            
+
             <!-- Mobile Auth Container -->
             <div id="mobile-auth-container">
-                <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
+                <a href="login.html"
+                    style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
                     Log in or Create Account
                 </a>
             </div>
@@ -836,7 +845,7 @@
                     <button class="details-btn">View Details</button>
                 </div>
             </div>
-    
+
             <!-- Package Card 2 -->
             <div class="package-card">
                 <div class="card-badge">Family Special</div>
@@ -881,7 +890,7 @@
                     <button class="details-btn">View Details</button>
                 </div>
             </div>
-    
+
             <!-- Package Card 3 -->
             <div class="package-card">
                 <div class="card-badge">Luxury</div>
@@ -926,7 +935,7 @@
                     <button class="details-btn">View Details</button>
                 </div>
             </div>
-    
+
             <!-- Package Card 4 -->
             <div class="package-card">
                 <img src="/OneTourPlanner/Assets/image 8.png" alt="Patna">
@@ -970,7 +979,7 @@
                     <button class="details-btn">View Details</button>
                 </div>
             </div>
-    
+
             <!-- Package Card 5 -->
             <div class="package-card">
                 <div class="card-badge">New</div>
@@ -1015,7 +1024,7 @@
                     <button class="details-btn">View Details</button>
                 </div>
             </div>
-    
+
             <!-- Package Card 6 -->
             <div class="package-card">
                 <div class="card-badge">Best Value</div>
@@ -1130,7 +1139,7 @@
                 // Add event listeners for desktop dropdown
                 const profileIcon = document.getElementById('profileIcon');
                 const profileDropdown = document.getElementById('profileDropdown');
-                
+
                 if (profileIcon && profileDropdown) {
                     profileIcon.addEventListener('click', (e) => {
                         e.stopPropagation();
@@ -1155,7 +1164,7 @@
                         profileDropdown.classList.remove('show');
                     }
                 });
-                
+
             } else {
                 // No user signed in
                 authContainer.innerHTML = `
@@ -1257,4 +1266,5 @@
         });
     </script>
 </body>
+
 </html>

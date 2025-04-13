@@ -7,7 +7,7 @@
   right: 0;
   top: 332px;
   transform: translateY(-50%);
-  z-index: 1;
+  z-index: -9;
 }
 
 * {
@@ -17,6 +17,7 @@
 .nav-main {
   padding: 24px 0;
   position: relative;
+  /* z-index: 100; */
 }
 
 .nav-wrapper {
@@ -130,7 +131,7 @@
 
 .nav-auth-btn {
   position: relative;
-  z-index: 10;
+  z-index: 999;
   background: #ff0303;
   color: white;
   cursor: pointer;
@@ -268,8 +269,23 @@
 
 .boy {
   position: absolute;
-  top: 230px;
-  left: 155px;
+  /* Use percentage-based positioning */
+  top: 230px; /* Adjust based on your layout */
+  left: 155px; /* Adjust based on your layout */
+  /* Limit maximum width if needed */
+}
+
+.boy img {
+  width: 100%; /* Image will fill its container */
+  
+  display: block; /* Remove extra space below image */
+}
+
+/* Media Queries for Responsive Adjustments */
+@media (max-width: 768px) {
+  .boy {
+    display: none; /* Completely hides the image */
+  }
 }
 
 .bold {
@@ -290,6 +306,7 @@
   left: 444px;
   letter-spacing: 2.6px;
 }
+
 
 .card {
   font-family: 'Inter', sans-serif;
@@ -390,13 +407,50 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 625px;
+  margin-top: 625px; /* Using viewport height units instead of fixed pixels */
+  padding: 20px; /* Adds some spacing around the image */
+}
+
+.frame11 img {
+  max-width: 100%; /* Ensures image doesn't overflow its container */
+  height: auto; /* Maintains aspect ratio */
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 768px) {
+  .frame11 {
+    margin-top: 625px; /* Smaller margin on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .frame11 {
+    margin-top: 625px; /* Even smaller margin on mobile phones */
+  }
 }
 .frame24 {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+}
+
+.frame24 img {
+  max-width: 100%; /* Ensures image doesn't overflow its container */
+  height: auto; /* Maintains aspect ratio */
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 768px) {
+  .frame24 {
+    margin-top: 30px; /* Smaller margin on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .frame24 {
+    margin-top: 30px; /* Even smaller margin on mobile phones */
+  }
 }
 
 
@@ -984,6 +1038,7 @@ input::placeholder {
   align-items: center;
   gap: 5px;
   transition: all 0.3s ease;
+ 
 }
 
 .view-all:hover {

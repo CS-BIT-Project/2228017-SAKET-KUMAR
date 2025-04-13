@@ -1,581 +1,222 @@
-<style>
-  /* Tourist Places Section Styles */
-  .places-section {
-      max-width: 1400px;
-      margin: 50px auto;
-      padding: 0 20px;
-  }
+<div class="travel-card">
+    <!-- Location -->
+    <div class="card-item location-item">
+      <span class="icon">
+        <svg width="19" height="26" viewBox="0 0 19 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.1667 10.8334C17.1667 16.2424 11.8585 21.8758 10.076 23.6156C9.90991 23.7568 9.70778 23.8331 9.50001 23.8331C9.29225 23.8331 9.09011 23.7568 8.92405 23.6156C7.14155 21.8758 1.83334 16.2424 1.83334 10.8334C1.83334 8.53481 2.64108 6.33041 4.07886 4.7051C5.51664 3.07978 7.46668 2.16669 9.50001 2.16669C11.5333 2.16669 13.4834 3.07978 14.9212 4.7051C16.3589 6.33041 17.1667 8.53481 17.1667 10.8334Z" stroke="#FFF30F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.50001 14.0834C11.0878 14.0834 12.375 12.6283 12.375 10.8334C12.375 9.03843 11.0878 7.58335 9.50001 7.58335C7.91219 7.58335 6.62501 9.03843 6.62501 10.8334C6.62501 12.6283 7.91219 14.0834 9.50001 14.0834Z" stroke="#FFF30F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div class="input-group">
+        <label class="input-label">Location <span class="dropdown-icon">▼</span></label>
+        <input type="text" id="destinationInput" placeholder="Where to?" class="input-field">
+        <ul id="destinationDropdown" class="dropdown-menu"></ul>
+      </div>
+    </div>
   
-  .category-container {
-      margin-bottom: 60px;
-  }
+    <!-- Date -->
+    <div class="card-item date-item">
+      <span class="icon">
+        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.66667 1.66669V5.00002M12.3333 1.66669V5.00002M1.5 8.33335H16.5M5.66667 11.6667H5.675M9 11.6667H9.00833M12.3333 11.6667H12.3417M5.66667 15H5.675M9 15H9.00833M12.3333 15H12.3417M3.16667 3.33335H14.8333C15.7538 3.33335 16.5 4.07955 16.5 5.00002V16.6667C16.5 17.5872 15.7538 18.3334 14.8333 18.3334H3.16667C2.24619 18.3334 1.5 17.5872 1.5 16.6667V5.00002C1.5 4.07955 2.24619 3.33335 3.16667 3.33335Z" stroke="#FFF30F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div class="input-group">
+        <label class="input-label">Date <span class="dropdown-icon">▼</span></label>
+        <input type="text" id="dateInput" placeholder="Select date" class="input-field">
+      </div>
+    </div>
   
-  .category-heading {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #2d3436;
-      margin-bottom: 30px;
+    <!-- Return -->
+    <div class="card-item return-item">
+      <span class="icon">
+        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.66667 1.66669V5.00002M12.3333 1.66669V5.00002M1.5 8.33335H16.5M5.66667 11.6667H5.675M9 11.6667H9.00833M12.3333 11.6667H12.3417M5.66667 15H5.675M9 15H9.00833M12.3333 15H12.3417M3.16667 3.33335H14.8333C15.7538 3.33335 16.5 4.07955 16.5 5.00002V16.6667C16.5 17.5872 15.7538 18.3334 14.8333 18.3334H3.16667C2.24619 18.3334 1.5 17.5872 1.5 16.6667V5.00002C1.5 4.07955 2.24619 3.33335 3.16667 3.33335Z" stroke="#FFF30F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div class="input-group">
+        <label class="input-label">Return <span class="dropdown-icon">▼</span></label>
+        <input type="text" id="returnInput" placeholder="Select return" class="input-field">
+      </div>
+    </div>
+  
+    <!-- Search Button -->
+    <button class="search-button" title="Search" type="button" onclick="saveData()">
+      <svg width="24" height="24" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28 28.5L21.7889 22.2889M25.1111 14.0556C25.1111 20.4375 19.9375 25.6111 13.5556 25.6111C7.1736 25.6111 2 20.4375 2 14.0556C2 7.6736 7.1736 2.5 13.5556 2.5C19.9375 2.5 25.1111 7.6736 25.1111 14.0556Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 8 12 16"/>
+      </svg>
+    </button>
+  </div>
+  
+  <style>
+    /* Base Styles */
+    .travel-card {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      background: #FFF7F7;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      gap: 16px;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
       position: relative;
-      padding-left: 20px;
-  }
+      z-index: 10;
+    }
   
-  .category-heading::before {
+    .card-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      position: relative;
+    }
+  
+    .card-item:not(:last-child)::after {
       content: '';
       position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 70%;
-      width: 8px;
-      background: linear-gradient(to bottom, #FF5A5F, #00A699);
-      border-radius: 4px;
-  }
-  
-  .places-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-      justify-items: center;
-  }
-  
-  .place-card {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      background: white;
-  }
-  
-  .place-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-  }
-  
-  .place-image-container {
-      height: 220px;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-  }
-  
-  .place-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-  }
-  
-  .place-card:hover .place-image {
-      transform: scale(1.05);
-  }
-  
-  .place-overlay {
-      position: absolute;
-      bottom: 0;
+      bottom: -8px;
       left: 0;
       right: 0;
-      height: 40%;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      height: 1px;
+      background: rgba(116, 121, 121, 0.2);
+    }
+  
+    .icon {
+      flex-shrink: 0;
       display: flex;
-      align-items: flex-end;
-      padding: 20px;
-  }
-  
-  .place-name {
-      color: white;
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin: 0;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  }
-  
-  .place-category {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #FF5A5F;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  
-  .place-details {
-      padding: 20px;
-  }
-  
-  .place-description {
-      color: #636e72;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin-bottom: 15px;
-  }
-  
-  .explore-btn {
-      display: inline-flex;
       align-items: center;
-      padding: 8px 20px;
-      background: linear-gradient(135deg, #FF5A5F 0%, #FF3A3F 100%);
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 90, 95, 0.3);
-  }
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+    }
   
-  .explore-btn:hover {
+    .input-group {
+      flex-grow: 1;
+    }
+  
+    .input-label {
+      display: block;
+      font-size: 14px;
+      color: #747979;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+  
+    .dropdown-icon {
+      color: #FFF30F;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+  
+    .input-field {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      color: #070606;
+      outline: none;
+      padding: 4px 0;
+      font-weight: 500;
+    }
+  
+    .input-field::placeholder {
+      color: #9CA3AF;
+      font-weight: 400;
+    }
+  
+    .search-button {
+      background: #FFF30F;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 243, 15, 0.3);
+      cursor: pointer;
+      border: none;
+      margin: 8px auto 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+  
+    .search-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 90, 95, 0.4);
-      background: linear-gradient(135deg, #FF3A3F 0%, #FF5A5F 100%);
-  }
+      box-shadow: 0 6px 16px rgba(255, 243, 15, 0.4);
+    }
   
-  .explore-btn i {
-      margin-left: 8px;
-      transition: transform 0.3s ease;
-  }
+    .search-button:active {
+      transform: translateY(0);
+    }
   
-  .explore-btn:hover i {
-      transform: translateX(5px);
-  }
+    /* Tablet Layout (768px and up) */
+    @media (min-width: 768px) {
+      .travel-card {
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 24px;
+        border-radius: 50px;
+        gap: 0;
+      }
   
-  /* Responsive Styles */
-  @media (max-width: 1200px) {
-      .places-grid {
-          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-          gap: 25px;
+      .card-item {
+        padding: 0 16px;
       }
-  }
   
-  @media (max-width: 768px) {
-      .category-heading {
-          font-size: 1.8rem;
-          margin-bottom: 25px;
-          padding-left: 15px;
+      .card-item:not(:last-child)::after {
+        content: none;
       }
-      
-      .category-heading::before {
-          width: 6px;
-      }
-      
-      .places-grid {
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-          gap: 20px;
-      }
-      
-      .place-image-container {
-          height: 180px;
-      }
-      
-      .place-name {
-          font-size: 1.2rem;
-      }
-  }
   
-  @media (max-width: 576px) {
-      .category-heading {
-          font-size: 1.5rem;
-          margin-bottom: 20px;
-          padding-left: 12px;
+      .card-item:not(:first-child) {
+        border-left: 1px solid rgba(116, 121, 121, 0.2);
       }
-      
-      .places-grid {
-          grid-template-columns: 1fr;
-          max-width: 350px;
-          margin: 0 auto;
+  
+      .input-label {
+        font-size: 13px;
       }
-      
-      .place-card {
-          max-width: 100%;
+  
+      .input-field {
+        font-size: 15px;
+        width: 120px;
       }
-  }
-</style>
-
-<div class="places-section">
-  <!-- Spiritual Places -->
-  <div class="category-container">
-      <h2 class="category-heading">SPIRITUAL PLACES</h2>
-      <div class="places-grid">
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Chhinmastika Devi.jpeg" class="place-image" alt="Chhinmastika Devi">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Chhinmastika Devi</h3>
-                  </div>
-                  <span class="place-category">Temple</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A sacred Hindu temple dedicated to Goddess Chhinamastika, known for its unique architecture and spiritual significance.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Hanuman Mandir.jpg" class="place-image" alt="Hanuman Mandir">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Hanuman Mandir</h3>
-                  </div>
-                  <span class="place-category">Temple</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A revered temple dedicated to Lord Hanuman, attracting devotees from all over the country.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Vishnupad image (1).jpg" class="place-image" alt="Vishnupad Temple">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Vishnupad Temple</h3>
-                  </div>
-                  <span class="place-category">Temple</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">An ancient temple housing footprints of Lord Vishnu, a significant pilgrimage site for Hindus.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Gaya.jpg" class="place-image" alt="Mahabodhi Temple">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Mahabodhi Temple</h3>
-                  </div>
-                  <span class="place-category">Buddhist</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A UNESCO World Heritage Site marking the location where Buddha attained enlightenment.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Harmandir_Patna.jpg" class="place-image" alt="Gurudwara">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Gurudwara</h3>
-                  </div>
-                  <span class="place-category">Sikh</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A sacred Sikh shrine with beautiful architecture and peaceful atmosphere for meditation.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-      </div>
-  </div>
   
-  <!-- Nature Places -->
-  <div class="category-container">
-      <h2 class="category-heading">NATURE WONDERS</h2>
-      <div class="places-grid">
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/kaimur hills.jpg" class="place-image" alt="Kaimur Hills">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Kaimur Hills</h3>
-                  </div>
-                  <span class="place-category">Hills</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">Scenic mountain range offering breathtaking views, trekking opportunities, and rich biodiversity.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/kakolat waterfall.jpg" class="place-image" alt="Kakolat Waterfall">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Kakolat Waterfall</h3>
-                  </div>
-                  <span class="place-category">Waterfall</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A stunning waterfall cascading from a height of 150 feet, surrounded by lush greenery.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Kashish water.jpeg" class="place-image" alt="Kashish Waterfall">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Kashish Waterfall</h3>
-                  </div>
-                  <span class="place-category">Waterfall</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A hidden gem with crystal clear waters perfect for a refreshing dip in nature's lap.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Gurpa hill img.png" class="place-image" alt="Gurpa Hill">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Gurpa Hill</h3>
-                  </div>
-                  <span class="place-category">Hills</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A picturesque hill station offering panoramic views and serene environment for nature lovers.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Nature img1.jpg" class="place-image" alt="Waterfall">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Waterfall</h3>
-                  </div>
-                  <span class="place-category">Waterfall</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A beautiful cascade surrounded by dense forests, perfect for photography and relaxation.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-      </div>
-  </div>
+      .search-button {
+        margin: 0 0 0 16px;
+        width: 60px;
+        height: 60px;
+      }
+    }
   
-  <!-- Adventure Places -->
-  <div class="category-container">
-      <h2 class="category-heading">ADVENTURE SPOTS</h2>
-      <div class="places-grid">
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Rope.jpg" class="place-image" alt="Rope Activities">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Rope Activities</h3>
-                  </div>
-                  <span class="place-category">Adventure</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">Thrilling rope courses and zip-lining experiences for adventure enthusiasts of all ages.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Paraglading.jpg" class="place-image" alt="Paragliding">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Paragliding</h3>
-                  </div>
-                  <span class="place-category">Adventure</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">Experience the thrill of flying with professional paragliding sessions and breathtaking views.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/boating.jpg" class="place-image" alt="Boating">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Boating</h3>
-                  </div>
-                  <span class="place-category">Water Sports</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">Enjoy peaceful boat rides or exciting water sports in scenic lakes and rivers.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/waterpark.jpg" class="place-image" alt="Waterpark">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Waterpark</h3>
-                  </div>
-                  <span class="place-category">Fun</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">Exciting water slides and pools for a fun-filled day with family and friends.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Luxary Resort Advanture.jpeg" class="place-image" alt="Luxury Resort">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Luxury Resort</h3>
-                  </div>
-                  <span class="place-category">Resort</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">Premium resorts offering adventure activities combined with luxury accommodations.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-      </div>
-  </div>
+    /* Desktop Layout (1024px and up) */
+    @media (min-width: 1024px) {
+      .travel-card {
+        padding: 20px 32px;
+      }
   
-  <!-- Historic Places -->
-  <div class="category-container">
-      <h2 class="category-heading">HISTORIC PLACES</h2>
-      <div class="places-grid">
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Fort_of_Darbhanga.jpg" class="place-image" alt="Fort of Darbhanga">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Fort of Darbhanga</h3>
-                  </div>
-                  <span class="place-category">Fort</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">An architectural marvel showcasing the rich history and culture of the Mithila region.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/rajgir.jpg" class="place-image" alt="Rajgir">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Rajgir</h3>
-                  </div>
-                  <span class="place-category">Ancient City</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">An important historical and religious site with connections to both Buddhism and Jainism.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Rohtas.jpeg" class="place-image" alt="Rohtas Fort">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Rohtas Fort</h3>
-                  </div>
-                  <span class="place-category">Fort</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A massive fort complex with impressive architecture and significant historical importance.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Golghar.jpg" class="place-image" alt="Golghar">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Golghar</h3>
-                  </div>
-                  <span class="place-category">Landmark</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">An iconic granary with unique beehive-shaped architecture offering panoramic city views.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Nalanda.jpg" class="place-image" alt="Nalanda">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Nalanda</h3>
-                  </div>
-                  <span class="place-category">Ruins</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">The ancient ruins of one of the world's first residential universities, a UNESCO World Heritage Site.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-      </div>
-  </div>
+      .card-item {
+        padding: 0 24px;
+      }
   
-  <!-- Wildlife Sanctuaries -->
-  <div class="category-container">
-      <h2 class="category-heading">WILDLIFE SANCTUARIES</h2>
-      <div class="places-grid">
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Kaimur Wildlife Sanctury.jpg" class="place-image" alt="Kaimur Wildlife Sanctuary">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Kaimur Wildlife</h3>
-                  </div>
-                  <span class="place-category">Sanctuary</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">Home to diverse flora and fauna including tigers, leopards, and various bird species.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Bhimbandh Wildlife.jpg" class="place-image" alt="Bhimbandh Wildlife Sanctuary">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Bhimbandh Wildlife</h3>
-                  </div>
-                  <span class="place-category">Sanctuary</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">Famous for its hot springs and rich biodiversity including various mammals and reptiles.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Valmiki Tiger Reserve.jpg" class="place-image" alt="Valmiki Tiger Reserve">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Valmiki Tiger Reserve</h3>
-                  </div>
-                  <span class="place-category">Tiger Reserve</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">The only tiger reserve in Bihar with rich biodiversity and excellent ecotourism opportunities.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Ghora Katora.jpg" class="place-image" alt="Ghora Katora">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Ghora Katora</h3>
-                  </div>
-                  <span class="place-category">Lake</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A scenic lake surrounded by hills, known for its natural beauty and birdwatching opportunities.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-          
-          <div class="place-card">
-              <div class="place-image-container">
-                  <img src="/Assets/Lake Bird Sanctuary.jpg" class="place-image" alt="Bird Sanctuary">
-                  <div class="place-overlay">
-                      <h3 class="place-name">Bird Sanctuary</h3>
-                  </div>
-                  <span class="place-category">Sanctuary</span>
-              </div>
-              <div class="place-details">
-                  <p class="place-description">A paradise for bird lovers with numerous migratory and resident bird species.</p>
-                  <a href="#" class="explore-btn">Explore <i class="fas fa-arrow-right"></i></a>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+      .input-field {
+        width: 140px;
+      }
+  
+      .search-button {
+        width: 70px;
+        height: 70px;
+        margin-left: 24px;
+      }
+    }
+  
+    /* Large Desktop Layout (1280px and up) */
+    @media (min-width: 1280px) {
+      .travel-card {
+        position: absolute;
+        top: 605px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
