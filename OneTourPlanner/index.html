@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Flatpickr Material Blue Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/OneTourPlanner/css/style.css">
+    <script src="/OneTourPlanner/js/script.js"></script>
+    <title>OneTour.Planner</title>
+    <style>
+        /* Profile Dropdown Styles */
+.profile-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 30px;
+    background: #797979;
+    transition: all 0.3s ease;
+}
+
+
+
+.profile-icon span:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #FFF30F;
+    color: black;
+    font-weight: bold;
+}
+
+.profile-name {
+    color: white;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    min-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: none;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.profile-dropdown.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+    color: #4361ee;
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background: #f8f9fa;
+    color: #4361ee;
+}
+
+.dropdown-item.logout-btn i {
+    color: #f72585;
+}
+
+.dropdown-item.logout-btn:hover {
+    color: #f72585;
+}
+
+/* Mobile Profile Styles */
+.mobile-profile {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #4361ee;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.mobile-profile-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.mobile-profile-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.mobile-profile-link i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.mobile-profile-link.logout-btn {
+    color: #f72585;
+}
+
+.mobile-profile-link.logout-btn i {
+    color: #f72585;
+}
+
+.mobile-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    background: #ff0303;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+}
+
+.mobile-login-btn i {
+    font-size: 18px;
+}
+    </style>
+</head>
+
+<body>
+    <nav class="nav-main">
+        <div class="nav-wrapper">
+            <!-- Logo -->
+            <a class="nav-brand" href="index.html">
+                OneTour.<span class="nav-brand-accent">Planner</span>
+            </a>
+
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="Services.html">Services</a>
+                <a href="Explore.html">Explore....</a>
+                <a href="Pakages.html">Packages</a>
+                <a href="Tourist-Places.html">Tourist Places</a>
+
+                <!-- More Dropdown -->
+                <div class="nav-dropdown">
+                    <button id="moreBtn" class="nav-dropdown-toggle">More ▾</button>
+                    <div id="dropdownMenu" class="nav-dropdown-content">
+                        <a href="About.html">About</a>
+                        <a href="F&Q.html">FAQ</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="Trip-ideas.html">Trip Ideas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Button (Desktop) -->
+            <div class="nav-auth" id="auth-container">
+                <img src="Assets/Design.png" alt="Design Background" class="nav-bg-decor">
+                <form action="login.html" method="get">
+                    <button type="submit" class="nav-auth-btn">
+                        Log in or <br> Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="Explore.html">Explore....</a>
+            <a href="Pakages.html">Packages</a>
+            <a href="Tourist-Places.html">Tourist Places</a>
+
+            <button class="mobile-dropdown-toggle" id="mobileMoreBtn">
+                More <span>▾</span>
+            </button>
+            <div class="mobile-dropdown-content" id="mobileDropdown">
+                <a href="About.html">About</a>
+                <a href="F&Q.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+                <a href="Trip-ideas.html">Trip Ideas</a>
+            </div>
+
+            <!-- Mobile Auth Section -->
+            <div id="mobile-auth-container">
+                <a href="login.html" class="mobile-login-btn" >
+                    Log in or Create Account
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Boy Image -->
+    <div class="boy">
+        <img src="Assets\boy.png" alt="Boy Image">
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h6 class="bold">BIHAR</h6>
+        <p class="para">
+            A sanctuary for the soul. In the heart of India, <br> the state of Bihar beckons Travellers with its
+            <br>history,
+            spirituality, and natural beauty. This <br>ancient land is the birthplace of two of the <br>world's major
+            religions, Buddhism and Jainism, <br>offering pilgrims and history enthusiasts an <br>unparalleled journey
+            through
+            time.
+        </p>
+    </div>
+
+    <!-- Card Section -->
+    <div class="card">
+        <!-- Location -->
+        <div class="card-item">
+            <span class="icon">
+                <svg width="19" height="26" viewBox="0 0 19 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.1667 10.8334C17.1667 16.2424 11.8585 21.8758 10.076 23.6156C9.90991 23.7568 9.70778 23.8331 9.50001 23.8331C9.29225 23.8331 9.09011 23.7568 8.92405 23.6156C7.14155 21.8758 1.83334 16.2424 1.83334 10.8334C1.83334 8.53481 2.64108 6.33041 4.07886 4.7051C5.51664 3.07978 7.46668 2.16669 9.50001 2.16669C11.5333 2.16669 13.4834 3.07978 14.9212 4.7051C16.3589 6.33041 17.1667 8.53481 17.1667 10.8334Z"
+                        stroke="#FFF30F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M9.50001 14.0834C11.0878 14.0834 12.375 12.6283 12.375 10.8334C12.375 9.03843 11.0878 7.58335 9.50001 7.58335C7.91219 7.58335 6.62501 9.03843 6.62501 10.8334C6.62501 12.6283 7.91219 14.0834 9.50001 14.0834Z"
+                        stroke="#FFF30F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div>
+                <p class="label">Location <span class="dropdown">▼</span></p>
+                <input type="text" id="destinationInput" placeholder="Destination">
+                <ul id="destinationDropdown" class="dropdown-menu"></ul>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider">
+            <svg width="1" height="30" viewBox="0 0 1 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0.5" y1="30" x2="0.5" stroke="#747979" />
+            </svg>
+        </div>
+
+        <!-- Date -->
+        <div class="card-item">
+            <span class="icon">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.66667 1.66669V5.00002M12.3333 1.66669V5.00002M1.5 8.33335H16.5M5.66667 11.6667H5.675M9 11.6667H9.00833M12.3333 11.6667H12.3417M5.66667 15H5.675M9 15H9.00833M12.3333 15H12.3417M3.16667 3.33335H14.8333C15.7538 3.33335 16.5 4.07955 16.5 5.00002V16.6667C16.5 17.5872 15.7538 18.3334 14.8333 18.3334H3.16667C2.24619 18.3334 1.5 17.5872 1.5 16.6667V5.00002C1.5 4.07955 2.24619 3.33335 3.16667 3.33335Z"
+                        stroke="#FFF30F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div>
+                <p class="label">Date <span class="dropdown">▼</span></p>
+                <input type="text" id="dateInput" placeholder="Select date">
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div>
+            <svg width="1" height="30" viewBox="0 0 1 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0.5" y1="30" x2="0.5" stroke="#747979" />
+            </svg>
+        </div>
+
+        <!-- Return -->
+        <div class="card-item">
+            <span class="icon">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.66667 1.66669V5.00002M12.3333 1.66669V5.00002M1.5 8.33335H16.5M5.66667 11.6667H5.675M9 11.6667H9.00833M12.3333 11.6667H12.3417M5.66667 15H5.675M9 15H9.00833M12.3333 15H12.3417M3.16667 3.33335H14.8333C15.7538 3.33335 16.5 4.07955 16.5 5.00002V16.6667C16.5 17.5872 15.7538 18.3334 14.8333 18.3334H3.16667C2.24619 18.3334 1.5 17.5872 1.5 16.6667V5.00002C1.5 4.07955 2.24619 3.33335 3.16667 3.33335Z"
+                        stroke="#FFF30F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div>
+                <p class="label">Return <span class="dropdown">▼</span></p>
+                <input type="text" id="returnInput" placeholder="Select return">
+            </div>
+        </div>
+
+        <!-- Refresh Button -->
+        <div class="refresh-btn">
+            <button title="Button" type="button" onclick="saveData()">
+
+                <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M28 28.5L21.7889 22.2889M25.1111 14.0556C25.1111 20.4375 19.9375 25.6111 13.5556 25.6111C7.1736 25.6111 2 20.4375 2 14.0556C2 7.6736 7.1736 2.5 13.5556 2.5C19.9375 2.5 25.1111 7.6736 25.1111 14.0556Z"
+                        stroke="#747979" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-dasharray="4 8 12 16" />
+                </svg>
+
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Frame 11 Image -->
+    <div class="frame11">
+        <img src="/OneTourPlanner/Assets/Frame 11.png" alt="Frame11">
+    </div>
+
+    <div class="frame24">
+        <img src="/OneTourPlanner/Assets/Frame 24.png" alt="Frame24">
+    </div>
+
+
+    <div class="hotel-container">
+        <section class="hotel-offer">
+            <div class="offer-content">
+                <h1>Choose the offer and <br> enjoy your room.</h1>
+                <p>I had a fantastic stay! The room was spotless, the staff were <br>incredibly friendly, and the spa
+                    services were top-notch.</p>
+                <div class="amenities">
+                    <div class="amenity">
+                        <p>❄️ Air Conditioner <br>🅿️ Parking</p>
+                    </div>
+                    <div class="amenity">
+                        <p>🛜 Broadband/WIFI <br> 📺 Television</p>
+                    </div>
+                </div>
+                <button class="explore-btn">Explore</button>
+            </div>
+            <div class="image-container">
+                <img src="/OneTourPlanner/Assets/Frame 25.png" alt="Hotel Room Image">
+            </div>
+        </section>
+    </div>
+
+    <!-- Image Section Container -->
+    <div class="image-section-container">
+        <div class="image-section">
+            <h3>Famous Destination <br> in Bihar</h3>
+            <div class="image-row">
+                <img src="/OneTourPlanner/Assets/budh.jpg" alt="Tourist Place 1">
+                <img src="/OneTourPlanner/Assets/Vishnupad image (1).jpg" alt="Tourist Place 2">
+                <img src="/OneTourPlanner/Assets/Nalanda.jpg" alt="Tourist Place 3">
+                <img src="/OneTourPlanner/Assets/kaimur hills.jpg" alt="Tourist Place 4">
+                <img src="/OneTourPlanner/Assets/Kashish water.jpeg" alt="Tourist Place 5">
+            </div>
+        </div>
+    </div>
+
+    <div class="holiday-packages">
+        <h1>Holiday Packages</h1>
+        <div class="package-container">
+            <div class="package-card">
+                <img src="/OneTourPlanner/Assets/image 8.png" alt="Patna">
+                <div class="oneline">
+                    <h2>Patna</h2>
+                    <p>★ 4.5</p>
+                </div>
+                <h3>4 Days, 3 Nights</h3>
+                <div class="icons">
+                    <span>✈️</span>
+                    <span>🏨</span>
+                    <span>🚗</span>
+                    <span>🗺️</span>
+                </div>
+                <div class="package-details">
+                    <span>Flights</span>
+                    <span>Hotels</span>
+                    <span>Cabs</span>
+                    <span>Guide</span>
+                </div>
+                <div class="paragraph">
+                    <p>Tour Combo Air and Cab Transport.</p>
+                    <p>Provide in best Tour Guide.</p>
+                    <p>Provide in accommodation, food.</p>
+                </div>
+                <div class="price-details">
+                    <p>₹4000</p>
+                    <button>Details</button>
+                </div>
+            </div>
+            <!-- Repeat package-card for more packages -->
+            <div class="package-card">
+                <img src="/OneTourPlanner/Assets/budh.jpg" alt="Bodh Gaya">
+                <div class="oneline">
+                    <h2>Bodh Gaya</h2>
+                    <p>★ 4.8</p>
+                </div>
+                <h3>3 Days, 2 Nights</h3>
+                <div class="icons">
+                    <span>✈️</span>
+                    <span>🏨</span>
+                    <span>🚗</span>
+                    <span>🗺️</span>
+                </div>
+                <div class="package-details">
+                    <span>Flights</span>
+                    <span>Hotels</span>
+                    <span>Cabs</span>
+                    <span>Guide</span>
+                </div>
+                <div class="paragraph">
+                    <p>Visit the Mahabodhi Temple complex.</p>
+                    <p>Experience Buddhist culture.</p>
+                    <p>Comfortable stay with meals.</p>
+                </div>
+                <div class="price-details">
+                    <p>₹3500</p>
+                    <button>Details</button>
+                </div>
+            </div>
+            <div class="package-card">
+                <img src="/OneTourPlanner/Assets/Nalanda.jpg" alt="Nalanda">
+                <div class="oneline">
+                    <h2>Nalanda</h2>
+                    <p>★ 4.3</p>
+                </div>
+                <h3>2 Days, 1 Night</h3>
+                <div class="icons">
+                    <span>✈️</span>
+                    <span>🏨</span>
+                    <span>🚗</span>
+                    <span>🗺️</span>
+                </div>
+                <div class="package-details">
+                    <span>Flights</span>
+                    <span>Hotels</span>
+                    <span>Cabs</span>
+                    <span>Guide</span>
+                </div>
+
+                <div class="paragraph">
+                    <p>Explore ancient Nalanda University.</p>
+                    <p>Visit archaeological museum.</p>
+                    <p>Includes travel and meals.</p>
+                </div>
+                <div class="price-details">
+                    <p>₹2500</p>
+                    <button>Details</button>
+                </div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="show-more">Show More</button>
+        </div>
+    </div>
+
+    <div class="imageContainer">
+        <div class="line">
+            <h3>Tour Places</h3>
+            <p class="view-all">View all</p>
+        </div>
+
+        <div class="tour-places">
+            <div class="tour-place">
+                <img src="/OneTourPlanner/Assets/image 8.png" class="image-container1" alt="Golghar, Patna">
+                <h1 class="text-container">Patna</h1>
+            </div>
+            <div class="tour-place">
+                <img src="/OneTourPlanner/Assets/Gaya.jpg" class="image-container1" alt="Mahabodhi Temple, Gaya">
+                <h1 class="text-container">Gaya</h1>
+            </div>
+            <div class="tour-place">
+                <img src="/OneTourPlanner/Assets/Fort_of_Darbhanga.jpg" class="image-container1" alt="Darbhanga Fort">
+                <h1 class="text-container">Darbhanga</h1>
+            </div>
+            <div class="tour-place">
+                <img src="/OneTourPlanner/Assets/Rohtas.jpeg" class="image-container1" alt="Rohtas Fort">
+                <h1 class="text-container">Rohtas</h1>
+            </div>
+            <div class="tour-place">
+                <img src="/OneTourPlanner/Assets/Rohtas.jpeg" class="image-container1" alt="Rajgir Hot Springs">
+                <h1 class="text-container">Rajgir</h1>
+            </div>
+        </div>
+    </div>
+    <div class="image-section-container">
+        <div class="image-section">
+            <h3>Culinaire</h3>
+            <div class="image-row">
+                <img src="/OneTourPlanner/Assets/Litti Chokha.jpeg" alt="Tourist Place 1">
+                <img src="/OneTourPlanner/Assets/Chhath Puja.jpg" alt="Tourist Place 2">
+                <img src="/OneTourPlanner/Assets/Madhubani Painting.jpg" alt="Tourist Place 3">
+                <img src="/OneTourPlanner/Assets/Makhana.jpg" alt="Tourist Place 4">
+                <img src="/OneTourPlanner/Assets/Tilkut.jpg" alt="Tourist Place 5">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Header Section -->
+        <header class="section-title">
+            <div class="title-circles">
+                <div class="title-circle"></div>
+                <div class="title-circle"></div>
+                <div class="title-circle"></div>
+            </div>
+            <h1>Client Reviews</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="review-container">
+            <!-- Profile Section -->
+            <section class="profile-section">
+                <div class="current-reviewer" id="main-profile"></div>
+                <div class="previous-reviewers">
+                    <button class="nav-arrow left" aria-label="Previous reviewers">←</button>
+                    <div class="previous-reviewer" id="reviewer1" tabindex="0" role="button"
+                        aria-label="Switch to reviewer 1"></div>
+                    <div class="previous-reviewer" id="reviewer2" tabindex="0" role="button"
+                        aria-label="Switch to reviewer 2"></div>
+                    <div class="previous-reviewer" id="reviewer3" tabindex="0" role="button"
+                        aria-label="Switch to reviewer 3"></div>
+                    <button class="nav-arrow right" aria-label="Next reviewers">→</button>
+                </div>
+            </section>
+
+            <!-- Review Card -->
+            <article class="review-card">
+                <blockquote class="review-text" id="review-text">
+                    Our travel planner and her team pulled together an amazing trip in environment
+                </blockquote>
+                <div class="stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>
+                <div class="reviewer-name" id="reviewer-name">Sarah Johnson</div>
+                <div class="reviewer-title" id="reviewer-title">Travel Enthusiast</div>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About OneTour.Planner</h3>
+                <p>Your ultimate travel planning companion. We help you discover amazing destinations and create
+                    unforgettable travel experiences.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="Services.html">Services</a>
+                <a href="Explore.html">Explore</a>
+                <a href="Pakages.html">Packages</a>
+                <a href="Tourist-Places.html">Tourist Places</a>
+                <a href="Trip-ideas.html">Trip Ideas</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>123 Travel Street, Tourism City, TC 12345</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>+91 8936016877</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <p>saketbranwal@gmail.com</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-clock"></i>
+                    <p>Mon-Fri: 9AM - 6PM</p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest travel deals and tips.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 OneTour.Planner. All Rights Reserved. | Designed with ❤️ for travelers</p>
+    </div>
+
+    <script>
+        // Hamburger menu and dropdown functionality
+        const hamburger = document.querySelector('#hamburger');
+        const mobileMenu = document.querySelector('#mobileMenu');
+        const moreBtn = document.querySelector('#moreBtn');
+        const dropdownMenu = document.querySelector('#dropdownMenu');
+        const mobileMoreBtn = document.querySelector('#mobileMoreBtn');
+        const mobileDropdown = document.querySelector('#mobileDropdown');
+    
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', function () {
+            this.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+    
+        // Desktop dropdown toggle
+        moreBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+    
+        // Mobile dropdown toggle
+        mobileMoreBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            mobileDropdown.classList.toggle('show');
+            const span = this.querySelector('span');
+            span.textContent = mobileDropdown.classList.contains('show') ? '▴' : '▾';
+        });
+    
+        // Close dropdowns when clicking anywhere else
+        document.addEventListener('click', function () {
+            dropdownMenu.classList.remove('show');
+            mobileDropdown.classList.remove('show');
+            const span = mobileMoreBtn.querySelector('span');
+            span.textContent = '▾';
+        });
+    
+        // Prevent dropdown from closing when clicking inside it
+        dropdownMenu.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    
+        mobileDropdown.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    
+        // Close mobile menu when clicking on a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                mobileDropdown.classList.remove('show');
+                mobileMoreBtn.querySelector('span').textContent = '▾';
+            });
+        });
+    
+        // Reviews functionality
+        const reviews = [
+            {
+                name: "Sarah Johnson",
+                title: "Travel Enthusiast",
+                review: "Our travel planner and her team pulled together an amazing trip in environment",
+                image: "https://randomuser.me/api/portraits/women/44.jpg"
+            },
+            {
+                name: "Michael Brown",
+                title: "Adventure Seeker",
+                review: "The most unforgettable experience of my life! Everything was perfectly organized.",
+                image: "https://randomuser.me/api/portraits/men/22.jpg"
+            },
+            {
+                name: "Emily Davis",
+                title: "Luxury Traveler",
+                review: "Exceptional service and attention to detail. Will definitely book again!",
+                image: "https://randomuser.me/api/portraits/women/65.jpg"
+            },
+            {
+                name: "David Wilson",
+                title: "Business Traveler",
+                review: "Efficient and professional service. Made my business trip stress-free.",
+                image: "https://randomuser.me/api/portraits/men/33.jpg"
+            },
+            {
+                name: "Jessica Lee",
+                title: "Family Vacationer",
+                review: "Perfect family vacation thanks to their amazing planning and kid-friendly suggestions.",
+                image: "https://randomuser.me/api/portraits/women/32.jpg"
+            },
+            {
+                name: "Robert Garcia",
+                title: "Honeymooner",
+                review: "They created the most romantic honeymoon we could have imagined!",
+                image: "https://randomuser.me/api/portraits/men/45.jpg"
+            }
+        ];
+    
+        // DOM Elements for reviews
+        const mainProfile = document.getElementById('main-profile');
+        const reviewer1 = document.getElementById('reviewer1');
+        const reviewer2 = document.getElementById('reviewer2');
+        const reviewer3 = document.getElementById('reviewer3');
+        const reviewText = document.getElementById('review-text');
+        const reviewerName = document.getElementById('reviewer-name');
+        const reviewerTitle = document.getElementById('reviewer-title');
+        const leftArrow = document.querySelector('.nav-arrow.left');
+        const rightArrow = document.querySelector('.nav-arrow.right');
+    
+        // State Variables for reviews
+        let currentIndex = 0;
+        let currentSet = 0;
+    
+        // Initialize reviews
+        function initializeReviews() {
+            updateDisplayedReviews(0);
+            updateProfile(0);
+            setupAccessibility();
+        }
+    
+        // Update main profile display
+        function updateProfile(index) {
+            const review = reviews[index];
+            mainProfile.style.backgroundImage = `url(${review.image})`;
+            reviewText.textContent = review.review;
+            reviewerName.textContent = review.name;
+            reviewerTitle.textContent = review.title;
+            animateProfile();
+            currentIndex = index;
+        }
+    
+        // Animate profile picture
+        function animateProfile() {
+            mainProfile.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                mainProfile.style.transform = 'scale(1)';
+            }, 300);
+        }
+    
+        // Update small circles with review set
+        function updateDisplayedReviews(setIndex) {
+            currentSet = setIndex;
+            const reviewIndices = calculateReviewIndices(setIndex);
+            updateReviewerCircles(reviewIndices);
+            updateNavigationState();
+        }
+    
+        // Calculate which reviews to show
+        function calculateReviewIndices(setIndex) {
+            const startIndex = (setIndex * 3) % reviews.length;
+            return [
+                (startIndex + 1) % reviews.length,
+                (startIndex + 2) % reviews.length,
+                (startIndex + 3) % reviews.length
+            ];
+        }
+    
+        // Update reviewer circles
+        function updateReviewerCircles(indices) {
+            reviewer1.style.backgroundImage = `url(${reviews[indices[0]].image})`;
+            reviewer2.style.backgroundImage = `url(${reviews[indices[1]].image})`;
+            reviewer3.style.backgroundImage = `url(${reviews[indices[2]].image})`;
+            reviewer1.onclick = () => updateProfile(indices[0]);
+            reviewer2.onclick = () => updateProfile(indices[1]);
+            reviewer3.onclick = () => updateProfile(indices[2]);
+        }
+    
+        // Update navigation buttons
+        function updateNavigationState() {
+            leftArrow.disabled = currentSet === 0;
+            rightArrow.disabled = (currentSet + 1) * 3 >= reviews.length - 1;
+        }
+    
+        // Setup keyboard accessibility
+        function setupAccessibility() {
+            [reviewer1, reviewer2, reviewer3].forEach((reviewer, index) => {
+                reviewer.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        reviewer.click();
+                    }
+                });
+            });
+        }
+    
+        // Event listeners for reviews
+        leftArrow.addEventListener('click', () => {
+            if (currentSet > 0) {
+                updateDisplayedReviews(currentSet - 1);
+            }
+        });
+    
+        rightArrow.addEventListener('click', () => {
+            if ((currentSet + 1) * 3 < reviews.length - 1) {
+                updateDisplayedReviews(currentSet + 1);
+            }
+        });
+    
+        // Initialize reviews when DOM is loaded
+        window.addEventListener('DOMContentLoaded', initializeReviews);
+    </script>
+    
+    <script type="module">
+        // Firebase Authentication
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyATXQVGhwcAX7gJLEqGbgFjwD11fA4wOVY",
+            authDomain: "bihartourism-7cbe4.firebaseapp.com",
+            projectId: "bihartourism-7cbe4",
+            storageBucket: "bihartourism-7cbe4.appspot.com",
+            messagingSenderId: "909615810483",
+            appId: "1:909615810483:web:2a8409199ba6be4e132dc6"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const authContainer = document.getElementById('auth-container');
+        const mobileAuthContainer = document.getElementById('mobile-auth-container');
+    
+        // Update auth UI
+        function updateAuthUI(user) {
+            // Always keep the design image
+            const designImage = `<img src="Assets/Design.png" alt="Design Background" class="nav-bg-decor">`;
+            
+            if (user) {
+                // User is signed in
+                const userInitial = user.email ? user.email.charAt(0).toUpperCase() : 'U';
+                const userName = user.displayName || user.email.split('@')[0];
+    
+                // Desktop view - much improved UI
+                authContainer.innerHTML = `
+                    ${designImage}
+                    <div class="profile-container">
+                        <div class="profile-icon">
+                            <span>${userInitial}</span>
+                            <span class="profile-name">Hi, ${userName}</span>
+                        </div>
+                        <div class="profile-dropdown">
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                            <a href="#" class="dropdown-item logout-btn" id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                `;
+    
+                // Mobile view - improved UI
+                mobileAuthContainer.innerHTML = `
+                    <div class="mobile-profile">
+                        <div class="mobile-profile-header">
+                            <div class="mobile-profile-icon">${userInitial}</div>
+                            <div class="mobile-profile-name">${userName}</div>
+                        </div>
+                        <a href="profile.html" class="mobile-profile-link">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#" class="mobile-profile-link logout-btn" id="mobile-logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                `;
+    
+                // Add logout functionality
+                document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+    
+                document.getElementById('mobile-logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+    
+                // Toggle dropdown
+                const profileIcon = authContainer.querySelector('.profile-icon');
+                const dropdown = authContainer.querySelector('.profile-dropdown');
+                
+                profileIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('show');
+                });
+    
+                // Close dropdown when clicking outside
+                document.addEventListener('click', () => {
+                    dropdown.classList.remove('show');
+                });
+            } else {
+                // No user signed in
+                authContainer.innerHTML = `
+                    ${designImage}
+                    <form action="login.html" method="get">
+                        <button type="submit" class="nav-auth-btn">
+                            Log in or <br> Create Account
+                        </button>
+                    </form>
+                `;
+    
+                mobileAuthContainer.innerHTML = `
+                    <a href="login.html" class="mobile-login-btn">
+                        <i class="fas fa-user-circle"></i> Log in or Create Account
+                    </a>
+                `;
+            }
+        }
+    
+        // Handle logout
+        function handleLogout() {
+            signOut(auth).then(() => {
+                window.location.href = "index.html";
+            }).catch((error) => {
+                console.error("Logout error:", error);
+            });
+        }
+    
+        // Function to handle refresh action
+        function performRefreshAction() {
+            alert("Refresh action successful!"); // Replace with your actual refresh logic
+            console.log("Data refreshed successfully");
+        }
+    
+        // Modified saveData function with auth check
+        function saveData() {
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is logged in - perform the action
+                    performRefreshAction();
+                } else {
+                    // User not logged in - show prompt
+                    if (confirm("You need to login to use this feature. Redirect to login page?")) {
+                        // Store current URL to return after login
+                        sessionStorage.setItem('redirectAfterLogin', window.location.href);
+                        // Redirect to login page
+                        window.location.href = "login.html";
+                    }
+                }
+            });
+        }
+    
+        // Check auth state and update UI
+        onAuthStateChanged(auth, (user) => {
+            updateAuthUI(user);
+            
+            // Attach event listener to refresh button if it exists
+            const refreshBtn = document.querySelector('.refresh-btn button');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', saveData);
+            }
+        });
+    </script>
+</body>
+
+</html>
