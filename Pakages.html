@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Packages - OneTour.Planner</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .nav-main {
+            padding: 24px 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo Styles */
+        .nav-brand {
+            color: #FF0303;
+            font-weight: 600;
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+            margin-left: -28px;
+        }
+
+        .nav-brand-accent {
+            color: #3CF0FD;
+        }
+
+        /* Navigation Links */
+        .nav-menu {
+            display: flex;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            position: absolute;
+            left: 48%;
+            gap: 30px;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a {
+            margin: 0 12px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .nav-menu a:hover {
+            color: #FF0303;
+        }
+
+        /* Dropdown Styles */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+            z-index: 110;
+        }
+
+        .nav-dropdown-toggle {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0;
+            margin: 0 12px;
+            position: relative;
+            z-index: 111;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: #FF0303;
+        }
+
+        .nav-dropdown-content {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            margin-top: 8px;
+            width: 160px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            z-index: 110;
+        }
+
+        .nav-dropdown-content.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-dropdown-content a {
+            display: block;
+            padding: 8px 16px;
+            color: #333;
+            text-decoration: none;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .nav-dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Login Button */
+        .nav-auth {
+            display: none;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-auth-btn {
+            position: relative;
+            z-index: 10;
+            background: #ff0303;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            width: 150px;
+            height: 65px;
+            border-radius: 32px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            border: none;
+            transition: all 0.3s ease;
+            margin-right: -35px;
+            line-height: 1.5;
+        }
+
+        .nav-auth-btn:hover {
+            background: #e60000;
+        }
+
+        /* Profile Dropdown Styles */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 15px;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 30px;
+            background: #797979;
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon span:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: yellow;
+            color: black;
+            font-weight: bold;
+        }
+
+        .profile-name {
+            color: white;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .profile-dropdown {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-item i {
+            margin-right: 10px;
+            color: #4361ee;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #4361ee;
+        }
+
+        .dropdown-item.logout-btn i {
+            color: #f72585;
+        }
+
+        .dropdown-item.logout-btn:hover {
+            color: #f72585;
+        }
+
+        /* Mobile Profile Styles */
+        .mobile-profile {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4361ee;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .mobile-profile-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .mobile-profile-link {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .mobile-profile-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .mobile-profile-link.logout-btn {
+            color: #f72585;
+        }
+
+        .mobile-profile-link.logout-btn i {
+            color: #f72585;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: #FF0303;
+            border-radius: 3px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+
+        .hamburger span:nth-child(2),
+        .hamburger span:nth-child(3) {
+            top: 10px;
+        }
+
+        .hamburger span:nth-child(4) {
+            top: 20px;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        .hamburger.open span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        .hamburger.open span:nth-child(4) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 100;
+            padding: 80px 20px 20px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px 0;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .mobile-menu a:hover {
+            color: #FF0303;
+        }
+
+        .mobile-dropdown-content {
+            padding-left: 20px;
+            display: none;
+        }
+
+        .mobile-dropdown-content.show {
+            display: block;
+        }
+
+        .mobile-dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 12px 0;
+            color: #333;
+            text-align: left;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .mobile-dropdown-toggle:hover {
+            color: #FF0303;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+
+            .nav-auth {
+                display: flex;
+            }
+
+            .hamburger {
+                display: none !important;
+            }
+
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-auth {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-wrapper {
+                gap: 0;
+            }
+        }
+
+        .holiday-packages {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .package-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .package-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 120px;
+            text-align: center;
+        }
+
+        .package-card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .oneline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .oneline h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            background-color: #f1f9fe;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .stars {
+            color: #f39c12;
+            margin-right: 5px;
+            font-size: 0.9rem;
+        }
+
+        .package-card h3 {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 8px 5px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+
+        .feature-item .icon {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .package-description {
+            margin: 15px 0;
+            flex-grow: 1;
+        }
+
+        .package-description p {
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .check-mark {
+            color: #2ecc71;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .price-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .price {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        .discounted-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+
+        .discount-badge {
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+            align-self: flex-start;
+        }
+
+        .details-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .package-container {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .package-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+            }
+
+            .header-section h1 {
+                font-size: 2rem;
+            }
+
+            .package-card {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .holiday-packages {
+                padding: 20px 15px;
+            }
+
+            .package-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .price-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .details-btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg">
+    <nav class="nav-main">
+        <div class="nav-wrapper">
+            <!-- Logo -->
+            <a class="nav-brand" href="index.html">
+                OneTour.<span class="nav-brand-accent">Planner</span>
+            </a>
+
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="Services.html">Services</a>
+                <a href="Explore.html">Explore....</a>
+                <a href="Pakages.html">Packages</a>
+                <a href="Tourist-Places.html">Tourist Places</a>
+
+                <!-- More Dropdown -->
+                <div class="nav-dropdown">
+                    <button id="moreBtn" class="nav-dropdown-toggle">More ▾</button>
+                    <div id="dropdownMenu" class="nav-dropdown-content">
+                        <a href="About.html">About</a>
+                        <a href="F&Q.html">FAQ</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="Trip-ideas.html">Trip Ideas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Button/Auth Container -->
+            <div class="nav-auth" id="auth-container">
+                <a href="login.html">
+                    <button class="nav-auth-btn">
+                        Log in or <br> Create Account
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="Explore.html">Explore....</a>
+            <a href="Pakages.html">Packages</a>
+            <a href="Tourist-Places.html">Tourist Places</a>
+
+            <button class="mobile-dropdown-toggle" id="mobileMoreBtn">
+                More <span>▾</span>
+            </button>
+            <div class="mobile-dropdown-content" id="mobileDropdown">
+                <a href="About.html">About</a>
+                <a href="F&Q.html">FAQ</a>
+                <a href="blog.html">Blog</a>
+                <a href="Trip-ideas.html">Trip Ideas</a>
+            </div>
+
+            <!-- Mobile Auth Container -->
+            <div id="mobile-auth-container">
+                <a href="login.html"
+                    style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
+                    Log in or Create Account
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="holiday-packages">
+        <div class="header-section">
+            <h1>Explore Our Holiday Packages</h1>
+            <p class="subtitle">Discover amazing destinations with all-inclusive deals</p>
+        </div>
+        <div class="package-container">
+            <!-- Package Card 1 -->
+            <div class="package-card">
+                <div class="card-badge">Popular</div>
+                <img src="/Assets/image 8.png" alt="Patna">
+                <div class="oneline">
+                    <h2>Patna Getaway</h2>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>4.5</span>
+                    </div>
+                </div>
+                <h3>4 Days, 3 Nights</h3>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon">✈️</span>
+                        <span>Flights</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🏨</span>
+                        <span>Hotels</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🚗</span>
+                        <span>Cabs</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🗺️</span>
+                        <span>Guide</span>
+                    </div>
+                </div>
+                <div class="package-description">
+                    <p><span class="check-mark">✓</span> Tour Combo Air and Cab Transport</p>
+                    <p><span class="check-mark">✓</span> Professional Tour Guide included</p>
+                    <p><span class="check-mark">✓</span> Comfortable accommodation & meals</p>
+                </div>
+                <div class="price-details">
+                    <div class="price">
+                        <span class="original-price">₹5000</span>
+                        <span class="discounted-price">₹4000</span>
+                        <span class="discount-badge">20% OFF</span>
+                    </div>
+                    <button class="details-btn">View Details</button>
+                </div>
+            </div>
+
+            <!-- Package Card 2 -->
+            <div class="package-card">
+                <div class="card-badge">Family Special</div>
+                <img src="/Assets/image 8.png" alt="Patna">
+                <div class="oneline">
+                    <h2>Patna Explorer</h2>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>4.5</span>
+                    </div>
+                </div>
+                <h3>4 Days, 3 Nights</h3>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon">✈️</span>
+                        <span>Flights</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🏨</span>
+                        <span>Hotels</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🚗</span>
+                        <span>Cabs</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🗺️</span>
+                        <span>Guide</span>
+                    </div>
+                </div>
+                <div class="package-description">
+                    <p><span class="check-mark">✓</span> Tour Combo Air and Cab Transport</p>
+                    <p><span class="check-mark">✓</span> Professional Tour Guide included</p>
+                    <p><span class="check-mark">✓</span> Comfortable accommodation & meals</p>
+                </div>
+                <div class="price-details">
+                    <div class="price">
+                        <span class="original-price">₹5000</span>
+                        <span class="discounted-price">₹4000</span>
+                        <span class="discount-badge">20% OFF</span>
+                    </div>
+                    <button class="details-btn">View Details</button>
+                </div>
+            </div>
+
+            <!-- Package Card 3 -->
+            <div class="package-card">
+                <div class="card-badge">Luxury</div>
+                <img src="/Assets/image 8.png" alt="Patna">
+                <div class="oneline">
+                    <h2>Patna Premium</h2>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span>5.0</span>
+                    </div>
+                </div>
+                <h3>4 Days, 3 Nights</h3>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon">✈️</span>
+                        <span>Flights</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🏨</span>
+                        <span>Hotels</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🚗</span>
+                        <span>Cabs</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🗺️</span>
+                        <span>Guide</span>
+                    </div>
+                </div>
+                <div class="package-description">
+                    <p><span class="check-mark">✓</span> Tour Combo Air and Cab Transport</p>
+                    <p><span class="check-mark">✓</span> Professional Tour Guide included</p>
+                    <p><span class="check-mark">✓</span> Luxury accommodation & gourmet meals</p>
+                </div>
+                <div class="price-details">
+                    <div class="price">
+                        <span class="original-price">₹8000</span>
+                        <span class="discounted-price">₹6000</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+                    <button class="details-btn">View Details</button>
+                </div>
+            </div>
+
+            <!-- Package Card 4 -->
+            <div class="package-card">
+                <img src="/Assets/image 8.png" alt="Patna">
+                <div class="oneline">
+                    <h2>Patna Budget</h2>
+                    <div class="rating">
+                        <span class="stars">★★★☆☆</span>
+                        <span>3.8</span>
+                    </div>
+                </div>
+                <h3>4 Days, 3 Nights</h3>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon">✈️</span>
+                        <span>Flights</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🏨</span>
+                        <span>Hotels</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🚗</span>
+                        <span>Cabs</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🗺️</span>
+                        <span>Guide</span>
+                    </div>
+                </div>
+                <div class="package-description">
+                    <p><span class="check-mark">✓</span> Tour Combo Air and Cab Transport</p>
+                    <p><span class="check-mark">✓</span> Professional Tour Guide included</p>
+                    <p><span class="check-mark">✓</span> Comfortable accommodation & meals</p>
+                </div>
+                <div class="price-details">
+                    <div class="price">
+                        <span class="original-price">₹4500</span>
+                        <span class="discounted-price">₹3500</span>
+                        <span class="discount-badge">22% OFF</span>
+                    </div>
+                    <button class="details-btn">View Details</button>
+                </div>
+            </div>
+
+            <!-- Package Card 5 -->
+            <div class="package-card">
+                <div class="card-badge">New</div>
+                <img src="/Assets/image 8.png" alt="Patna">
+                <div class="oneline">
+                    <h2>Patna Adventure</h2>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>4.2</span>
+                    </div>
+                </div>
+                <h3>4 Days, 3 Nights</h3>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon">✈️</span>
+                        <span>Flights</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🏨</span>
+                        <span>Hotels</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🚗</span>
+                        <span>Cabs</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🗺️</span>
+                        <span>Guide</span>
+                    </div>
+                </div>
+                <div class="package-description">
+                    <p><span class="check-mark">✓</span> Tour Combo Air and Cab Transport</p>
+                    <p><span class="check-mark">✓</span> Professional Tour Guide included</p>
+                    <p><span class="check-mark">✓</span> Comfortable accommodation & meals</p>
+                </div>
+                <div class="price-details">
+                    <div class="price">
+                        <span class="original-price">₹5000</span>
+                        <span class="discounted-price">₹4000</span>
+                        <span class="discount-badge">20% OFF</span>
+                    </div>
+                    <button class="details-btn">View Details</button>
+                </div>
+            </div>
+
+            <!-- Package Card 6 -->
+            <div class="package-card">
+                <div class="card-badge">Best Value</div>
+                <img src="/Assets/image 8.png" alt="Patna">
+                <div class="oneline">
+                    <h2>Patna Deluxe</h2>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>4.5</span>
+                    </div>
+                </div>
+                <h3>4 Days, 3 Nights</h3>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon">✈️</span>
+                        <span>Flights</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🏨</span>
+                        <span>Hotels</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🚗</span>
+                        <span>Cabs</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🗺️</span>
+                        <span>Guide</span>
+                    </div>
+                </div>
+                <div class="package-description">
+                    <p><span class="check-mark">✓</span> Tour Combo Air and Cab Transport</p>
+                    <p><span class="check-mark">✓</span> Professional Tour Guide included</p>
+                    <p><span class="check-mark">✓</span> Premium accommodation & meals</p>
+                </div>
+                <div class="price-details">
+                    <div class="price">
+                        <span class="original-price">₹6000</span>
+                        <span class="discounted-price">₹4500</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+                    <button class="details-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyATXQVGhwcAX7gJLEqGbgFjwD11fA4wOVY",
+            authDomain: "bihartourism-7cbe4.firebaseapp.com",
+            projectId: "bihartourism-7cbe4",
+            storageBucket: "bihartourism-7cbe4.appspot.com",
+            messagingSenderId: "909615810483",
+            appId: "1:909615810483:web:2a8409199ba6be4e132dc6"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // DOM elements
+        const authContainer = document.getElementById('auth-container');
+        const mobileAuthContainer = document.getElementById('mobile-auth-container');
+
+        // Update auth UI based on user state
+        function updateAuthUI(user) {
+            if (user) {
+                // User is signed in
+                const userInitial = user.email ? user.email.charAt(0).toUpperCase() : 'U';
+                const userName = user.displayName || user.email.split('@')[0];
+
+                // Desktop view
+                authContainer.innerHTML = `
+                    <div class="profile-container">
+                        <div class="profile-icon" id="profileIcon">
+                            <span>${userInitial}</span>
+                            <span class="profile-name">Hi, ${userName}</span>
+                        </div>
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                            <a href="#" class="dropdown-item logout-btn" id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                // Mobile view
+                mobileAuthContainer.innerHTML = `
+                    <div class="mobile-profile">
+                        <div class="mobile-profile-header">
+                            <div class="mobile-profile-icon">${userInitial}</div>
+                            <div class="mobile-profile-name">${userName}</div>
+                        </div>
+                        <a href="profile.html" class="mobile-profile-link">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#" class="mobile-profile-link logout-btn" id="mobile-logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                `;
+
+                // Add event listeners for desktop dropdown
+                const profileIcon = document.getElementById('profileIcon');
+                const profileDropdown = document.getElementById('profileDropdown');
+
+                if (profileIcon && profileDropdown) {
+                    profileIcon.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        profileDropdown.classList.toggle('show');
+                    });
+                }
+
+                // Add logout functionality
+                document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+
+                document.getElementById('mobile-logout-btn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', () => {
+                    if (profileDropdown) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
+
+            } else {
+                // No user signed in
+                authContainer.innerHTML = `
+                    <a href="login.html">
+                        <button class="nav-auth-btn">
+                            Log in or <br> Create Account
+                        </button>
+                    </a>
+                `;
+
+                mobileAuthContainer.innerHTML = `
+                    <a href="login.html" style="margin-top: 20px; display: block; text-align: center; background: #ff0303; color: white; padding: 12px; border-radius: 5px;">
+                        Log in or Create Account
+                    </a>
+                `;
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            auth.signOut().then(() => {
+                // Update UI after logout
+                updateAuthUI(null);
+                // Close mobile menu if open
+                const hamburger = document.getElementById('hamburger');
+                const mobileMenu = document.getElementById('mobileMenu');
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            }).catch((error) => {
+                console.error("Logout error:", error);
+                alert("Failed to logout. Please try again.");
+            });
+        }
+
+        // Check auth state on page load
+        auth.onAuthStateChanged((user) => {
+            updateAuthUI(user);
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('#hamburger');
+        const mobileMenu = document.querySelector('#mobileMenu');
+
+        hamburger.addEventListener('click', function () {
+            this.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Dropdown functionality
+        const moreBtn = document.querySelector('#moreBtn');
+        const dropdownMenu = document.querySelector('#dropdownMenu');
+        const mobileMoreBtn = document.querySelector('#mobileMoreBtn');
+        const mobileDropdown = document.querySelector('#mobileDropdown');
+
+        // Desktop dropdown toggle
+        moreBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Mobile dropdown toggle
+        mobileMoreBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            mobileDropdown.classList.toggle('show');
+            const span = this.querySelector('span');
+            span.textContent = mobileDropdown.classList.contains('show') ? '▴' : '▾';
+        });
+
+        // Close dropdowns when clicking anywhere else
+        document.addEventListener('click', function () {
+            dropdownMenu.classList.remove('show');
+            mobileDropdown.classList.remove('show');
+            const span = mobileMoreBtn.querySelector('span');
+            if (span) {
+                span.textContent = '▾';
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside it
+        dropdownMenu.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+
+        mobileDropdown.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                mobileDropdown.classList.remove('show');
+                const span = mobileMoreBtn.querySelector('span');
+                if (span) {
+                    span.textContent = '▾';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
