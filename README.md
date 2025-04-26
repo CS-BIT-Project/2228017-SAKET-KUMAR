@@ -4,7 +4,7 @@
 
 ## 🌍 Live Preview
 
-> [gleaming-pony-978bd3.netlify.app]()  
+> [https://gleaming-pony-978bd3.netlify.app/]()  
 
 
 ---
