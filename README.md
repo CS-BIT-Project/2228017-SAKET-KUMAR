@@ -4,8 +4,8 @@
 
 ## 🌍 Live Preview
 
-> [Visit OneTour.Planner](gleaming-pony-978bd3.netlify.app)  
-(*Replace with your live project link*)
+> [Visit OneTour.Planner]()  
+(gleaming-pony-978bd3.netlify.app)
 
 ---
 
