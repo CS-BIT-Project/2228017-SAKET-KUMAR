@@ -5,7 +5,7 @@
 ## 🌍 Live Preview
 
 > [Visit OneTour.Planner]()  
-(gleaming-pony-978bd3.netlify.app)
+[gleaming-pony-978bd3.netlify.app]
 
 ---
 
